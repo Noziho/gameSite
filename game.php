@@ -9,7 +9,10 @@ require __DIR__. '/parts/header.php';
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">
+                <img src="/assets/img/Forza%20horizon%205.jpg" alt=""
+                >
+            </div>
             <div class="swiper-slide">Slide 2</div>
             <div class="swiper-slide">Slide 3</div>
             ...
@@ -30,5 +33,4 @@ require __DIR__. '/parts/header.php';
 
 
 <?php
-
 require __DIR__ . '/parts/footer.php';

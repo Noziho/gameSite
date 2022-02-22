@@ -14,6 +14,7 @@ body {
     font-size: 1.6rem;
 }
 
+/* Menu  */
 header {
     display: flex;
     flex-flow: row wrap;
@@ -23,6 +24,10 @@ header {
     height: 5rem;
     background: #1a1717;
     padding: 1rem;
+}
+
+header > div {
+    width: 15%;
 }
 
 * a {
@@ -41,13 +46,20 @@ header {
     box-shadow: none;
 }
 
-
+/* Main container + sub container */
 .container {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     margin-top: 5%;
+}
+
+.sub_container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #introPage {
@@ -59,11 +71,16 @@ header {
     padding: 3rem;
 }
 
-header > div {
-    width: 15%;
+/* Swiper */
+.swiper {
+    width: 80%;
+    height: 300px;
 }
 
-.swiper {
-    width: 600px;
-    height: 300px;
+.swiper-slide {
+    width: 100%;
+}
+
+img {
+    width: 100%;
 }
