@@ -73,14 +73,22 @@ header > div {
 
 /* Swiper */
 .swiper {
-    width: 80%;
-    height: 300px;
+    width: 70%;
+    height: 550px;
+    margin-top: 2%;
 }
 
 .swiper-slide {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-img {
+.swiper_img {
     width: 100%;
+    height: auto;
+
 }
+
