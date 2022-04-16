@@ -1,9 +1,13 @@
 <?php
-$page = $_GET['p'] ?? 'home';
-$page = strip_tags($page);
 
-redirect(sprintf(__DIR__.'/../%s.php', $page));
+use App\Router;
 
-function redirect (string $pagename) {
-    require file_exists($pagename) ? $pagename : __DIR__ . '/../404.php';
+require __DIR__. '/../includes.php';
+session_start();
+
+try {
+    Router::route();
+}
+catch (ReflectionException $e) {
+    echo "Une erreur est survenu avec le rooter";
 }

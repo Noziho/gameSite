@@ -1,9 +1,3 @@
-<?php
-
-$title = 'Nos jeux';
-require __DIR__. '/parts/header.php';
-?>
-
 
     <div class="swiper">
         <!-- Additional required wrapper -->
@@ -25,10 +19,3 @@ require __DIR__. '/parts/header.php';
         <div class="swiper-pagination"></div>
 
     </div>
-
-
-
-
-
-<?php
-require __DIR__ . '/parts/footer.php';
