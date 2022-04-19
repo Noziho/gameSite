@@ -17,7 +17,7 @@
         <a href="/?c=home">Accueil</a>
         <a href="/?c=home&a=game">Nos jeux</a>
         <a href="/?c=user&a=contact">Contact</a>
-        <a href="/?c=user&a=login">Connexion</a>
+        <a href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
     </nav>
 </header>
 

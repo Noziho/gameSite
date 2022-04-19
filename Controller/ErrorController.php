@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Controller\AbstractController;
 
 class ErrorController extends AbstractController
