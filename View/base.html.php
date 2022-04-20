@@ -17,7 +17,15 @@
         <a href="/?c=home">Accueil</a>
         <a href="/?c=home&a=game">Nos jeux</a>
         <a href="/?c=user&a=contact">Contact</a>
-        <a href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
+        <?php
+            if (!isset($_SESSION['user'])){?>
+                <a href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
+                <?php
+            }
+            else {?>
+                <a href="/?c=user&a=dislog">Se déconnecter</a><?php
+            }
+        ?>
     </nav>
 </header>
 

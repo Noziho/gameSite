@@ -38,7 +38,7 @@ class UserController extends AbstractController
                             <body>
                                  <p>Pour finalisez votre inscription veuillez cliquer sur le lien ci-dessous :</p>
                                  <div style="display: flex; justify-content: center; align-items: center">
-                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://localhost:8000/?c=user&a=check-mail&us='.$username.'&idConfirm='.$confirm_code.'">Confirmez votre compte</a></button>
+                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://localhost:8000/?c=user&a=check-mail&us='.$username.'">Confirmez votre compte</a></button>
                                  </div>
                            </body>
                     </html>
@@ -71,7 +71,15 @@ class UserController extends AbstractController
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password_decode = $_POST['password'];
             UserManager::login($email, $password_decode);
+            header("Location: /?c=home");
         }
+    }
+
+    public function dislog()
+    {
+        session_destroy();
+        session_unset();
+        header("Location: /?c=home");
     }
 
     public function contact()
@@ -79,8 +87,12 @@ class UserController extends AbstractController
         $this->render('user/contact');
     }
 
-    public function checkMail(string $us, int $idConfirm)
+    public function checkMail(string $us)
     {
-        $user = UserManager::getUserByUserName($us, $idConfirm);
+        $user = UserManager::getUserByUserName($us);
+
+        UserManager::editConfirmationStatus($user);
+
+        header("Location: /?c=user&a=login");
     }
 }

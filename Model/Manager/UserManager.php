@@ -79,17 +79,19 @@ class UserManager extends AbstractEntity
         }
     }
 
-    public static function getUserByUserName(string $username, int $confirm_code): ?User
+    public static function getUserByUserName(string $username): ?User
     {
 
-        $query = DB_Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE id = :username");
-        $query->bindParam(':username', $us);
+        $query = DB_Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE username = :username");
+        $query->bindParam(':username', $username);
 
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
     public static function editConfirmationStatus(User $user)
     {
-
+        $stmt = DB_Connect::dbConnect()->query(
+            "UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId() ."
+        ");
     }
 }
