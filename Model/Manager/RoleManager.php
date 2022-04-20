@@ -17,7 +17,7 @@ class RoleManager extends AbstractEntity
             foreach($query->fetchAll() as $roleData) {
                 $roles[] = (new Role())
                     ->setId($roleData['id'])
-                    ->setName($roleData['role_name'])
+                    ->setName($roleData['name'])
                 ;
             }
         }

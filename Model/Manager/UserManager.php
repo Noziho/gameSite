@@ -43,4 +43,53 @@ class UserManager extends AbstractEntity
         }
         return false;
     }
+
+    public static function login($email, $password_decode)
+    {
+        $stmt = DB_Connect::dbConnect()->prepare("
+            SELECT * FROM ". self::TABLE ." WHERE email = :email
+        ");
+
+
+        $stmt->bindParam(':email', $email);
+
+        if ($stmt->execute()) {
+            $password = $stmt->fetch();
+            if (isset($password['password'])) {
+                if (password_verify($password_decode, $password['password'])) {
+                    $user = self::makeUser($password);
+
+                    if ($user->getConfirm() === 0) {
+                        header("Location: /index.php?c=user&a=login&f=0");
+                        exit();
+                    }
+
+                    if(!isset($_SESSION['user'])) {
+                        $_SESSION['user'] = $user;
+                    }
+
+                }
+                else {
+                    header("Location: /index.php?c=user&a=login&f=0");
+                }
+            }
+            else {
+                header("Location: /index.php?c=user&a=login&f=1");
+            }
+        }
+    }
+
+    public static function getUserByUserName(string $username, int $confirm_code): ?User
+    {
+
+        $query = DB_Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE id = :username");
+        $query->bindParam(':username', $us);
+
+        return $query->execute() ? self::makeUser($query->fetch()) : null;
+    }
+
+    public static function editConfirmationStatus(User $user)
+    {
+
+    }
 }
