@@ -5,11 +5,11 @@ use App\Model\Entity\AbstractEntity;
 class User extends AbstractEntity
 {
     public string $email;
-    public string $pseudo;
+    public string $username;
     private string $password;
     public string $confirm_code;
     public int $confirm;
-    public Role $role;
+    public array $role;
 
     /**
      * @return string
@@ -21,26 +21,30 @@ class User extends AbstractEntity
 
     /**
      * @param string $email
+     * @return User
      */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getPseudo(): string
+    public function getUsername(): string
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
     /**
-     * @param string $pseudo
+     * @param string $username
+     * @return User
      */
-    public function setPseudo(string $pseudo): void
+    public function setUsername(string $username): self
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
+        return $this;
     }
 
     /**
@@ -53,10 +57,12 @@ class User extends AbstractEntity
 
     /**
      * @param string $password
+     * @return User
      */
-    public function setPassword(string $password): void
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -69,10 +75,12 @@ class User extends AbstractEntity
 
     /**
      * @param string $confirm_code
+     * @return User
      */
-    public function setConfirmCode(string $confirm_code): void
+    public function setConfirmCode(string $confirm_code): self
     {
         $this->confirm_code = $confirm_code;
+        return $this;
     }
 
     /**
@@ -85,26 +93,30 @@ class User extends AbstractEntity
 
     /**
      * @param int $confirm
+     * @return User
      */
-    public function setConfirm(int $confirm): void
+    public function setConfirm(int $confirm): self
     {
         $this->confirm = $confirm;
+        return $this;
     }
 
     /**
-     * @return Role
+     * @return array
      */
-    public function getRole(): Role
+    public function getRole(): array
     {
         return $this->role;
     }
 
     /**
-     * @param Role $role
+     * @param array|null $role
+     * @return User
      */
-    public function setRole(Role $role): void
+    public function setRole(?array $role): self
     {
         $this->role = $role;
+        return $this;
     }
 
 

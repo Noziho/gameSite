@@ -15,4 +15,19 @@ abstract class AbstractController
         require __DIR__ . "/../View/base.html.php";
     }
 
+    /**
+     * checking if form are isset
+     * @param ...$inputNames
+     * @return bool
+     */
+    public function formIsset (...$inputNames): bool
+    {
+        foreach ($inputNames as $name) {
+            if (!isset($_POST[$name])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
