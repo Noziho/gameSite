@@ -7,6 +7,12 @@ abstract class AbstractController
 
     abstract public function index ();
 
+    /**
+     * @param string $template
+     * @param array $data
+     * @return void
+     * Render function for printing view.
+     */
     public function render(string $template, array $data = [])
     {
         ob_start();
@@ -16,7 +22,7 @@ abstract class AbstractController
     }
 
     /**
-     * checking if form are isset
+     * Checking if form are isset
      * @param ...$inputNames
      * @return bool
      */

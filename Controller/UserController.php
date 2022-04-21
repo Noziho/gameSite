@@ -8,9 +8,13 @@ class UserController extends AbstractController
 
     public function index()
     {
-        $this->render('user/profile');
+        //empty
     }
 
+    /**
+     * @return void
+     * Simple function for add an user in database + send a confirmation mail for activate account.
+     */
     public function register()
     {
         $this->render('user/register');
@@ -65,6 +69,10 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     * Function for print login page + login a user
+     */
     public function login()
     {
         $this->render('user/login');
@@ -77,6 +85,10 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     * Simple function for disconnect a user
+     */
     public function dislog()
     {
         session_destroy();
@@ -89,6 +101,13 @@ class UserController extends AbstractController
         $this->render('user/contact');
     }
 
+
+    /**
+     * @param string $us
+     * @param int $id
+     * @return void
+     * Function for edit the confirmation status on DB.
+     */
     public function checkMail(string $us, int $id)
     {
         if (UserManager::userExist($id)) {
@@ -109,6 +128,10 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @return void
+     * Simple function for delete the logged user.
+     */
     public function delete ()
     {
         if (isset($_SESSION['user'])){

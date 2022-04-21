@@ -7,6 +7,11 @@ use App\Model\Entity\AbstractEntity;
 class UserManager extends AbstractEntity
 {
     const TABLE = "ndmp22_user";
+
+    /**
+     * @param array $data
+     * @return User
+     */
     public static function makeUser(array $data): User
     {
         $user = (new User())
@@ -20,6 +25,14 @@ class UserManager extends AbstractEntity
         return $user->setRole(RoleManager::getRolesByUserId($user));
     }
 
+    /**
+     * @param $email
+     * @param $username
+     * @param $password
+     * @param $confirm_code
+     * @return bool
+     * A prepare query for add an user in DB.
+     */
     public static function register($email, $username, $password, $confirm_code) :bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
@@ -44,13 +57,18 @@ class UserManager extends AbstractEntity
         return false;
     }
 
+
+    /**
+     * @param $email
+     * @param $password_decode
+     * @return void
+     * Compare if password written by user is the same as Password on DB
+     */
     public static function login($email, $password_decode)
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             SELECT * FROM ". self::TABLE ." WHERE email = :email
         ");
-
-
         $stmt->bindParam(':email', $email);
 
         if ($stmt->execute()) {
@@ -79,6 +97,11 @@ class UserManager extends AbstractEntity
         }
     }
 
+
+    /**
+     * @param string $username
+     * @return User|null
+     */
     public static function getUserByUserName(string $username): ?User
     {
 
@@ -88,22 +111,42 @@ class UserManager extends AbstractEntity
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+
+    /**
+     * @param int $userId
+     * @return User|null
+     */
     public static function getUserById(int $userId): ?User
     {
         $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $userId");
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+
+    /**
+     * @param User $user
+     * @return void
+     */
     public static function editConfirmationStatus(User $user)
     {
         DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId());
     }
 
+
+    /**
+     * @param int $id
+     * @return void
+     */
     public static function deleteUser(int $id)
     {
         DB_Connect::dbConnect()->query("DELETE FROM ". self::TABLE . " WHERE id = $id ");
     }
 
+    /**
+     * @param int $id
+     * @return int|mixed
+     * Check if user exist on DB.
+     */
     public static function userExist(int $id)
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");

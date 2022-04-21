@@ -11,6 +11,10 @@ class ErrorController extends AbstractController
 
     }
 
+    /**
+     * @param $askPage
+     * @return void
+     */
     public function error404 ($askPage) {
         $this->render('error/404');
     }

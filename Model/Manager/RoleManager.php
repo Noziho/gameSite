@@ -6,6 +6,11 @@ use App\Model\Entity\AbstractEntity;
 class RoleManager extends AbstractEntity
 {
     const TABLE = "ndmp22_role";
+
+    /**
+     * @param User $user
+     * @return array
+     */
     public static function getRolesByUserId(User $user): array
     {
         $roles = [];
