@@ -96,8 +96,17 @@ class UserManager extends AbstractEntity
 
     public static function editConfirmationStatus(User $user)
     {
-        $stmt = DB_Connect::dbConnect()->query(
-            "UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId() ."
-        ");
+        DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId());
+    }
+
+    public static function deleteUser(int $id)
+    {
+        DB_Connect::dbConnect()->query("DELETE FROM ". self::TABLE . " WHERE id = $id ");
+    }
+
+    public static function userExist(int $id)
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        return $query ? $query->fetch()['cnt'] : 0;
     }
 }
