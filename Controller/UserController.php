@@ -95,4 +95,11 @@ class UserController extends AbstractController
 
         header("Location: /?c=user&a=login");
     }
+
+    public function profile()
+    {
+        $this->render('user/profile', [
+            "user" => UserManager::getUserById($_SESSION['user']->getId()),
+        ]);
+    }
 }

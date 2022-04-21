@@ -12,7 +12,7 @@
         <div class="home-menu"><i class="far fa-newspaper"></i></div>
     </a>
 
-    <a href="">
+    <a href="/?c=user&a=contact">
         <div class="home-menu"><i class="fas fa-envelope"></i></div>
     </a>
 

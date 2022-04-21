@@ -88,6 +88,12 @@ class UserManager extends AbstractEntity
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+    public static function getUserById(int $userId): ?User
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $userId");
+        return $query->execute() ? self::makeUser($query->fetch()) : null;
+    }
+
     public static function editConfirmationStatus(User $user)
     {
         $stmt = DB_Connect::dbConnect()->query(

@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <div><input type="text" id="searchBar" placeholder="Recherche ..."></div>
+    <div><h1>GameSite</h1></div>
 
     <nav>
         <a href="/?c=home">Accueil</a>
@@ -23,6 +23,7 @@
                 <?php
             }
             else {?>
+                <a href="/?c=user&a=profile">Profil</a>
                 <a href="/?c=user&a=dislog">Se déconnecter</a><?php
             }
         ?>
