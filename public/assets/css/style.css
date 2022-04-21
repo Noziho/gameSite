@@ -92,3 +92,47 @@ header > div {
 
 }
 
+.menu {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+
+.home-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    width: 200px;
+    height: 600px;
+    background: rebeccapurple;
+    transform-origin: center center;
+    rotate: 12deg;
+    margin: 2rem;
+    transition: 1s;
+}
+
+i {
+    transition: 1s;
+}
+
+
+.home-menu:hover {
+    background: rgba(34, 34, 34, 0.61);
+    width: 230px;
+}
+
+.home-menu:hover i {
+    rotate: 360deg;
+}
+
+
+.fa-discord, .fa-envelope, .fa-newspaper, .fa-comments, .fa-gamepad {
+    font-size: 6rem;
+    color: white;
+}
+
+i {
+    word-break-wrap: 1;
+}
