@@ -111,7 +111,15 @@ class UserController extends AbstractController
     public function checkMail(string $us, int $id)
     {
         if (UserManager::userExist($id)) {
-            UserManager::editConfirmationStatus(UserManager::getUserByUserName($us));
+
+            $user = UserManager::getUserByUserName($us);
+
+            if ($user->getConfirm() === 1) {
+                header("Location: /?c=home");
+                exit();
+            }
+
+            UserManager::editConfirmationStatus($user);
             header("Location: /?c=user&a=login");
         }
         else {
