@@ -1,3 +1,4 @@
 tinymce.init({
-    selector: '#add-news'
+    selector: '#add-news',
+    language: 'fr_FR',
 });

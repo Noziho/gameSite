@@ -1,10 +1,8 @@
 <?php
 
-use App\Model\Entity\AbstractEntity;
 
 
-
-class UserManager extends AbstractEntity
+class UserManager
 {
     const TABLE = "ndmp22_user";
 

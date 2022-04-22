@@ -165,3 +165,11 @@ i {
 .tox-tinymce {
     width: 110rem;
 }
+
+.news-container {
+    width: 70%;
+    background: purple;
+    min-height: 40rem;
+    margin-top: 10rem;
+
+}

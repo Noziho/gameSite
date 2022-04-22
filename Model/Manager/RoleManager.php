@@ -1,9 +1,8 @@
 <?php
 
-use App\Model\Entity\AbstractEntity;
 
 
-class RoleManager extends AbstractEntity
+class RoleManager
 {
     const TABLE = "ndmp22_role";
 
