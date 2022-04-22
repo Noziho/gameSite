@@ -14,7 +14,7 @@ body {
     font-size: 1.6rem;
 }
 
-/* Menu  */
+/* Top menu  */
 header {
     display: flex;
     flex-flow: row wrap;
@@ -93,6 +93,8 @@ header > div {
 
 }
 
+
+/* Home menu */
 #menu-container {
     width: 100%;
     position: absolute;
@@ -147,6 +149,7 @@ i {
     word-break-wrap: 1;
 }
 
+/* Footer for home page only */
 #home-footer {
     background: #1a1717;
     position: absolute;
@@ -155,8 +158,9 @@ i {
     height: 20rem
 }
 
+/*  */
+
 #add-news-container {
-    margin-top: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,8 +172,14 @@ i {
 
 .news-container {
     width: 70%;
-    background: purple;
+    background: #1a1717;
     min-height: 40rem;
-    margin-top: 10rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 2rem;
+    transition: 1s;
+}
 
+.news-container:hover {
+    box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 0.9);
 }
