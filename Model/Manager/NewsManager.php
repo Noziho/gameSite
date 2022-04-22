@@ -27,7 +27,7 @@ class NewsManager
     {
         $news = [];
 
-        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE. " ORDER BY id DESC");
 
         if ($query) {
             foreach ($query->fetchAll() as $newsData) {

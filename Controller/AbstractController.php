@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Role;
+use User;
+
 abstract class AbstractController
 {
 
@@ -35,5 +38,29 @@ abstract class AbstractController
         }
         return true;
     }
+
+    public static function ifDisconnect ()
+    {
+        if (!isset($_SESSION['user'])) {
+            header("Location: /?c=home");
+        }
+    }
+
+    public static function isAdmin (): bool
+    {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            /* @var User $user */
+
+            foreach ($user->getRole() as $role) {
+                /* @var Role $role */
+                if ($role->getName() === 'admin') {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }

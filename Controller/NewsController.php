@@ -20,7 +20,7 @@ class NewsController extends AbstractController
             $content = $_POST['content'];
 
             if (NewsManager::addNews($content, $_SESSION['user']->getId())) {
-                header("Location: /?c=news&a=add-news");
+                header("Location: /?c=news");
                 exit();
             }
             header("Location: /?c=news&f=error");
