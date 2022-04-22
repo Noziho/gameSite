@@ -51,7 +51,7 @@ class UserController extends AbstractController
                 ';
 
                 $to = $email;
-                $subject = "Confirmation de votre compte gameSite";
+                $subject = "Confirmation de votre compte gameSitee";
                 $headers = array(
                     'Reply-To' => 'gameSiteSupport@gmail.com',
                     'X-Mailer' => 'PHP/' . phpversion(),

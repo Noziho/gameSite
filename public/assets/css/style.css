@@ -164,6 +164,7 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5%;
 }
 
 .tox-tinymce {
@@ -182,4 +183,22 @@ i {
 
 .news-container:hover {
     box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 0.9);
+}
+
+.news-button {
+    padding: 1rem;
+    width: 30%;
+    border-radius: 4px;
+    background: #1a1717;
+    color: rebeccapurple;
+    transition: 1s;
+    border: none;
+    margin-top: 1rem;
+    float: right;
+}
+
+.news-button:hover {
+    box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 1);
+    color: purple;
+
 }
