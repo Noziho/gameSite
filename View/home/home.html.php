@@ -8,7 +8,7 @@
             <div class="home-menu"><i class="fas fa-comments"></i></div>
         </a>
 
-        <a href="">
+        <a href="/?c=news">
             <div class="home-menu"><i class="far fa-newspaper"></i></div>
         </a>
 

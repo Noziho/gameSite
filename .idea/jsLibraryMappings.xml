@@ -3,6 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$/public/assets/js/Swiper.js" libraries="{swiper}" />
     <file url="file://$PROJECT_DIR$/public/assets/js/app.js" libraries="{swiper}" />
-    <file url="PROJECT" libraries="{@splidejs/splide, @splidejs/splide-extension-auto-scroll}" />
+    <file url="PROJECT" libraries="{@splidejs/splide, @splidejs/splide-extension-auto-scroll, tinymce}" />
   </component>
 </project>

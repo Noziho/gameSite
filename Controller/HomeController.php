@@ -15,4 +15,5 @@ class HomeController extends AbstractController
     {
         $this->render('games/game');
     }
+
 }

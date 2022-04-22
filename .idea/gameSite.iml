@@ -7,5 +7,6 @@
     <orderEntry type="library" name="@splidejs/splide" level="application" />
     <orderEntry type="library" name="@splidejs/splide-extension-auto-scroll" level="application" />
     <orderEntry type="library" name="swiper" level="application" />
+    <orderEntry type="library" name="tinymce" level="application" />
   </component>
 </module>
