@@ -1,7 +1,10 @@
 <?php
 
 
-use App\Controller\AbstractController;
+namespace App\Controller;
+
+
+use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
 {

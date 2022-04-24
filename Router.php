@@ -3,7 +3,8 @@
 namespace App;
 
 use App\Controller\AbstractController;
-use ErrorController;
+
+use App\Controller\ErrorController;
 use ReflectionException;
 use ReflectionMethod;
 

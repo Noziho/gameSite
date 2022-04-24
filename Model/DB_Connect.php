@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Model;
+
+use Config;
+use PDO;
+use PDOException;
+
 class DB_Connect
 {
 

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model\Manager;
+
+use App\Model\DB_Connect;
+use App\Model\Entity\News;
 
 class NewsManager
 {

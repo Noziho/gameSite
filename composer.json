@@ -1,0 +1,12 @@
+{
+    "name": "noahd/game-site",
+    "autoload": {
+        "psr-4": {
+            "App\\Model\\Entity\\": "Model/Entity",
+            "App\\Model\\Manager\\": "Model/Manager",
+            "App\\Controller\\": "Controller"
+
+
+        }
+    }
+}
