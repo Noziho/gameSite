@@ -67,7 +67,7 @@ class UserManager
      * @return void
      * Compare if password written by user is the same as Password on DB
      */
-    public static function login($email, $password_decode)
+    public static function login($email, $password_decode): void
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             SELECT * FROM ". self::TABLE ." WHERE email = :email
@@ -130,7 +130,7 @@ class UserManager
      * @param string $email
      * @return int|mixed
      */
-    public static function mailExist (string $email)
+    public static function mailExist (string $email): mixed
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$email\"");
         return $query ? $query->fetch()['cnt'] : 0;
@@ -141,7 +141,7 @@ class UserManager
      * @param string $username
      * @return int|mixed
      */
-    public static function usernameExist (string $username)
+    public static function usernameExist (string $username): mixed
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE username = \"$username\"");
         return $query ? $query->fetch()['cnt'] : 0;
