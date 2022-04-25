@@ -18,10 +18,15 @@ class UserController extends AbstractController
      * @return void
      * Simple function for add an user in database + send a confirmation mail for activate account.
      */
-    public function register()
+    public function register(): void
     {
         $this->render('user/register');
         if (isset($_POST['submit'])) {
+            if (!$this::formIsset('email', 'username', 'password', 'password-repeat', 'submit')) {
+                header("Location: /?c=user&a=register");
+                exit();
+            }
+
             $email = trim(filter_var($_POST['email']), FILTER_SANITIZE_EMAIL);
             $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
@@ -76,11 +81,15 @@ class UserController extends AbstractController
      * @return void
      * Function for print login page + login a user
      */
-    public function login()
+    public function login(): void
     {
         $this->render('user/login');
 
         if (isset($_POST['submit'])) {
+            if (!$this::formIsset('email', 'password' ,'submit')) {
+                header("Location: /?c=user&a=register");
+                exit();
+            }
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password_decode = $_POST['password'];
             UserManager::login($email, $password_decode);
@@ -92,7 +101,7 @@ class UserController extends AbstractController
      * @return void
      * Simple function for disconnect a user
      */
-    public function dislog()
+    public function dislog(): void
     {
         session_destroy();
         session_unset();
@@ -103,6 +112,10 @@ class UserController extends AbstractController
     {
         $this->render('user/contact');
         if (isset($_POST['submit'])) {
+            if (!$this::formIsset('email', 'subject', 'message', 'submit')) {
+                header("Location: /?c=user&a=register");
+                exit();
+            }
             $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
             $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
             $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -126,7 +139,7 @@ class UserController extends AbstractController
      * @return void
      * Function for edit the confirmation status on DB.
      */
-    public function checkMail(string $us, int $id)
+    public function checkMail(string $us, int $id): void
     {
         if (UserManager::userExist($id)) {
 
@@ -158,7 +171,7 @@ class UserController extends AbstractController
      * @return void
      * Simple function for delete the logged user.
      */
-    public function delete ()
+    public function delete (): void
     {
         if (isset($_SESSION['user'])){
             UserManager::deleteUser($_SESSION['user']->getId());

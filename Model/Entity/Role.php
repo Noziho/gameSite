@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 
 class Role extends AbstractEntity
 {
-    public string $name;
+    private string $name;
 
     /**
      * @return string
@@ -16,6 +16,7 @@ class Role extends AbstractEntity
 
     /**
      * @param string $name
+     * @return Role
      */
     public function setName(string $name): self
     {

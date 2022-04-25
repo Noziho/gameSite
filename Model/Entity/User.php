@@ -4,12 +4,12 @@ namespace App\Model\Entity;
 
 class User extends AbstractEntity
 {
-    public string $email;
-    public string $username;
+    private string $email;
+    private string $username;
     private string $password;
-    public string $confirm_code;
-    public int $confirm;
-    public array $role;
+    private string $confirm_code;
+    private int $confirm;
+    private array $role;
 
     /**
      * @return string

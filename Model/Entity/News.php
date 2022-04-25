@@ -4,8 +4,8 @@ namespace App\Model\Entity;
 
 class News extends AbstractEntity
 {
-    public string $content;
-    public int $user_fk;
+    private string $content;
+    private int $user_fk;
 
 
     /**
@@ -18,6 +18,7 @@ class News extends AbstractEntity
 
     /**
      * @param string $content
+     * @return News
      */
     public function setContent(string $content): self
     {
@@ -35,6 +36,7 @@ class News extends AbstractEntity
 
     /**
      * @param int $user_fk
+     * @return News
      */
     public function setUserFk(int $user_fk): self
     {
