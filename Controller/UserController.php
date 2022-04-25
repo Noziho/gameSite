@@ -31,8 +31,12 @@ class UserController extends AbstractController
             $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
 
+            $this::checkRange($email, 6, 150, '/?c=user&a=register&f=2');
+            $this::checkRange($username, 4, 40, '/?c=user&a=register&f=3');
+            $this::checkRange($password, 8, 80, '/?c=user&a=register&f=4');
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                header("Location: /?c=user&a=register&f=2");
+                header("Location: /?c=user&a=register&f=5");
                 exit();
             }
 
@@ -77,7 +81,7 @@ class UserController extends AbstractController
 
                 header("Location: /?c=user&a=register&f=0");
             } else {
-                header("Location: /?c=user&a=register&f=3");
+                header("Location: /?c=user&a=register&f=6");
             }
         }
     }
@@ -124,6 +128,11 @@ class UserController extends AbstractController
             $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
             $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
             $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+            $this::checkRange($subject, 4, 60, '/?c=user&a=contact&f=');
+            $this::checkRange();
+            $this::checkRange();
+
             if (!filter_var($reply_to, FILTER_VALIDATE_EMAIL)) {
                 header("Location: /?c=user&a=contact&f=2");
                 exit();

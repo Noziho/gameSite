@@ -24,7 +24,7 @@ if (isset($_GET['f'])) {
 
             <div>
                 <label for="subject">Objet de la demande:</label>
-                <input type="text" id="subject" name="subject" placeholder="Objet de la demande">
+                <input type="text" id="subject" name="subject" placeholder="Objet de la demande" minlength="4" maxlength="60">
             </div>
 
             <div>
