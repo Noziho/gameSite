@@ -99,6 +99,21 @@ class UserController extends AbstractController
     public function contact()
     {
         $this->render('user/contact');
+        if (isset($_POST['submit'])) {
+            $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+            $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
+            $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $headers = array(
+                'Reply-To' => $reply_to,
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Mime-Version' => '1.0',
+                'Content-type' => 'text/html; charset=utf-8'
+
+            );
+
+            mail('gamesitensup@gmail.com', $subject, $message, $headers, '-f '. $reply_to);
+            header("Location: /?c=user&a=contact");
+        }
     }
 
 
