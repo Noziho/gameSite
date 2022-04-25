@@ -17,5 +17,6 @@
     <orderEntry type="library" name="@splidejs/splide-extension-auto-scroll" level="application" />
     <orderEntry type="library" name="swiper" level="application" />
     <orderEntry type="library" name="tinymce" level="application" />
+    <orderEntry type="library" name="jquery-3.6.0" level="application" />
   </component>
 </module>

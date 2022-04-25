@@ -23,13 +23,18 @@ class UserController extends AbstractController
         $this->render('user/register');
         if (isset($_POST['submit'])) {
             if (!$this::formIsset('email', 'username', 'password', 'password-repeat', 'submit')) {
-                header("Location: /?c=user&a=register");
+                header("Location: /?c=user&a=register&f=1");
                 exit();
             }
 
             $email = trim(filter_var($_POST['email']), FILTER_SANITIZE_EMAIL);
             $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                header("Location: /?c=user&a=register&f=2");
+                exit();
+            }
 
             $confirm_code_range = 12;
             $confirm_code = "";
@@ -70,9 +75,9 @@ class UserController extends AbstractController
 
                 mail($to, $subject, $message, $headers, '-f gameSiteSupport@gmail.com');
 
-                header("Location: /?c=home");
+                header("Location: /?c=user&a=register&f=0");
             } else {
-                $this->render('error/404');
+                header("Location: /?c=user&a=register&f=3");
             }
         }
     }

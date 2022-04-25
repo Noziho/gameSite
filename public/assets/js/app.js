@@ -13,3 +13,12 @@ tinymce.init({
     content_css: 'gameSite',
     height: '200',
 });
+
+const errorOrSuccessMessage = document.querySelector('.error-message');
+const logoMenu = document.getElementById('hoveredMenu');
+
+if (errorOrSuccessMessage) {
+    setTimeout(function () {
+        $('.error-message').slideUp('fast');
+    },2000)
+}

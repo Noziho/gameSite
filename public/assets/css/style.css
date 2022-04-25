@@ -164,7 +164,7 @@ i {
     height: 20rem
 }
 
-/*  */
+/* News page container */
 
 #add-news-container, #add-article-container {
     display: flex;
@@ -209,7 +209,7 @@ i {
 }
 
 
-/* Contact form */
+/* Contact/login/register form */
 
 #container-contact-form, #container-login-form, #container-register-form {
     width: 50%;
@@ -241,6 +241,27 @@ i {
 input:focus, textarea:focus {
     outline: solid 2px rgba(91, 8, 109, 1);
 
+}
+
+/* container for success/error message */
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    height: 7rem;
+    width: 100%;
+    color: honeydew;
+    font-size: 2rem;
+}
+
+.error {
+    background: indianred;
+}
+
+.success {
+    background: mediumseagreen;
 }
 
 

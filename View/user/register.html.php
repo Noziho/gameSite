@@ -1,3 +1,21 @@
+<?php
+$messages = [
+    "Success: Un mail de confirmation vous à été envoyez, pour activer votre compte veuillez consulter vos mail.",
+    "Error: Un ou plusieurs champ ne sont pas présent",
+    "Error: L'adresse email n'est pas valide ou n'est pas au format: mail@example.com.",
+    "Error: Une erreur est survenu lors de l'enregistrement, veuillez réessayer plus tard, si le problème persiste contacter le support.",
+
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
+?>
 <div class="container">
     <div id="container-register-form">
         <form action="?c=user&a=register" method="post">
