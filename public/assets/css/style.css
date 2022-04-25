@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 html {
     font-size: 62.5%;
 }
@@ -13,6 +15,7 @@ body {
     background: #222;
     color: ghostwhite;
     font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Top menu  */
@@ -26,6 +29,7 @@ header {
     background: #1a1717;
     padding: 1rem;
     z-index: 999;
+    font-family: 'Teko', sans-serif;
 }
 
 header > div {
@@ -33,20 +37,20 @@ header > div {
     font-family: 'Orbitron', sans-serif;
 }
 
+nav > a {
+    transition: 1s;
+}
+
+nav > a:hover {
+    color: mediumpurple;
+    rotate: 10deg;
+}
+
 * a {
     color: white;
     text-decoration: none;
     margin-inline: 2rem;
-}
-
-#searchBar {
-    padding: 0.5rem;
-    width: 100%;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.47);
-    color: white;
-    border-style: none;
-    box-shadow: none;
+    font-size: 2rem;
 }
 
 /* Main container + sub container */
