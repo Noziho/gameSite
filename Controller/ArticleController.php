@@ -1,6 +1,11 @@
 <?php
 
-class ArticleController extends \App\Controller\AbstractController
+namespace App\Controller;
+
+use App\Model\Manager\ArticleManager;
+
+
+class ArticleController extends AbstractController
 {
 
     public function index()

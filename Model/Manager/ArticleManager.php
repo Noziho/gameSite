@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Model\Manager;
+
+
+
+use App\Model\DB_Connect;
+use App\Model\Entity\Article;
+
 class ArticleManager
 {
     const TABLE = "ndmp22_article";
