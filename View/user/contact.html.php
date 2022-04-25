@@ -1,5 +1,5 @@
 <div class="container">
-    <div>
+    <div id="container-contact-form">
         <form action="/?c=user&a=contact" method="post">
             <div>
                 <label for="email">Votre email:</label>
@@ -13,7 +13,7 @@
 
             <div>
                 <label for="message">Demande pour le support:</label>
-                <textarea name="message" id="message" cols="30" rows="10" placeholder="Votre demande..."></textarea>
+                <textarea name="message" id="message" cols="60" rows="10" placeholder="Votre demande..."></textarea>
             </div>
 
             <input type="submit" name="submit">

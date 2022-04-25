@@ -201,3 +201,40 @@ i {
     box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 1);
     color: purple;
 }
+
+
+/* Contact form */
+
+#container-contact-form, #container-login-form, #container-register-form {
+    width: 50%;
+    min-height: 40rem;
+    padding: 2rem;
+    background: #1a1717;
+}
+
+#container-login-form {
+    min-height: 20rem;
+}
+
+#container-contact-form > div {
+    width: 100%;
+    display: block;
+}
+
+#container-contact-form > div > label, input, textarea {
+    display: block;
+    border-radius: 4px;
+    background: #222222;
+    color: white;
+    border: none;
+    margin-block: 1rem;
+    transition: 1s;
+    padding: 1rem;
+}
+
+input:focus, textarea:focus {
+    outline: solid 2px rgba(91, 8, 109, 1);
+
+}
+
+
