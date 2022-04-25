@@ -92,13 +92,13 @@ class UserController extends AbstractController
 
         if (isset($_POST['submit'])) {
             if (!$this::formIsset('email', 'password' ,'submit')) {
-                header("Location: /?c=user&a=register");
+                header("Location: /?c=user&a=login&f=1");
                 exit();
             }
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $password_decode = $_POST['password'];
             UserManager::login($email, $password_decode);
-            header("Location: /?c=home");
+
         }
     }
 
@@ -168,7 +168,7 @@ class UserController extends AbstractController
     public function profile()
     {
         $this->render('user/profile', [
-            "user" => UserManager::getUserById($_SESSION['user']),
+            "user" => UserManager::getUserById($_SESSION['user']->getid()),
         ]);
     }
 

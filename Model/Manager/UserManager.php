@@ -81,22 +81,23 @@ class UserManager
                     $user = self::makeUser($password);
 
                     if ($user->getConfirm() === 0) {
-                        header("Location: /index.php?c=user&a=login&f=0");
+                        header("Location: /?c=user&a=login&f=0");
                         exit();
                     }
 
                     if(!isset($_SESSION['user'])) {
                         $_SESSION['user'] = $user;
                     }
-
+                    header("Location: /?c=home&f=0");
                 }
                 else {
-                    header("Location: /index.php?c=user&a=login&f=0");
+                    header("Location: /?c=user&a=login&f=1");
+                    exit();
                 }
             }
-            else {
-                header("Location: /index.php?c=user&a=login&f=1");
-            }
+        }
+        else {
+            header("Location: /?c=user&a=login&f=2");
         }
     }
 

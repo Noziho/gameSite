@@ -1,3 +1,18 @@
+<?php
+$messages = [
+    "Success: Connexion réussi ! Bienvenue !",
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
+?>
+
 <div id="menu-container">
     <div class="menu">
         <a href="?c=article">

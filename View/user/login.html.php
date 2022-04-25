@@ -1,3 +1,21 @@
+<?php
+$messages = [
+    "Error: Vous devez confirmer votre compte pour pouvoir vous connecter veuillez consulter vos mail.",
+    "Error: Les identifiants ne sont pas valides.",
+    "Error: Une erreur est survenu lors de la connexion veuillez réessayer plus tard, si le problème persiste contacter le support.",
+
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
+?>
+
 <div class="container">
     <div id="container-login-form">
         <form action="?c=user&a=login" method="post">
