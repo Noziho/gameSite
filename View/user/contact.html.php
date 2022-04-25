@@ -1,3 +1,19 @@
+<?php
+$messages = [
+    "Success: Votre message à bien été envoyer au support",
+    "Error: Un champ est manquant",
+    "Error: L'adresse mail n'est pas au format: mail@example.com",
+
+];
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
+?>
 <div class="container">
     <div id="container-contact-form">
         <form action="/?c=user&a=contact" method="post">

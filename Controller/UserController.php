@@ -118,12 +118,16 @@ class UserController extends AbstractController
         $this->render('user/contact');
         if (isset($_POST['submit'])) {
             if (!$this::formIsset('email', 'subject', 'message', 'submit')) {
-                header("Location: /?c=user&a=register");
+                header("Location: /?c=user&a=contact&f=1");
                 exit();
             }
             $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
             $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
             $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            if (!filter_var($reply_to, FILTER_VALIDATE_EMAIL)) {
+                header("Location: /?c=user&a=contact&f=2");
+                exit();
+            }
             $headers = array(
                 'Reply-To' => $reply_to,
                 'X-Mailer' => 'PHP/' . phpversion(),
@@ -133,7 +137,7 @@ class UserController extends AbstractController
             );
 
             mail('gamesitensup@gmail.com', $subject, $message, $headers, '-f '. $reply_to);
-            header("Location: /?c=user&a=contact");
+            header("Location: /?c=user&a=contact&f=0");
         }
     }
 
