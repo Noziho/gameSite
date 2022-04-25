@@ -1,8 +1,12 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../Router.php';
+require __DIR__ . '/../Model/DB_Connect.php';
+require __DIR__ . '/../Config.php';
+
 use App\Router;
 
-require __DIR__. '/../includes.php';
 session_start();
 
 try {

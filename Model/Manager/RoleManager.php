@@ -1,6 +1,12 @@
 <?php
 
+namespace App\Model\Manager;
 
+
+
+use App\Model\DB_Connect;
+use App\Model\Entity\Role;
+use App\Model\Entity\User;
 
 class RoleManager
 {

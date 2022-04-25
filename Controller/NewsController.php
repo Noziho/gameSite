@@ -1,6 +1,10 @@
 <?php
 
-use App\Controller\AbstractController;
+
+namespace App\Controller;
+
+
+use App\Model\Manager\NewsManager;
 
 class NewsController extends AbstractController
 {

@@ -3,7 +3,8 @@
 namespace App;
 
 use App\Controller\AbstractController;
-use ErrorController;
+
+use App\Controller\ErrorController;
 use ReflectionException;
 use ReflectionMethod;
 
@@ -13,6 +14,7 @@ class Router
      * @throws ReflectionException
      */
     public static function route () {
+
         $strController = self::getParam('c', 'home');
         $method = self::getParam('a');
         $controller = self::guessController($strController);
@@ -74,7 +76,7 @@ class Router
     }
 
     private static function guessController (string $controller) {
-        $controller = ucfirst($controller) . 'Controller';
+        $controller = "App\Controller\\" . ucfirst($controller) . 'Controller';
         return class_exists($controller) ? new $controller : new ErrorController();
     }
 
