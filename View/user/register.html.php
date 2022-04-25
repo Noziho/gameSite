@@ -2,10 +2,13 @@
 $messages = [
     "Success: Un mail de confirmation vous à été envoyez, pour activer votre compte veuillez consulter vos mail.",
     "Error: Un ou plusieurs champ ne sont pas présent",
+    "Error: Les mots de passes ne sont pas égaux",
     "Error: La longueur du champ 'Mail' n'est pas valide, elle doit être comprise entre 8 et 150 caractères",
     "Error: La longueur du champ 'Pseudo' n'est pas valide, il doit être compris entre 4 et 40 caractères. ",
     "Error: La longueur du champ 'Mot de passe' n'est pas valide, il doit être compris entre 8 et 80 caractères. ",
-    "Error: L'adresse email n'est pas valide ou n'est pas au format: mail@example.com.",
+    "Error: L'adresse mail n'est pas valide ou n'est pas au format: mail@example.com.",
+    "Error: L'adresse mail existe déjà",
+    "Error: Le pseudo est déjà utilisé",
     "Error: Une erreur est survenu lors de l'enregistrement, veuillez réessayer plus tard, si le problème persiste contacter le support.",
 
 ];

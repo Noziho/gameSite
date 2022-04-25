@@ -126,12 +126,24 @@ class UserManager
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+    public static function mailExist (string $email)
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$email\"");
+        return $query ? $query->fetch()['cnt'] : 0;
+    }
+
+    public static function usernameExist (string $username)
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE username = \"$username\"");
+        return $query ? $query->fetch()['cnt'] : 0;
+    }
+
 
     /**
      * @param User $user
      * @return void
      */
-    public static function editConfirmationStatus(User $user)
+    public static function editConfirmationStatus(User $user): void
     {
         DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId());
     }

@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Model\Entity\User;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -29,14 +30,28 @@ class UserController extends AbstractController
 
             $email = trim(filter_var($_POST['email']), FILTER_SANITIZE_EMAIL);
             $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
+            $password_repeat = $_POST['password-repeat'];
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+            if (!password_verify($password_repeat, $password)) {
+                header("Location: /?c=user&a=register&f=2");
+                exit();
+            }
 
-            $this::checkRange($email, 6, 150, '/?c=user&a=register&f=2');
-            $this::checkRange($username, 4, 40, '/?c=user&a=register&f=3');
-            $this::checkRange($password, 8, 80, '/?c=user&a=register&f=4');
+            $this::checkRange($email, 6, 150, '/?c=user&a=register&f=3');
+            $this::checkRange($username, 4, 40, '/?c=user&a=register&f=4');
+            $this::checkRange($password_repeat, 8, 80, '/?c=user&a=register&f=5');
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                header("Location: /?c=user&a=register&f=5");
+                header("Location: /?c=user&a=register&f=6");
+                exit();
+            }
+            if (UserManager::mailExist($email)) {
+                header("Location: /?c=user&a=register&f=7");
+                exit();
+            }
+
+            if (UserManager::usernameExist($username)) {
+                header("Location: '/?c=user&a=register&f=8");
                 exit();
             }
 
@@ -81,7 +96,7 @@ class UserController extends AbstractController
 
                 header("Location: /?c=user&a=register&f=0");
             } else {
-                header("Location: /?c=user&a=register&f=6");
+                header("Location: /?c=user&a=register&f=9");
             }
         }
     }
