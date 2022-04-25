@@ -1,6 +1,6 @@
 <div id="menu-container">
     <div class="menu">
-        <a href="?c=home&a=game">
+        <a href="?c=article">
             <div class="home-menu"><i class="fas fa-gamepad"></i></div>
         </a>
 

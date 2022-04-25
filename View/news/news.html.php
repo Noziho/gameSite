@@ -1,6 +1,7 @@
 <?php
-
 use App\Controller\AbstractController;
+AbstractController::ifDisconnect();
+
 
 if (isset($data['news'])) {
     $news = $data['news'];

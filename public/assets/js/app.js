@@ -5,3 +5,11 @@ tinymce.init({
     content_css: 'gameSite',
     height: '200',
 });
+
+tinymce.init({
+    selector: '#add-article',
+    language: 'fr_FR',
+    skin_url: '/assets/css/gameSitee',
+    content_css: 'gameSite',
+    height: '200',
+});

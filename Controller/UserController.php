@@ -132,7 +132,7 @@ class UserController extends AbstractController
     public function profile()
     {
         $this->render('user/profile', [
-            "user" => UserManager::getUserById($_SESSION['user']->getId()),
+            "user" => UserManager::getUserById($_SESSION['user']),
         ]);
     }
 

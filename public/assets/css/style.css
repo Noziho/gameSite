@@ -160,7 +160,7 @@ i {
 
 /*  */
 
-#add-news-container {
+#add-news-container, #add-article-container {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -18,7 +18,7 @@
 
     <nav>
         <a href="/?c=home">Accueil</a>
-        <a href="/?c=home&a=game">Nos jeux</a>
+        <a href="/?c=article">Nos jeux</a>
         <a href="/?c=user&a=contact">Contact</a>
         <?php
             if (!isset($_SESSION['user'])){?>
