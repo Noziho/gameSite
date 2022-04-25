@@ -129,12 +129,12 @@ class UserController extends AbstractController
             $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
             $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-            $this::checkRange($subject, 4, 60, '/?c=user&a=contact&f=');
-            $this::checkRange();
-            $this::checkRange();
+            $this::checkRange($subject, 4, 60, '/?c=user&a=contact&f=2');
+            $this::checkRange($message, 20, 255, '/?c=user&a=contact&f=3' );
+            $this::checkRange($reply_to, 6, 150, '/?c=user&a=contact&f=4');
 
             if (!filter_var($reply_to, FILTER_VALIDATE_EMAIL)) {
-                header("Location: /?c=user&a=contact&f=2");
+                header("Location: /?c=user&a=contact&f=5");
                 exit();
             }
             $headers = array(
