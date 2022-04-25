@@ -34,7 +34,7 @@ class UserManager
      * @param $password
      * @param $confirm_code
      * @return bool
-     * A prepare query for add an user in DB.
+     * Is prepare query for add a user in DB.
      */
     public static function register($email, $username, $password, $confirm_code) :bool
     {
@@ -126,12 +126,21 @@ class UserManager
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+    /**
+     * @param string $email
+     * @return int|mixed
+     */
     public static function mailExist (string $email)
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$email\"");
         return $query ? $query->fetch()['cnt'] : 0;
     }
 
+
+    /**
+     * @param string $username
+     * @return int|mixed
+     */
     public static function usernameExist (string $username)
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE username = \"$username\"");
@@ -153,7 +162,7 @@ class UserManager
      * @param int $id
      * @return void
      */
-    public static function deleteUser(int $id)
+    public static function deleteUser(int $id): void
     {
         DB_Connect::dbConnect()->query("DELETE FROM ". self::TABLE . " WHERE id = $id ");
     }
@@ -163,7 +172,7 @@ class UserManager
      * @return int|mixed
      * Check if user exist on DB.
      */
-    public static function userExist(int $id)
+    public static function userExist(int $id): mixed
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
         return $query ? $query->fetch()['cnt'] : 0;
