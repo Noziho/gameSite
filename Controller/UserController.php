@@ -30,6 +30,7 @@ class UserController extends AbstractController
             $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
             $password_repeat = $_POST['password-repeat'];
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+
             if (!password_verify($password_repeat, $password)) {
                 header("Location: /?c=user&a=register&f=2");
                 exit();
@@ -39,17 +40,27 @@ class UserController extends AbstractController
             $this::checkRange($username, 4, 40, '/?c=user&a=register&f=4');
             $this::checkRange($password_repeat, 8, 80, '/?c=user&a=register&f=5');
 
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            $uppercase = preg_match('@[A-Z]@', $password_repeat);
+            $lowercase = preg_match('@[a-z]@', $password_repeat);
+            $number    = preg_match('@\d@', $password_repeat);
+
+            if(!$uppercase || !$lowercase || !$number || strlen($password_repeat) < 8 || strlen($password_repeat) > 25) {
                 header("Location: /?c=user&a=register&f=6");
                 exit();
             }
-            if (UserManager::mailExist($email)) {
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 header("Location: /?c=user&a=register&f=7");
+                exit();
+            }
+            if (UserManager::mailExist($email)) {
+                header("Location: /?c=user&a=register&f=8");
                 exit();
             }
 
             if (UserManager::usernameExist($username)) {
-                header("Location: '/?c=user&a=register&f=8");
+                header("Location: '/?c=user&a=register&f=9");
                 exit();
             }
 
@@ -94,7 +105,7 @@ class UserController extends AbstractController
 
                 header("Location: /?c=user&a=register&f=0");
             } else {
-                header("Location: /?c=user&a=register&f=9");
+                header("Location: /?c=user&a=register&f=10");
             }
         }
     }

@@ -5,7 +5,8 @@ $messages = [
     "Error: Les mots de passes ne sont pas égaux",
     "Error: La longueur du champ 'Mail' n'est pas valide, elle doit être comprise entre 8 et 150 caractères",
     "Error: La longueur du champ 'Pseudo' n'est pas valide, il doit être compris entre 4 et 40 caractères. ",
-    "Error: La longueur du champ 'Mot de passe' n'est pas valide, il doit être compris entre 8 et 80 caractères. ",
+    "Error: La longueur du champ 'Mot de passe' n'est pas valide, il doit être compris entre 8 et 25 caractères. ",
+    "Error: Le password doit contenir au moins une minuscule, une majuscule, un chiffre et faire une longueur minimal de 8 caractères.",
     "Error: L'adresse mail n'est pas valide ou n'est pas au format: mail@example.com.",
     "Error: L'adresse mail existe déjà",
     "Error: Le pseudo est déjà utilisé",
@@ -42,7 +43,7 @@ if (isset($_GET['f'])) {
 
             <div>
                 <label for="password-repeat">Répéter le mot de passe:</label>
-                <input id="password-repeat" type="password" name="password-repeat" minlength="8" maxlength="80" required>
+                <input id="password-repeat" type="password" name="password-repeat" minlength="8" maxlength="25" required>
             </div>
 
             <input type="submit" name="submit" value="S'inscrire" required>

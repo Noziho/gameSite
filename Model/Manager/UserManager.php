@@ -128,9 +128,9 @@ class UserManager
 
     /**
      * @param string $email
-     * @return int|mixed
+     * @return string
      */
-    public static function mailExist (string $email): mixed
+    public static function mailExist (string $email): string
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$email\"");
         return $query ? $query->fetch()['cnt'] : 0;
@@ -139,9 +139,9 @@ class UserManager
 
     /**
      * @param string $username
-     * @return int|mixed
+     * @return string
      */
-    public static function usernameExist (string $username): mixed
+    public static function usernameExist (string $username): string
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE username = \"$username\"");
         return $query ? $query->fetch()['cnt'] : 0;
