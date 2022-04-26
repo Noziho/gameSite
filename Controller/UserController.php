@@ -226,6 +226,8 @@ class UserController extends AbstractController
 
     public function usersList ()
     {
+        AbstractController::ifNotAdmin();
+
         $this->render('user/usersList', [
             'users' => UserManager::getAll(),
         ]);
@@ -233,6 +235,8 @@ class UserController extends AbstractController
 
     public function deleteUser (int $id = null)
     {
+        AbstractController::ifNotAdmin();
+
         if (null === $id) {
             header("Location: /?c=home");
         }
@@ -242,6 +246,8 @@ class UserController extends AbstractController
 
     public function editUser (int $id = null)
     {
+        AbstractController::ifNotAdmin();
+
         if (null === $id) {
             header("Location: /?c=home");
         }

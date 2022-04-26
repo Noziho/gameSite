@@ -3,6 +3,7 @@
 namespace App\Model\Manager;
 
 
+use App\Controller\AbstractController;
 use App\Model\DB_Connect;
 use App\Model\Entity\User;
 

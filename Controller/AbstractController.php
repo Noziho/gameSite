@@ -79,5 +79,12 @@ abstract class AbstractController
         }
     }
 
+    public static function ifNotAdmin ()
+    {
+        if (!self::isAdmin()) {
+            header("Location: /?c=home");
+            exit();
+        }
+    }
 
 }

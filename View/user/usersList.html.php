@@ -4,8 +4,6 @@ use App\Controller\AbstractController;
 use App\Model\Entity\Role;
 use App\Model\Entity\User;
 
-AbstractController::isAdmin();
-
 $messages = [
     "Success: L'utilisateur à été modifier avec succès.",
 ];
