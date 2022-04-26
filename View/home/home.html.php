@@ -19,7 +19,7 @@ if (isset($_GET['f'])) {
             <div class="home-menu"><i class="fas fa-gamepad"></i></div>
         </a>
 
-        <a href="">
+        <a href="/?c=globalChat">
             <div class="home-menu"><i class="fas fa-comments"></i></div>
         </a>
 

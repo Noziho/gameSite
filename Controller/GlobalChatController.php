@@ -7,6 +7,11 @@ class GlobalChatController extends AbstractController
 
     public function index()
     {
-        // TODO: Implement index() method.
+        $this->render('chat/selectChat');
+    }
+
+    public function global ()
+    {
+        $this->render('chat/global');
     }
 }

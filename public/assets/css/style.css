@@ -340,5 +340,33 @@ select{
     color: mediumpurple;
 }
 
+/* Select chat page */
+
+.container-select-chat {
+    width: 100%;
+    height: 100%;
+}
+.container-select-chat > a {
+    width: 25%;
+}
+
+.container-select-chat > a > div {
+    position: relative;
+    width: 95%;
+    background: #1a1717;
+    min-height: 35rem;
+    padding: 2rem;
+    transition: 1s;
+}
+
+.container-select-chat > a > div:hover {
+    box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 1);
+    width: 100%;
+    min-height: 38rem ;
+
+}
+
+
+
 
 
