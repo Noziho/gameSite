@@ -39,6 +39,7 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 <script src="https://kit.fontawesome.com/f06b2f84ad.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="/assets/js/GlobalChatMessage.js"></script>
 <script src="/assets/js/tinymce.js"></script>
 <script src="/assets/js/Swiper.js"></script>
 <script src="/assets/js/app.js"></script>

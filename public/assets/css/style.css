@@ -366,7 +366,24 @@ select{
 
 }
 
+/* Global Chat */
+.global-chat-container {
+    width: 80%;
+    background: #1a1717;
+    min-height: 60rem;
+    padding: 2rem;
+    margin-bottom: 6rem;
+}
 
+.global-chat {
+    margin-top: 2rem;
+    width: 100%;
+    min-height: 80%;
+}
+
+.send-message {
+    width: 40%;
+}
 
 
 
