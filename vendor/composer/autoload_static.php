@@ -18,6 +18,11 @@ class ComposerStaticInitc8bdb4d2c07466e93c1a3d7e92759ac9
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
+            'Symfony\\Component\\ErrorHandler\\' => 31,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
         ),
         'A' => 
         array (
@@ -39,6 +44,14 @@ class ComposerStaticInitc8bdb4d2c07466e93c1a3d7e92759ac9
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
+        'Symfony\\Component\\ErrorHandler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/error-handler',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'App\\Model\\Manager\\' => 
         array (
