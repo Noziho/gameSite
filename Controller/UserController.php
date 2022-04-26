@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Model\Entity\User;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -10,7 +11,7 @@ class UserController extends AbstractController
 
     public function index()
     {
-        //empty
+        $this->render('home/home');
     }
 
     /**
@@ -228,5 +229,25 @@ class UserController extends AbstractController
         $this->render('user/usersList', [
             'users' => UserManager::getAll(),
         ]);
+    }
+
+    public function deleteUser (int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /?c=home");
+        }
+        UserManager::deleteUser($id);
+        header("Location: /?c=user&a=users-list");
+    }
+
+    public function editUser (int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /?c=home");
+        }
+        $currentId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $role = filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT);
+        UserManager::editUser($currentId, $role);
+        header("Location: /?c=user&a=users-list&f=0");
     }
 }

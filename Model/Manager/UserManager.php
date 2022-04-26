@@ -162,6 +162,23 @@ class UserManager
 
     /**
      * @param int $id
+     * @param int $role_fk
+     * @return void
+     */
+    public static function editUser (int $id, int $role_fk): void
+    {
+        $stmt = DB_Connect::dbConnect()->prepare("
+            UPDATE ".self::TABLE." SET role_fk = :role_fk WHERE id = :id
+        ");
+
+        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':role_fk', $role_fk);
+
+        $stmt->execute();
+    }
+
+    /**
+     * @param int $id
      * @return int|mixed
      * Check if user exist on DB.
      */
@@ -186,4 +203,6 @@ class UserManager
         }
         return $users;
     }
+
+
 }
