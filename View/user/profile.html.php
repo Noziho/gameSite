@@ -9,17 +9,26 @@ if (isset($data['user'])) {
     $user = $data['user'];
 }?>
 
-<h1>Votre profile</h1>
+<div class="container">
+    <div id="profile-container">
+        <div>
+            <h1>Votre profile</h1>
 
-<p>Pseudo: <?= $user->getUsername() ?></p>
-<p>Mail: <?= $user->getEmail() ?></p>
+            <p>Pseudo: <?= $user->getUsername() ?></p>
+            <p>Mail: <?= $user->getEmail() ?></p>
 
-<a href="/?c=user&a=delete"><button>Supprimez votre compte</button></a>
-<span class="warning">/!\ Attention cette action est irréversible !</span>
+            <div id="deleteUserAccount">
+                <a href="/?c=user&a=delete">Supprimez votre compte</a>
+            </div>
+            <span class="warning">/!\ Attention cette action est irréversible !</span>
+            <?php
+            if (AbstractController::isAdmin()) {?>
+                <a class="news-button" href="/?c=user&a=userslist">Listes des utilisateurs</a><?php
+            }?>
+        </div>
+    </div>
+</div>
 
-<?php
-if (AbstractController::isAdmin()) {?>
-    <a class="news-button" href="/?c=user&a=userslist">Listes des utilisateurs</a><?php
-}
+
 
 

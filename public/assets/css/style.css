@@ -264,6 +264,8 @@ input:focus, textarea:focus {
     background: mediumseagreen;
 }
 
+
+/* usersList page */
 #usersListContainer {
     width: 70%;
 }
@@ -302,8 +304,41 @@ select{
     width: 25%;
 }
 
-#editUser:hover {
+#editUser:hover, #deleteUserAccount:hover {
     box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 1);
     color: mediumpurple;
 }
+
+/* User profile page */
+
+#profile-container {
+    width: 70%;
+    background: #1a1717;
+}
+
+#profile-container > div {
+    padding: 2rem;
+}
+
+#deleteUserAccount {
+    border-radius: 4px;
+    background: #222222;
+    width: 25%;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    transition: 1s;
+}
+
+#deleteUserAccount > a {
+    font-size: inherit;
+    margin: inherit;
+    transition: 1s;
+}
+
+#deleteUserAccount > a:hover {
+    color: mediumpurple;
+}
+
+
 
