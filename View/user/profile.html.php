@@ -1,4 +1,9 @@
 <?php
+use App\Controller\AbstractController;
+use App\Model\Entity\User;
+
+AbstractController::ifDisconnect();
+
 if (isset($data['user'])) {
     /* @var User $user */
     $user = $data['user'];

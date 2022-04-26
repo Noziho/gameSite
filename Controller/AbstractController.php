@@ -71,5 +71,13 @@ abstract class AbstractController
         }
     }
 
+    public static function isConnected (): void
+    {
+        if (isset($_SESSION['user'])) {
+            header("Location: /?c=home");
+            exit();
+        }
+    }
+
 
 }

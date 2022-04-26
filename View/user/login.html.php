@@ -1,4 +1,9 @@
 <?php
+
+use App\Controller\AbstractController;
+
+AbstractController::isConnected();
+
 $messages = [
     "Error: Vous devez confirmer votre compte pour pouvoir vous connecter veuillez consulter vos mail.",
     "Error: Les identifiants ne sont pas valides.",

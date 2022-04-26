@@ -1,4 +1,7 @@
 <?php
+use App\Controller\AbstractController;
+use App\Model\Entity\Article;
+
 if (isset($data['articles']))
 {
     $articles = $data['articles'];
@@ -28,9 +31,6 @@ if (isset($data['articles']))
 </div>
 
 <?php
-
-use App\Controller\AbstractController;
-
 if (AbstractController::isAdmin()) {
     ?>
     <div id="add-article-container">

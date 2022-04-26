@@ -1,4 +1,9 @@
 <?php
+
+use App\Controller\AbstractController;
+
+AbstractController::isConnected();
+
 $messages = [
     "Success: Un mail de confirmation vous à été envoyez, pour activer votre compte veuillez consulter vos mail.",
     "Error: Un ou plusieurs champ ne sont pas présent",

@@ -1,5 +1,7 @@
 <?php
 use App\Controller\AbstractController;
+use App\Model\Entity\News;
+
 AbstractController::ifDisconnect();
 
 
