@@ -1,4 +1,24 @@
 const errorOrSuccessMessage = document.querySelector('.error-message');
+const username = document.querySelector("#username");
+const password = document.querySelector('#password');
+
+
+ function checkRange (min, max , input, errorMessage) {
+    input.addEventListener('keypress', function () {
+        if (input.value.length < min || input.value.length > max) {
+            input.setCustomValidity(errorMessage);
+        }
+        else {
+            input.setCustomValidity("");
+        }
+    })
+
+}
+
+
+checkRange(4, 40, username, "La longueur du pseudo doit-être comprise entre 4 et 40 caractères.");
+checkRange(8, 25, password, "La longueur du password doit-être comprise entre 8 et 25 caractères.");
+
 
 if (errorOrSuccessMessage) {
     setTimeout(function () {
