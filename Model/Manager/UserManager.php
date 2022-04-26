@@ -3,7 +3,6 @@
 namespace App\Model\Manager;
 
 
-
 use App\Model\DB_Connect;
 use App\Model\Entity\User;
 
@@ -23,8 +22,7 @@ class UserManager
             ->setEmail($data['email'])
             ->setPassword($data['password'])
             ->setConfirmCode($data['confirm_code'])
-            ->setConfirm($data['confirm'])
-            ;
+            ->setConfirm($data['confirm']);
         return $user->setRole(RoleManager::getRolesByUserId($user));
     }
 
@@ -36,10 +34,10 @@ class UserManager
      * @return bool
      * Is prepare query for add a user in DB.
      */
-    public static function register($email, $username, $password, $confirm_code) :bool
+    public static function register($email, $username, $password, $confirm_code): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            INSERT INTO ".self::TABLE." (email, username, password, confirm_code, confirm, role_fk)
+            INSERT INTO " . self::TABLE . " (email, username, password, confirm_code, confirm, role_fk)
             VALUES(:email, :username, :password, :confirm_code, :confirm, :role_fk)
         ");
 
@@ -53,8 +51,7 @@ class UserManager
         $stmt->bindParam(':confirm', $confirm);
         $stmt->bindParam(':role_fk', $role_fk);
 
-        if ($stmt->execute())
-        {
+        if ($stmt->execute()) {
             return true;
         }
         return false;
@@ -70,34 +67,30 @@ class UserManager
     public static function login($email, $password_decode): void
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            SELECT * FROM ". self::TABLE ." WHERE email = :email
+            SELECT * FROM " . self::TABLE . " WHERE email = :email
         ");
         $stmt->bindParam(':email', $email);
 
         if ($stmt->execute()) {
             $password = $stmt->fetch();
-            if (isset($password['password'])) {
-                if (password_verify($password_decode, $password['password'])) {
-                    $user = self::makeUser($password);
+            if (password_verify($password_decode, $password['password'])) {
+                $user = self::makeUser($password);
 
-                    if ($user->getConfirm() === 0) {
-                        header("Location: /?c=user&a=login&f=0");
-                        exit();
-                    }
-
-                    if(!isset($_SESSION['user'])) {
-                        $_SESSION['user'] = $user;
-                    }
-                    header("Location: /?c=home&f=0");
-                }
-                else {
-                    header("Location: /?c=user&a=login&f=1");
+                if ($user->getConfirm() === 0) {
+                    header("Location: /?c=user&a=login&f=0");
                     exit();
                 }
+
+                if (!isset($_SESSION['user'])) {
+                    $_SESSION['user'] = $user;
+                }
+                header("Location: /?c=home&f=0");
+            }else {
+                header("Location: /?c=user&a=login&f=2");
             }
-        }
-        else {
-            header("Location: /?c=user&a=login&f=2");
+
+        } else {
+            header("Location: /?c=user&a=login&f=3");
         }
     }
 
@@ -130,7 +123,7 @@ class UserManager
      * @param string $email
      * @return string
      */
-    public static function mailExist (string $email): string
+    public static function mailExist(string $email): string
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE email = \"$email\"");
         return $query ? $query->fetch()['cnt'] : 0;
@@ -141,7 +134,7 @@ class UserManager
      * @param string $username
      * @return string
      */
-    public static function usernameExist (string $username): string
+    public static function usernameExist(string $username): string
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE username = \"$username\"");
         return $query ? $query->fetch()['cnt'] : 0;
@@ -154,7 +147,7 @@ class UserManager
      */
     public static function editConfirmationStatus(User $user): void
     {
-        DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET confirm = 1 WHERE id = ". $user->getId());
+        DB_Connect::dbConnect()->query("UPDATE " . self::TABLE . " SET confirm = 1 WHERE id = " . $user->getId());
     }
 
 
@@ -164,7 +157,7 @@ class UserManager
      */
     public static function deleteUser(int $id): void
     {
-        DB_Connect::dbConnect()->query("DELETE FROM ". self::TABLE . " WHERE id = $id ");
+        DB_Connect::dbConnect()->query("DELETE FROM " . self::TABLE . " WHERE id = $id ");
     }
 
     /**
@@ -176,5 +169,21 @@ class UserManager
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
         return $query ? $query->fetch()['cnt'] : 0;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAll(): array
+    {
+        $users = [];
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
+
+        if ($query) {
+            foreach ($query->fetchAll() as $userData) {
+                $users[] = self::makeUser($userData);
+            }
+        }
+        return $users;
     }
 }

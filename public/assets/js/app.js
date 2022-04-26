@@ -15,9 +15,11 @@ const password = document.querySelector('#password');
 
 }
 
+if (username && password) {
+    checkRange(4, 40, username, "La longueur du pseudo doit-être comprise entre 4 et 40 caractères.");
+    checkRange(8, 25, password, "La longueur du password doit-être comprise entre 8 et 25 caractères.");
+}
 
-checkRange(4, 40, username, "La longueur du pseudo doit-être comprise entre 4 et 40 caractères.");
-checkRange(8, 25, password, "La longueur du password doit-être comprise entre 8 et 25 caractères.");
 
 
 if (errorOrSuccessMessage) {

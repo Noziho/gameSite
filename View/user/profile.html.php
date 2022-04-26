@@ -17,4 +17,9 @@ if (isset($data['user'])) {
 <a href="/?c=user&a=delete"><button>Supprimez votre compte</button></a>
 <span class="warning">/!\ Attention cette action est irréversible !</span>
 
+<?php
+if (AbstractController::isAdmin()) {?>
+    <a class="news-button" href="/?c=user&a=userslist">Listes des utilisateurs</a><?php
+}
+
 

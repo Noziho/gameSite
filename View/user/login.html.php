@@ -6,6 +6,7 @@ AbstractController::isConnected();
 
 $messages = [
     "Error: Vous devez confirmer votre compte pour pouvoir vous connecter veuillez consulter vos mail.",
+    "Error: Un ou plusieurs champ sont manquant.",
     "Error: Les identifiants ne sont pas valides.",
     "Error: Une erreur est survenu lors de la connexion veuillez réessayer plus tard, si le problème persiste contacter le support.",
 

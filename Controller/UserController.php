@@ -222,4 +222,11 @@ class UserController extends AbstractController
         }
 
     }
+
+    public function usersList ()
+    {
+        $this->render('user/usersList', [
+            'users' => UserManager::getAll(),
+        ]);
+    }
 }
