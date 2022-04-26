@@ -44,7 +44,7 @@ if (isset($data['users'])) {
                                 <option value="1">Utilisateur</option>
                                 <option value="2">Modérateur</option>
                             </select>
-                            <input type="submit" name="submit" value="Modifiez">
+                            <input id="editUser" type="submit" name="submit" value="Modifiez">
                         </form><?php
                     }
                 }?>
