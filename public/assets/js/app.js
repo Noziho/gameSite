@@ -26,4 +26,8 @@ if (errorOrSuccessMessage) {
     setTimeout(function () {
         $('.error-message').slideUp('fast');
     },3000)
+
+    $('.error-message').click( () => {
+        $('.error-message').slideUp('fast');
+    })
 }
