@@ -1,5 +1,6 @@
 const message = document.querySelector('.send-message');
 const containerMessage = document.querySelector('.global-chat')
+const containerChat = document.querySelector('.global-chat-container');
 
 if (message) {
     message.addEventListener('keypress', function (event) {
@@ -8,13 +9,24 @@ if (message) {
                 method: 'POST',
                 body: JSON.stringify({
                     content: message.value,
-                })
+                }),
             })
-                .then(response => response.json())
-                .catch(error =>
-                message.remove(),
-            );
+                .then(response => {
+                    if (response.status === 400) {
+                        message.style.outline = "1px solid red";
+                    }
+                    if (response.status === 403) {
+                        message.remove();
+                        const muteSentence = document.createElement('p');
+                        muteSentence.innerHTML = "Vous êtes mute.";
+                        muteSentence.className = 'send-message';
+                        containerChat.append(muteSentence);
+                    }
 
+            })
+
+
+            message.style.outline = "";
             message.value = '';
         }
     })
