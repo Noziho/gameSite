@@ -11,9 +11,9 @@ if (message) {
                 })
             })
                 .then(response => response.json())
-                .then({
-
-                })
+                .catch(error =>
+                message.remove(),
+            );
 
             message.value = '';
         }
