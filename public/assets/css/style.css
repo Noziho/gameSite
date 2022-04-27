@@ -390,6 +390,7 @@ select{
     padding: 1rem;
     border: 1px solid #383048;
     position: relative;
+    margin-top: 0.3rem;
 }
 
 .message {

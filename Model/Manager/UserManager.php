@@ -38,12 +38,13 @@ class UserManager
     public static function register($email, $username, $password, $confirm_code): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (email, username, password, confirm_code, confirm, role_fk)
-            VALUES(:email, :username, :password, :confirm_code, :confirm, :role_fk)
+            INSERT INTO " . self::TABLE . " (email, username, password, confirm_code, confirm, role_fk, muted)
+            VALUES(:email, :username, :password, :confirm_code, :confirm, :role_fk, :muted)
         ");
 
         $role_fk = 1;
         $confirm = 0;
+        $muted = 0;
 
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':username', $username);
@@ -51,6 +52,8 @@ class UserManager
         $stmt->bindParam(':confirm_code', $confirm_code);
         $stmt->bindParam(':confirm', $confirm);
         $stmt->bindParam(':role_fk', $role_fk);
+        $stmt->bindParam(':muted', $muted);
+
 
         if ($stmt->execute()) {
             return true;
@@ -180,10 +183,10 @@ class UserManager
 
     /**
      * @param int $id
-     * @return int|mixed
+     * @return string Check if user exist on DB.
      * Check if user exist on DB.
      */
-    public static function userExist(int $id): mixed
+    public static function userExist(int $id): string
     {
         $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
         return $query ? $query->fetch()['cnt'] : 0;
