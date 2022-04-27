@@ -23,8 +23,7 @@ class UserManager
             ->setEmail($data['email'])
             ->setPassword($data['password'])
             ->setConfirmCode($data['confirm_code'])
-            ->setConfirm($data['confirm'])
-            ->setMuted($data['muted']);
+            ->setConfirm($data['confirm']);
         return $user->setRole(RoleManager::getRolesByUserId($user));
     }
 
@@ -207,6 +206,16 @@ class UserManager
             }
         }
         return $users;
+    }
+
+    public static function muteUser (int $user_fk): bool
+    {
+        $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 4 WHERE id = $user_fk");
+
+        if ($query) {
+            return true;
+        }
+        return false;
     }
 
 

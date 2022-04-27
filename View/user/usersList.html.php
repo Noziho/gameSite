@@ -4,8 +4,11 @@ use App\Controller\AbstractController;
 use App\Model\Entity\Role;
 use App\Model\Entity\User;
 
+AbstractController::ifNotAdmin();
+
 $messages = [
     "Success: L'utilisateur à été modifier avec succès.",
+    "Success: L'utilisateur à été mute avec succès."
 ];
 
 
@@ -32,7 +35,7 @@ if (isset($data['users'])) {
                 foreach ($user->getRole() as $role) {
                     /* @var Role $role */ ?>
                     <p>Rôle actuel: <?= $role->getName(); ?></p><?php
-                    if ($role->getName() != "admin") {?>
+                    if ($role->getName() === "admin") {?>
                             <div id="delete_edit_button">
                                 <a id="deleteUser" href="/?c=user&a=delete-user&id=<?= $user->getId() ?>">Supprimez l'utilisateur</a><br>
                             </div>
@@ -44,6 +47,9 @@ if (isset($data['users'])) {
                             </select>
                             <input id="editUser" type="submit" name="submit" value="Modifiez">
                         </form><?php
+                        if ($role->getName() === 'modérateur' || $role->getName() === "admin") {?>
+                            <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'user</a><?php
+                        }
                     }
                 }?>
 
@@ -53,3 +59,4 @@ if (isset($data['users'])) {
         } ?>
     </div>
 </div>
+

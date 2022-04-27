@@ -256,4 +256,19 @@ class UserController extends AbstractController
         UserManager::editUser($currentId, $role);
         header("Location: /?c=user&a=users-list&f=0");
     }
+
+    public function mute (int $id = null)
+    {
+        AbstractController::ifNotAdmin();
+
+        if (null === $id) {
+            header("Location: /?c=home");
+            exit();
+        }
+
+        if (UserManager::muteUser($id)) {
+            header("Location: /?c=user&a=users-list&f=1");
+        }
+
+    }
 }

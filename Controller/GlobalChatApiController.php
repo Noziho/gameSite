@@ -11,6 +11,7 @@ class GlobalChatApiController extends AbstractController
 
     public function index()
     {
+
         $payload = file_get_contents('php://input');
         $payload = json_decode($payload);
 
@@ -19,7 +20,7 @@ class GlobalChatApiController extends AbstractController
             exit;
         }
 
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user']) || AbstractController::isMuted()) {
             http_response_code(403);
             exit;
         }

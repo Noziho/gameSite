@@ -11,6 +11,9 @@ if (message) {
                 })
             })
                 .then(response => response.json())
+                .then({
+
+                })
 
             message.value = '';
         }

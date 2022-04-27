@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Model\Entity\Role;
 use App\Model\Entity\User;
+use App\Model\Manager\UserManager;
 
 
 abstract class AbstractController
 {
 
-    abstract public function index ();
+    abstract public function index();
 
     /**
      * @param string $template
@@ -30,7 +31,7 @@ abstract class AbstractController
      * @param ...$inputNames
      * @return bool
      */
-    public static function formIsset (...$inputNames): bool
+    public static function formIsset(...$inputNames): bool
     {
         foreach ($inputNames as $name) {
             if (!isset($_POST[$name]) || empty($_POST[$name])) {
@@ -40,18 +41,19 @@ abstract class AbstractController
         return true;
     }
 
-    public static function ifDisconnect (): void
+    public static function ifDisconnect(): void
     {
         if (!isset($_SESSION['user'])) {
             header("Location: /?c=home");
         }
     }
 
-    public static function isAdmin (): bool
+    public static function isAdmin(): bool
     {
         if (isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
-            /* @var User $user */
+            $id = $_SESSION['user']->getId();
+
+            $user = UserManager::getUserById($id);
 
             foreach ($user->getRole() as $role) {
                 /* @var Role $role */
@@ -63,7 +65,7 @@ abstract class AbstractController
         return false;
     }
 
-    public function checkRange (string $value, int $min, int $max, string $redirect): void
+    public function checkRange(string $value, int $min, int $max, string $redirect): void
     {
         if (strlen($value) < $min || strlen($value) > $max) {
             header("Location: " . $redirect);
@@ -71,7 +73,7 @@ abstract class AbstractController
         }
     }
 
-    public static function isConnected (): void
+    public static function isConnected(): void
     {
         if (isset($_SESSION['user'])) {
             header("Location: /?c=home");
@@ -79,12 +81,29 @@ abstract class AbstractController
         }
     }
 
-    public static function ifNotAdmin ()
+    public static function ifNotAdmin(): void
     {
         if (!self::isAdmin()) {
             header("Location: /?c=home");
             exit();
         }
+    }
+
+    public static function isMuted (): bool
+    {
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['user']->getId();
+
+            $user = UserManager::getUserById($id);
+
+            foreach ($user->getRole() as $role) {
+                /* @var Role $role */
+                if ($role->getName() === 'mute') {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
