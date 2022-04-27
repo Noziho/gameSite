@@ -5,10 +5,6 @@ use App\Model\Entity\News;
 AbstractController::ifDisconnect();
 
 
-if (isset($data['news'])) {
-    $news = $data['news'];
-}
-
 if (AbstractController::isAdmin()) {?>
     <div id="add-news-container">
         <form action="/?c=news&a=add-news" method="post">
@@ -22,10 +18,14 @@ if (AbstractController::isAdmin()) {?>
 <h1>Actualités</h1>
 <div class="container">
     <?php
+    if (isset($data['news'])) {
+        $news = $data['news'];
+
         foreach ($news as $newsData) {
             /* @var News $newsData */?>
             <div class="news-container"><?= $newsData->getContent() ?></div><?php
         }
+    }
     ?>
 
 </div>

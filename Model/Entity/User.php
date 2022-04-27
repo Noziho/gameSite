@@ -10,6 +10,7 @@ class User extends AbstractEntity
     private string $confirm_code;
     private int $confirm;
     private array $role;
+    private int $muted;
 
     /**
      * @return string
@@ -118,6 +119,25 @@ class User extends AbstractEntity
         $this->role = $role;
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getMuted(): int
+    {
+        return $this->muted;
+    }
+
+    /**
+     * @param int $muted
+     */
+    public function setMuted(int $muted): self
+    {
+        $this->muted = $muted;
+        return $this;
+    }
+
+
 
 
 

@@ -23,7 +23,8 @@ class UserManager
             ->setEmail($data['email'])
             ->setPassword($data['password'])
             ->setConfirmCode($data['confirm_code'])
-            ->setConfirm($data['confirm']);
+            ->setConfirm($data['confirm'])
+            ->setMuted($data['muted']);
         return $user->setRole(RoleManager::getRolesByUserId($user));
     }
 

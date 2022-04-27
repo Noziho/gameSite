@@ -19,7 +19,7 @@ class NewsController extends AbstractController
 
     public function addNews ()
     {
-        $this->render('news/add-news');
+        $this->render('news/news');
         if (isset($_POST['submit'])) {
             $content = $_POST['content'];
 
