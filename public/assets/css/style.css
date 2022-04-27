@@ -151,10 +151,6 @@ i {
     color: white;
 }
 
-i {
-    word-break-wrap: 1;
-}
-
 /* Footer for home page only */
 #home-footer {
     background: #1a1717;
@@ -378,12 +374,35 @@ select{
 .global-chat {
     margin-top: 2rem;
     width: 100%;
-    min-height: 80%;
+    height: 40rem;
+    overflow: auto;
+
 }
 
 .send-message {
     width: 40%;
+    margin-top: 5rem;
 }
+
+.globalChatMessage {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border: 1px solid #383048;
+    position: relative;
+}
+
+.message {
+    word-break: break-all;
+    margin-top: 0.5rem;
+}
+
+.time {
+
+    position: absolute;right: 10px;
+    bottom: 5px;
+}
+
 
 
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\Entity\GlobalChat;
 use App\Model\Manager\ChatManager;
+use DateTime;
 
 class GlobalChatApiController extends AbstractController
 {
@@ -24,12 +25,14 @@ class GlobalChatApiController extends AbstractController
         }
 
         $content = filter_var($payload->content, FILTER_SANITIZE_STRING);
-
+        $dateTime = new DateTime();
+        $time = $dateTime->format('H:i:s');
         $user = $_SESSION['user'];
 
         $message = (new GlobalChat())
             ->setContent($content)
             ->setAuthor($user)
+            ->setDateTime($time);
         ;
 
 
@@ -38,6 +41,7 @@ class GlobalChatApiController extends AbstractController
                 'id' => $message->getId(),
                 'content' => $message->getContent(),
                 'author' => $message->getAuthor()->getUsername(),
+                'time' => $message->getDateTime(),
             ]);
             http_response_code(200);
             exit;

@@ -25,6 +25,7 @@ class GlobalChatController extends AbstractController
             /* @var GlobalChat $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
+            $messages[$key]['time'] = $message->getDateTime();
         }
 
         echo json_encode($messages);

@@ -3,7 +3,7 @@
     <div class="global-chat-container">
         <h1>Général chat</h1>
         <div class="global-chat">
-            <p>test</p>
+
         </div>
 
         <div>

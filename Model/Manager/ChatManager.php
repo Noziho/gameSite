@@ -48,7 +48,8 @@ class ChatManager {
         return (new GlobalChat())
             ->setId($data['id'])
             ->setContent($data['content'])
-            ->setAuthor(UserManager::getUserById($data['user_fk']));
+            ->setAuthor(UserManager::getUserById($data['user_fk']))
+            ->setDateTime($data['time']);
     }
 
 }

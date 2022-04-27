@@ -8,7 +8,7 @@ use DateTime;
 class GlobalChat extends AbstractEntity
 {
     private string $content;
-    private DateTime $dateTime;
+    private string $dateTime;
     private User $author;
 
     /**
@@ -30,18 +30,18 @@ class GlobalChat extends AbstractEntity
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDateTime(): DateTime
+    public function getDateTime(): string
     {
         return $this->dateTime;
     }
 
     /**
-     * @param DateTime $dateTime
+     * @param string $dateTime
      * @return GlobalChat
      */
-    public function setDateTime(DateTime $dateTime): self
+    public function setDateTime(string $dateTime): self
     {
         $this->dateTime = $dateTime;
         return $this;

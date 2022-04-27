@@ -20,16 +20,30 @@ if (message) {
             .then(response => response.json())
             .then(response => {
                 refreshChat(response);
-                console.log(response);
+
             });
     }, 1000);
+
+
+
 
     function refreshChat(messages) {
         containerMessage.innerHTML = ''
         for (let i = 0; i < messages.length; i++) {
-            containerMessage.innerHTML += "<div class='message'>" + "<p class='user'>" +
-                messages[i]['author'] + "</p>" + "<p>" + messages[i]['content'] + "</p>" + "</div>";
+            containerMessage.innerHTML += "<div class='globalChatMessage'>" + "<p class='author'>" +
+                messages[i]['author'] + " :</p>" + "<p class='message'>" + messages[i]['content'] + "</p>"
+                + "<p class='time'>" + messages[i]['time'] + "</p>" + "</div>";
 
         }
     }
+
+    message.addEventListener('keypress', function (event) {
+        if (event.keyCode === 13) {
+            containerMessage.scrollTop = containerMessage.scrollHeight;
+            setTimeout(() => {
+                containerMessage.scrollTop = containerMessage.scrollHeight;
+            },1000)
+
+        }
+    })
 }
