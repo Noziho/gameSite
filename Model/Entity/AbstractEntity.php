@@ -2,7 +2,7 @@
 
 namespace App\Model\Entity;
 
-class AbstractEntity
+Abstract class AbstractEntity
 {
     private ?int $id = null;
 

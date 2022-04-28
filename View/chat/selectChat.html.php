@@ -7,7 +7,7 @@
             </div>
         </a>
 
-        <a href="">
+        <a href="/?c=lostArkChat&a=lost-ark">
             <div>
                 <h2>LostArk</h2>
                 <div id="lostark-chat" class="chat-image"></div>

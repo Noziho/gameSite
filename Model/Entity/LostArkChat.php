@@ -2,7 +2,7 @@
 
 namespace App\Model\Entity;
 
-class GlobalChat extends AbstractEntity
+class LostArkChat extends AbstractEntity
 {
     private string $content;
     private string $dateTime;
@@ -18,7 +18,7 @@ class GlobalChat extends AbstractEntity
 
     /**
      * @param string $content
-     * @return GlobalChat
+     * @return LostArkChat
      */
     public function setContent(string $content): self
     {
@@ -36,7 +36,7 @@ class GlobalChat extends AbstractEntity
 
     /**
      * @param string $dateTime
-     * @return GlobalChat
+     * @return LostArkChat
      */
     public function setDateTime(string $dateTime): self
     {
@@ -54,7 +54,7 @@ class GlobalChat extends AbstractEntity
 
     /**
      * @param User $author
-     * @return GlobalChat
+     * @return LostArkChat
      */
     public function setAuthor(User $author): self
     {

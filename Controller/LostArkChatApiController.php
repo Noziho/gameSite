@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\GlobalChat;
-use App\Model\Manager\GlobalChatManager;
+use App\Model\Entity\LostArkChat;
+use App\Model\Manager\LostArkChatManager;
 use DateTime;
 
-class GlobalChatApiController extends AbstractController
+class LostArkChatApiController extends AbstractController
 {
 
     public function index()
@@ -30,14 +30,14 @@ class GlobalChatApiController extends AbstractController
         $time = $dateTime->format('H:i:s');
         $user = $_SESSION['user'];
 
-        $message = (new GlobalChat())
+        $message = (new LostArkChat())
             ->setContent($content)
             ->setAuthor($user)
             ->setDateTime($time);
         ;
 
 
-        if (GlobalChatManager::addMessage($message)) {
+        if (LostArkChatManager::addMessage($message)) {
             echo json_encode([
                 'id' => $message->getId(),
                 'content' => $message->getContent(),

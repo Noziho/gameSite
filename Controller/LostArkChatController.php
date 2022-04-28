@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\GlobalChat;
-use App\Model\Manager\GlobalChatManager;
+use App\Model\Entity\LostArkChat;
+use App\Model\Manager\LostArkChatManager;
 
-class GlobalChatController extends AbstractController
+class LostArkChatController extends AbstractController
 {
 
     public function index()
@@ -13,16 +13,16 @@ class GlobalChatController extends AbstractController
         $this->render('chat/selectChat');
     }
 
-    public function global()
+    public function lostArk()
     {
-        $this->render('chat/global');
+        $this->render('chat/lostark');
     }
 
     public function getAll(): void
     {
         $messages = [];
-        foreach (GlobalChatManager::getAll() as $key => $message) {
-            /* @var GlobalChat $message */
+        foreach (LostArkChatManager::getAll() as $key => $message) {
+            /* @var LostArkChat $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
             $messages[$key]['time'] = $message->getDateTime();
@@ -43,8 +43,8 @@ class GlobalChatController extends AbstractController
         }
 
         if (AbstractController::isAdmin() || AbstractController::isModerator()) {
-            if (GlobalChatManager::messageExist($id)) {
-                GlobalChatManager::deleteMessage($id);
+            if (LostArkChatManager::messageExist($id)) {
+                LostArkChatManager::deleteMessage($id);
                 header("Location: /?c=user&a=users-list&f=2");
             } else {
                 header("Location: /?c=user&a=users-list&f=4");
@@ -76,7 +76,7 @@ class GlobalChatController extends AbstractController
                     exit();
                 }
 
-                GlobalChatManager::deleteMessages($id, $limit);
+                LostArkChatManager::deleteMessages($id, $limit);
                 header("Location: /?c=user&a=users-list&f=6");
 
             } else {

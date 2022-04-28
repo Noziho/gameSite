@@ -3,12 +3,12 @@
 namespace App\Model\Manager;
 
 use App\Model\DB_Connect;
-use App\Model\Entity\GlobalChat;
+use App\Model\Entity\LostArkChat;
 use DateTime;
 
-class ChatManager {
+class LostArkChatManager {
 
-    private const TABLE = "ndmp22_global_chat";
+    private const TABLE = "ndmp22_lost_ark_chat";
 
     public static function getAll(): array
     {
@@ -25,7 +25,7 @@ class ChatManager {
 
     }
 
-    public static function addMessage (GlobalChat &$message): bool
+    public static function addMessage (LostArkChat &$message): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             INSERT INTO ". self::TABLE ." (content, user_fk, time) VALUES (:content, :author, :time)
@@ -43,9 +43,9 @@ class ChatManager {
         return $result;
     }
 
-    private static function makeMessage($data): GlobalChat
+    private static function makeMessage($data): LostArkChat
     {
-        return (new GlobalChat())
+        return (new LostArkChat())
             ->setId($data['id'])
             ->setContent($data['content'])
             ->setAuthor(UserManager::getUserById($data['user_fk']))
