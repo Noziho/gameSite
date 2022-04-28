@@ -78,4 +78,15 @@ class ChatManager {
         return $messages;
     }
 
+    public static function deleteMessages (int $user_fk, int $limit): void
+    {
+        $stmt = DB_Connect::dbConnect()->prepare("
+            DELETE FROM ". self::TABLE ." WHERE user_fk = :user_fk ORDER BY id DESC LIMIT $limit ");
+
+        $stmt->bindParam(':user_fk', $user_fk);
+
+
+        $stmt->execute();
+    }
+
 }

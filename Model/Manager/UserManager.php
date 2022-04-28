@@ -38,13 +38,12 @@ class UserManager
     public static function register($email, $username, $password, $confirm_code): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            INSERT INTO " . self::TABLE . " (email, username, password, confirm_code, confirm, role_fk, muted)
-            VALUES(:email, :username, :password, :confirm_code, :confirm, :role_fk, :muted)
+            INSERT INTO " . self::TABLE . " (email, username, password, confirm_code, confirm, role_fk)
+            VALUES(:email, :username, :password, :confirm_code, :confirm, :role_fk)
         ");
 
         $role_fk = 1;
         $confirm = 0;
-        $muted = 0;
 
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':username', $username);
@@ -52,7 +51,6 @@ class UserManager
         $stmt->bindParam(':confirm_code', $confirm_code);
         $stmt->bindParam(':confirm', $confirm);
         $stmt->bindParam(':role_fk', $role_fk);
-        $stmt->bindParam(':muted', $muted);
 
 
         if ($stmt->execute()) {
@@ -208,14 +206,11 @@ class UserManager
         return $users;
     }
 
-    public static function muteUser (int $user_fk): bool
+    public static function muteUser (int $user_fk): void
     {
         $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 4 WHERE id = $user_fk");
+        $query->execute();
 
-        if ($query) {
-            return true;
-        }
-        return false;
     }
 
 

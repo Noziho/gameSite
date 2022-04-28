@@ -13,12 +13,12 @@ class GlobalChatController extends AbstractController
         $this->render('chat/selectChat');
     }
 
-    public function global ()
+    public function global()
     {
         $this->render('chat/global');
     }
 
-    public function getAll() :void
+    public function getAll(): void
     {
         $messages = [];
         foreach (ChatManager::getAll() as $key => $message) {
@@ -31,22 +31,61 @@ class GlobalChatController extends AbstractController
         echo json_encode($messages);
     }
 
-    public function deleteMessage (int $id = null)
+    /**
+     * @param int|null $id
+     * @return void
+     * delete 1 target message
+     */
+    public function deleteMessage(int $id = null): void
     {
-
         if (null === $id) {
             header("Location: /?c=home");
         }
 
-        if (!AbstractController::isAdmin()) {
+        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+            if (ChatManager::messageExist($id)) {
+                ChatManager::deleteMessage($id);
+                header("Location: /?c=user&a=users-list&f=2");
+            } else {
+                header("Location: /?c=user&a=users-list&f=4");
+            }
+        } else {
             header("Location: /?c=home");
         }
-        if (ChatManager::messageExist($id)) {
-            ChatManager::deleteMessage($id);
-            header("Location: /?c=user&a=users-list&f=2");
+
+    }
+
+    public function deleteMessages(int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /?c=home");
+            exit();
         }
-        else {
-            header("Location: /?c=user&a=users-list&f=3");
+
+        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+            if (isset($_POST['submit'])) {
+                if (!AbstractController::formIsset('limitNumber')) {
+                    header("Location: /?c=user&a=users-list&f=3");
+                    exit();
+
+                }
+                $limit = filter_var($_POST['limitNumber'], FILTER_SANITIZE_NUMBER_INT);
+
+                if (!filter_var($limit, FILTER_VALIDATE_INT)) {
+                    header("Location: /?c=user&a=users-list&f=5");
+                    exit();
+                }
+
+                ChatManager::deleteMessages($id, $limit);
+                header("Location: /?c=user&a=users-list&f=6");
+
+            } else {
+                header("Location: /?c=user&a=users-list&f=7");
+            }
+            exit();
+        } else {
+            header("Location: /?c=home");
         }
+
     }
 }

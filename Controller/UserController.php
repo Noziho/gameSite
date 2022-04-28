@@ -226,11 +226,15 @@ class UserController extends AbstractController
 
     public function usersList()
     {
-        AbstractController::ifNotAdmin();
+        if (AbstractController::isModerator() || AbstractController::isAdmin()) {
+            $this->render('user/usersList', [
+                'users' => UserManager::getAll(),
+            ]);
+        } else {
+            header("Location: /?c=home");
+        }
 
-        $this->render('user/usersList', [
-            'users' => UserManager::getAll(),
-        ]);
+
     }
 
     public function deleteUser(int $id = null)
@@ -259,30 +263,36 @@ class UserController extends AbstractController
 
     public function mute(int $id = null)
     {
-        AbstractController::ifNotAdmin();
-
         if (null === $id) {
             header("Location: /?c=home");
             exit();
         }
-
-        if (UserManager::muteUser($id)) {
+        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+            UserManager::muteUser($id);
             header("Location: /?c=user&a=users-list&f=1");
+
+        }else {
+            header("Location: /?c=home");
         }
+
+
     }
 
     public function lastMessages(int $id = null)
     {
-        if (!AbstractController::isAdmin()) {
-            header("Location: /?c=home");
-        }
-
         if (null === $id) {
             header("Location: /?c=home");
             exit();
         }
-        $this->render('user/lastMessages', [
-            'messages' => ChatManager::getMessagesByUserId($id),
-        ]);
+
+        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+
+            $this->render('user/lastMessages', [
+                'messages' => ChatManager::getMessagesByUserId($id),
+            ]);
+        }else {
+            header("Location: /?c=home");
+        }
+
     }
 }

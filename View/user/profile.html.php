@@ -22,8 +22,8 @@ if (isset($data['user'])) {
             </div>
             <span class="warning">/!\ Attention cette action est irréversible !</span>
             <?php
-            if (AbstractController::isAdmin()) {?>
-                <a class="news-button" href="/?c=user&a=userslist">Listes des utilisateurs</a><?php
+            if (AbstractController::isAdmin() || AbstractController::isModerator()) {?>
+                <a class="news-button" href="/?c=user&a=users-list">Listes des utilisateurs</a><?php
             }?>
         </div>
     </div>

@@ -65,6 +65,23 @@ abstract class AbstractController
         return false;
     }
 
+    public static function isModerator(): bool
+    {
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['user']->getId();
+
+            $user = UserManager::getUserById($id);
+
+            foreach ($user->getRole() as $role) {
+                /* @var Role $role */
+                if ($role->getName() === 'modérateur') {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public function checkRange(string $value, int $min, int $max, string $redirect): void
     {
         if (strlen($value) < $min || strlen($value) > $max) {
