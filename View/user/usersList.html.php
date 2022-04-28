@@ -7,8 +7,10 @@ use App\Model\Entity\User;
 AbstractController::ifNotAdmin();
 
 $messages = [
-    "Success: L'utilisateur à été modifier avec succès.",
-    "Success: L'utilisateur à été mute avec succès."
+    "Success: L'utilisateur à été modifier.",
+    "Success: L'utilisateur à été mute.",
+    "Success: Le message de l'utilisateur à été supprimer.",
+    "Error: Le message à déjà été supprimer.",
 ];
 
 
@@ -48,7 +50,9 @@ if (isset($data['users'])) {
                             <input id="editUser" type="submit" name="submit" value="Modifiez">
                         </form><?php
                         if ($role->getName() === 'modérateur' || $role->getName() === "admin") {?>
-                            <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'user</a><?php
+                            <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'user</a>
+                            <a href="/?c=user&a=last-messages&id=<?= $user->getId() ?>">Voir les 100 derniers messages</a>
+                            <?php
                         }
                     }
                 }?>

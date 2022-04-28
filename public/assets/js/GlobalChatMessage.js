@@ -22,14 +22,12 @@ if (message) {
                         muteSentence.className = 'send-message';
                         containerChat.append(muteSentence);
                     }
-
-            })
-
-
+                })
             message.style.outline = "";
             message.value = '';
         }
     })
+
     setInterval(function () {
         fetch('/?c=globalChat&a=get-all', {method: 'POST'})
             .then(response => response.json())
@@ -38,9 +36,6 @@ if (message) {
 
             });
     }, 1000);
-
-
-
 
     function refreshChat(messages) {
         containerMessage.innerHTML = ''
@@ -57,7 +52,7 @@ if (message) {
             containerMessage.scrollTop = containerMessage.scrollHeight;
             setTimeout(() => {
                 containerMessage.scrollTop = containerMessage.scrollHeight;
-            },1000)
+            }, 1000)
 
         }
     })

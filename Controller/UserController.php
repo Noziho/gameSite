@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Model\Entity\User;
+use App\Model\Manager\ChatManager;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -44,9 +45,9 @@ class UserController extends AbstractController
 
             $uppercase = preg_match('@[A-Z]@', $password_repeat);
             $lowercase = preg_match('@[a-z]@', $password_repeat);
-            $number    = preg_match('@\d@', $password_repeat);
+            $number = preg_match('@\d@', $password_repeat);
 
-            if(!$uppercase || !$lowercase || !$number || strlen($password_repeat) < 8 || strlen($password_repeat) > 25) {
+            if (!$uppercase || !$lowercase || !$number || strlen($password_repeat) < 8 || strlen($password_repeat) > 25) {
                 header("Location: /?c=user&a=register&f=6");
                 exit();
             }
@@ -86,7 +87,7 @@ class UserController extends AbstractController
                             <body>
                                  <p>Pour finalisez votre inscription veuillez cliquer sur le lien ci-dessous :</p>
                                  <div style="display: flex; justify-content: center; align-items: center">
-                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://localhost:8000/?c=user&a=check-mail&us='.$username.'&id='.$id.'">Confirmez votre compte</a></button>
+                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://localhost:8000/?c=user&a=check-mail&us=' . $username . '&id=' . $id . '">Confirmez votre compte</a></button>
                                  </div>
                            </body>
                     </html>
@@ -120,7 +121,7 @@ class UserController extends AbstractController
         $this->render('user/login');
 
         if (isset($_POST['submit'])) {
-            if (!$this::formIsset('email', 'password' ,'submit')) {
+            if (!$this::formIsset('email', 'password', 'submit')) {
                 header("Location: /?c=user&a=login&f=1");
                 exit();
             }
@@ -155,7 +156,7 @@ class UserController extends AbstractController
             $reply_to = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
             $this::checkRange($subject, 4, 60, '/?c=user&a=contact&f=2');
-            $this::checkRange($message, 20, 255, '/?c=user&a=contact&f=3' );
+            $this::checkRange($message, 20, 255, '/?c=user&a=contact&f=3');
             $this::checkRange($reply_to, 6, 150, '/?c=user&a=contact&f=4');
 
             if (!filter_var($reply_to, FILTER_VALIDATE_EMAIL)) {
@@ -170,7 +171,7 @@ class UserController extends AbstractController
 
             );
 
-            mail('gamesitensup@gmail.com', $subject, $message, $headers, '-f '. $reply_to);
+            mail('gamesitensup@gmail.com', $subject, $message, $headers, '-f ' . $reply_to);
             header("Location: /?c=user&a=contact&f=0");
         }
     }
@@ -195,8 +196,7 @@ class UserController extends AbstractController
 
             UserManager::editConfirmationStatus($user);
             header("Location: /?c=user&a=login");
-        }
-        else {
+        } else {
             header("Location: /?c=home");
         }
 
@@ -214,9 +214,9 @@ class UserController extends AbstractController
      * @return void
      * Simple function for delete the logged user.
      */
-    public function delete (): void
+    public function delete(): void
     {
-        if (isset($_SESSION['user'])){
+        if (isset($_SESSION['user'])) {
             UserManager::deleteUser($_SESSION['user']->getId());
             self::dislog();
             header("Location: /?c=home");
@@ -224,7 +224,7 @@ class UserController extends AbstractController
 
     }
 
-    public function usersList ()
+    public function usersList()
     {
         AbstractController::ifNotAdmin();
 
@@ -233,7 +233,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function deleteUser (int $id = null)
+    public function deleteUser(int $id = null)
     {
         AbstractController::ifNotAdmin();
 
@@ -244,7 +244,7 @@ class UserController extends AbstractController
         header("Location: /?c=user&a=users-list");
     }
 
-    public function editUser (int $id = null)
+    public function editUser(int $id = null)
     {
         AbstractController::ifNotAdmin();
 
@@ -257,7 +257,7 @@ class UserController extends AbstractController
         header("Location: /?c=user&a=users-list&f=0");
     }
 
-    public function mute (int $id = null)
+    public function mute(int $id = null)
     {
         AbstractController::ifNotAdmin();
 
@@ -269,6 +269,16 @@ class UserController extends AbstractController
         if (UserManager::muteUser($id)) {
             header("Location: /?c=user&a=users-list&f=1");
         }
+    }
 
+    public function lastMessages(int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /?c=home");
+            exit();
+        }
+        $this->render('user/lastMessages', [
+            'messages' => ChatManager::getMessagesByUserId($id),
+        ]);
     }
 }

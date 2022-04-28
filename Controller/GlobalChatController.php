@@ -30,4 +30,23 @@ class GlobalChatController extends AbstractController
 
         echo json_encode($messages);
     }
+
+    public function deleteMessage (int $id = null)
+    {
+
+        if (null === $id) {
+            header("Location: /?c=home");
+        }
+
+        if (!AbstractController::isAdmin()) {
+            header("Location: /?c=home");
+        }
+        if (ChatManager::messageExist($id)) {
+            ChatManager::deleteMessage($id);
+            header("Location: /?c=user&a=users-list&f=2");
+        }
+        else {
+            header("Location: /?c=user&a=users-list&f=3");
+        }
+    }
 }

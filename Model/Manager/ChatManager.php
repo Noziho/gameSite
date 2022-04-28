@@ -52,4 +52,30 @@ class ChatManager {
             ->setDateTime($data['time']);
     }
 
+    public static function messageExist(int $id): string
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        return $query ? $query->fetch()['cnt'] : 0;
+    }
+
+    public static function deleteMessage(int $id): void
+    {
+        $query = DB_Connect::dbConnect()->query("DELETE FROM ".self::TABLE." WHERE id = $id ");
+        $query->execute();
+    }
+
+    public static function getMessagesByUserId (int $user_fk): array
+    {
+        $messages = [];
+
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE user_fk = $user_fk ORDER BY id DESC LIMIT 100");
+        if ($query) {
+            foreach ($query->fetchAll() as $messageData) {
+                $messages[] = self::makeMessage($messageData);
+            }
+        }
+
+        return $messages;
+    }
+
 }
