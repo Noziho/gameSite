@@ -106,4 +106,12 @@ abstract class AbstractController
         return false;
     }
 
+    public static function isDisconnect (): bool
+    {
+        if (!isset($_SESSION['user'])) {
+            return true;
+        }
+        return false;
+    }
+
 }
