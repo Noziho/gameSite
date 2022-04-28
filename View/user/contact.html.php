@@ -22,12 +22,12 @@ if (isset($_GET['f'])) {
         <form action="/?c=user&a=contact" method="post">
             <div>
                 <label for="email">Votre mail:</label>
-                <input type="email" id="email" name="email" minlength="6" maxlength="150">
+                <input type="email" id="email" name="email" minlength="6" maxlength="150" required>
             </div>
 
             <div>
                 <label for="subject">Objet de la demande:</label>
-                <input type="text" id="subject" name="subject" placeholder="Objet de la demande" minlength="4" maxlength="60">
+                <input type="text" id="subject" name="subject" placeholder="Objet de la demande" minlength="4" maxlength="60" required>
             </div>
 
             <div>
