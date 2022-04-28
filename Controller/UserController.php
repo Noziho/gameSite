@@ -273,6 +273,10 @@ class UserController extends AbstractController
 
     public function lastMessages(int $id = null)
     {
+        if (!AbstractController::isAdmin()) {
+            header("Location: /?c=home");
+        }
+
         if (null === $id) {
             header("Location: /?c=home");
             exit();
