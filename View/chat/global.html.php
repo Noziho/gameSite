@@ -26,3 +26,5 @@ use App\Controller\AbstractController;
     </div>
 
 </div>
+
+<script src="/assets/js/GlobalChatMessage.js"></script>
