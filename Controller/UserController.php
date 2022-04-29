@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Model\Entity\User;
+use App\Model\Manager\ForzaChatManager;
 use App\Model\Manager\GlobalChatManager;
 use App\Model\Manager\LostArkChatManager;
 use App\Model\Manager\UserManager;
@@ -291,6 +292,7 @@ class UserController extends AbstractController
             $this->render('user/lastMessages', [
                 'GlobalChatMessages' => GlobalChatManager::getMessagesByUserId($id),
                 'LostArkChatMessages' => LostArkChatManager::getMessagesByUserId($id),
+                'ForzaChatMessages' => ForzaChatManager::getMessagesByUserId($id),
             ]);
         }else {
             header("Location: /?c=home");

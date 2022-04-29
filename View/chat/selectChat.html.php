@@ -14,7 +14,7 @@
             </div>
         </a>
 
-        <a href="">
+        <a href="/?c=forzaChat&a=forza">
             <div>
                 <h2>Forza 5</h2>
                 <div id="forza-chat" class="chat-image"></div>
