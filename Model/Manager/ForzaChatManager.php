@@ -25,7 +25,7 @@ class ForzaChatManager {
 
     }
 
-    public static function addMessage (AllChatEntity &$message): bool
+    public static function addMessage (AllChatEntity $message): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             INSERT INTO ". self::TABLE ." (content, user_fk, time) VALUES (:content, :author, :time)
