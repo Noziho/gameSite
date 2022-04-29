@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Model\Entity\ForzaChat;
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\ForzaChatManager;
 use DateTime;
 
@@ -31,7 +31,7 @@ class ForzaChatApiController extends AbstractController
         $time = $dateTime->format('H:i:s');
         $user = $_SESSION['user'];
 
-        $message = (new ForzaChat())
+        $message = (new AllChatEntity())
             ->setContent($content)
             ->setAuthor($user)
             ->setDateTime($time);

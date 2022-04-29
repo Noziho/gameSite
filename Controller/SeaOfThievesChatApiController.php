@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Model\Entity\SeaOfThievesChat;
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\SeaOfThievesChatManager;
 use DateTime;
 
@@ -31,7 +31,7 @@ class SeaOfThievesChatApiController extends AbstractController
         $time = $dateTime->format('H:i:s');
         $user = $_SESSION['user'];
 
-        $message = (new SeaOfThievesChat())
+        $message = (new AllChatEntity())
             ->setContent($content)
             ->setAuthor($user)
             ->setDateTime($time);

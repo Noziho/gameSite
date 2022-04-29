@@ -3,7 +3,7 @@
 namespace App\Model\Manager;
 
 use App\Model\DB_Connect;
-use App\Model\Entity\GlobalChat;
+use App\Model\Entity\AllChatEntity;
 use DateTime;
 
 class GlobalChatManager {
@@ -25,7 +25,7 @@ class GlobalChatManager {
 
     }
 
-    public static function addMessage (GlobalChat &$message): bool
+    public static function addMessage (AllChatEntity &$message): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             INSERT INTO ". self::TABLE ." (content, user_fk, time) VALUES (:content, :author, :time)
@@ -43,9 +43,9 @@ class GlobalChatManager {
         return $result;
     }
 
-    private static function makeMessage($data): GlobalChat
+    private static function makeMessage($data): AllChatEntity
     {
-        return (new GlobalChat())
+        return (new AllChatEntity())
             ->setId($data['id'])
             ->setContent($data['content'])
             ->setAuthor(UserManager::getUserById($data['user_fk']))

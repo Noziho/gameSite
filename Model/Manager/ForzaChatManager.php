@@ -3,7 +3,7 @@
 namespace App\Model\Manager;
 
 use App\Model\DB_Connect;
-use App\Model\Entity\ForzaChat;
+use App\Model\Entity\AllChatEntity;
 use DateTime;
 
 class ForzaChatManager {
@@ -25,7 +25,7 @@ class ForzaChatManager {
 
     }
 
-    public static function addMessage (ForzaChat &$message): bool
+    public static function addMessage (AllChatEntity &$message): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             INSERT INTO ". self::TABLE ." (content, user_fk, time) VALUES (:content, :author, :time)
@@ -43,9 +43,9 @@ class ForzaChatManager {
         return $result;
     }
 
-    private static function makeMessage($data): ForzaChat
+    private static function makeMessage($data): AllChatEntity
     {
-        return (new ForzaChat())
+        return (new AllChatEntity())
             ->setId($data['id'])
             ->setContent($data['content'])
             ->setAuthor(UserManager::getUserById($data['user_fk']))
