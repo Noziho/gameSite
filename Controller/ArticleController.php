@@ -67,7 +67,7 @@ class ArticleController extends AbstractController
             if (isset($_POST['submit'])) {
                 $content = $_POST['content'];
                 ArticleManager::editArticle($id, $content);
-                header("Location: /?c=article&f=2");
+
                 exit();
             }
         }

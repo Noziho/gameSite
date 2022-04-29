@@ -3,7 +3,6 @@
 namespace App\Model\Manager;
 
 
-
 use App\Model\DB_Connect;
 use App\Model\Entity\Article;
 
@@ -18,7 +17,7 @@ class ArticleManager
     public static function getAll(): array
     {
         $articles = [];
-        $query = DB_Connect::dbConnect()->query("SELECT * FROM ".self::TABLE);
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
 
         if ($query) {
             foreach ($query->fetchAll() as $articlesData) {
@@ -35,18 +34,17 @@ class ArticleManager
         return $query->execute() ? self::makeArticle($query->fetch()) : null;
     }
 
-    public static function addArticle (string $content, int $user_fk): bool
+    public static function addArticle(string $content, int $user_fk): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            INSERT INTO ".self::TABLE." (content, user_fk)
+            INSERT INTO " . self::TABLE . " (content, user_fk)
             VALUES(:content, :user_fk)
         ");
 
         $stmt->bindParam(":content", $content);
         $stmt->bindValue(":user_fk", $user_fk);
 
-        if ($stmt->execute())
-        {
+        if ($stmt->execute()) {
             return true;
         }
         return false;
@@ -57,7 +55,7 @@ class ArticleManager
      * @param array $data
      * @return Article
      */
-    public static function makeArticle (array $data): Article
+    public static function makeArticle(array $data): Article
     {
         return (new Article())
             ->setId($data['id'])
@@ -76,11 +74,12 @@ class ArticleManager
         DB_Connect::dbConnect()->query("DELETE FROM " . self::TABLE . " WHERE id = $id ");
     }
 
-    public static function editArticle (int $id, string $content): void
+    public static function editArticle(int $id, string $content): void
     {
-        $stmt = DB_Connect::dbConnect()->prepare("UPDATE ".self::TABLE. " SET content = :content WHERE id = $id");
+        $stmt = DB_Connect::dbConnect()->prepare("UPDATE " . self::TABLE . " SET content = :content WHERE id = $id");
         $stmt->bindParam(':content', $content);
 
         $stmt->execute();
+
     }
 }

@@ -6,6 +6,22 @@ if (isset($data['game'])) {
     /** @var Article $article  **/
     $article = $data['game'];
 }
+$messages = [
+    "Success: L'article à été modifier.",
+
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    if ($index > count($messages)) {
+        header("Location: /?c=article&a=edit-game&id=". $article->getId());
+        exit();
+    }
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
 ?>
 
 <div class="container">
