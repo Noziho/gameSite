@@ -58,4 +58,15 @@ class ArticleManager
             ->setContent($data['content'])
             ->setUserFk(UserManager::getUserById($data['user_fk']));
     }
+
+    public static function articleExist(int $id): string
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        return $query ? $query->fetch()['cnt'] : 0;
+    }
+
+    public static function deleteArticle(int $id): void
+    {
+        DB_Connect::dbConnect()->query("DELETE FROM " . self::TABLE . " WHERE id = $id ");
+    }
 }

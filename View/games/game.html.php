@@ -2,6 +2,23 @@
 use App\Controller\AbstractController;
 use App\Model\Entity\Article;
 
+$messages = [
+        "Success: L'article à bien été supprimer.",
+        "Error: L'article demander n'existe pas ou à déjà été supprimer.",
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    if ($index > count($messages)) {
+        header("Location: /?c=article");
+        exit();
+    }
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
 if (isset($data['articles']))
 {
     $articles = $data['articles'];
@@ -46,7 +63,12 @@ if (AbstractController::isAdmin()) {
     <?php
     foreach ($articles as $articleData) {
         /* @var Article $articleData */?>
-        <div class="news-container"><?= $articleData->getContent() ?></div><?php
+        <div class="news-container">
+            <?= $articleData->getContent() ?>
+            <div>
+                <a href="/?c=article&a=delete-game&id=<?= $articleData->getId() ?>">Supprimer l'article</a>
+            </div>
+        </div><?php
     }
     ?>
 

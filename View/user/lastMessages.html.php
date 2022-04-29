@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\Entity\GlobalChat;
+use App\Model\Entity\AllChatEntity;
 
 ?>
 
@@ -9,11 +9,12 @@ use App\Model\Entity\GlobalChat;
     <div class="global-chat-container">
         <div class="global-chat">
             <?php
+
             if (isset($data['GlobalChatMessages'])) {
                 $globalMessages = $data['GlobalChatMessages'];
 
                 foreach ($globalMessages as $globalMessage) {
-                    /** @var GlobalChat $globalMessage * */ ?>
+                    /** @var AllChatEntity $globalMessage * */ ?>
                     <div class="globalChatMessage">
                         <p class="message"><?= $globalMessage->getContent() ?></p>
                         <p class="message"><?= $globalMessage->getDateTime() ?></p>
@@ -49,7 +50,7 @@ use App\Model\Entity\GlobalChat;
                 $lostArkMessages = $data['LostArkChatMessages'];
 
                 foreach ($lostArkMessages as $lostArkMessage) {
-                    /** @var GlobalChat $lostArkMessage * */ ?>
+                    /** @var AllChatEntity $lostArkMessage * */ ?>
                     <div class="globalChatMessage">
                     <p class="message"><?= $lostArkMessage->getContent() ?></p>
                     <p class="message"><?= $lostArkMessage->getDateTime() ?></p>
@@ -85,7 +86,7 @@ use App\Model\Entity\GlobalChat;
                 $forzaMessages = $data['ForzaChatMessages'];
 
                 foreach ($forzaMessages as $forzaMessage) {
-                    /** @var GlobalChat $lostArkMessage * */ ?>
+                    /** @var AllChatEntity $lostArkMessage * */ ?>
                     <div class="globalChatMessage">
                     <p class="message"><?= $forzaMessage->getContent() ?></p>
                     <p class="message"><?= $forzaMessage->getDateTime() ?></p>
@@ -121,7 +122,7 @@ use App\Model\Entity\GlobalChat;
                 $seaOfThievesMessages = $data['SeaOfThievesChatMessages'];
 
                 foreach ($seaOfThievesMessages as $seaOfThievesMessage) {
-                    /** @var GlobalChat $lostArkMessage * */ ?>
+                    /** @var AllChatEntity $lostArkMessage * */ ?>
                     <div class="globalChatMessage">
                     <p class="message"><?= $seaOfThievesMessage->getContent() ?></p>
                     <p class="message"><?= $seaOfThievesMessage->getDateTime() ?></p>

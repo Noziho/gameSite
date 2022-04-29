@@ -19,6 +19,10 @@ $messages = [
 
 if (isset($_GET['f'])) {
     $index = (int)$_GET['f'];
+    if ($index > count($messages)) {
+        header("Location: /?c=user&a=users-list");
+        exit();
+    }
     $message = $messages[$index]; ?>
     <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
     <?php
