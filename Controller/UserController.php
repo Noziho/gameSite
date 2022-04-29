@@ -7,6 +7,7 @@ use App\Model\Entity\User;
 use App\Model\Manager\ForzaChatManager;
 use App\Model\Manager\GlobalChatManager;
 use App\Model\Manager\LostArkChatManager;
+use App\Model\Manager\SeaOfThievesChatManager;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -293,6 +294,7 @@ class UserController extends AbstractController
                 'GlobalChatMessages' => GlobalChatManager::getMessagesByUserId($id),
                 'LostArkChatMessages' => LostArkChatManager::getMessagesByUserId($id),
                 'ForzaChatMessages' => ForzaChatManager::getMessagesByUserId($id),
+                'SeaOfThievesChatMessages' => SeaOfThievesChatManager::getMessagesByUserId($id),
             ]);
         }else {
             header("Location: /?c=home");

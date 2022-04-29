@@ -113,6 +113,42 @@ use App\Model\Entity\GlobalChat;
         </form>
     </div>
 
+    <!-- For Forza Horizon 5 Chat -->
+    <div class="global-chat-container">
+        <div class="global-chat">
+            <?php
+            if (isset($data['SeaOfThievesChatMessages'])) {
+                $seaOfThievesMessages = $data['SeaOfThievesChatMessages'];
+
+                foreach ($seaOfThievesMessages as $seaOfThievesMessage) {
+                    /** @var GlobalChat $lostArkMessage * */ ?>
+                    <div class="globalChatMessage">
+                    <p class="message"><?= $seaOfThievesMessage->getContent() ?></p>
+                    <p class="message"><?= $seaOfThievesMessage->getDateTime() ?></p>
+                    <a href="/?c=seaOfThievesChat&a=delete-message&id=<?= $seaOfThievesMessage->getId() ?>">Supprimez</a>
+                    </div><?php
+
+                }
+            } ?>
+        </div>
+        <form action="/?c=seaOfThievesChat&a=delete-messages&id=<?= (int)$_GET['id'] ?>" method="post">
+            <label for="limitNumber">Supprimez X derniers messages:</label>
+            <select name="limitNumber" id="limitNumber">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+            </select>
+            <input class="news-button" type="submit" name="submit" value="Supprimez">
+        </form>
+    </div>
+
 </div>
 
 

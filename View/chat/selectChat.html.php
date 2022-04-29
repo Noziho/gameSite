@@ -21,7 +21,7 @@
             </div>
         </a>
 
-        <a href="">
+        <a href="/?c=seaOfThievesChat&a=sea-of-thieves">
             <div>
                 <h2>Sea of thieves</h2>
                 <div id="forza-chat" class="chat-image"></div>
