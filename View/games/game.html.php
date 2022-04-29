@@ -5,6 +5,7 @@ use App\Model\Entity\Article;
 $messages = [
         "Success: L'article à bien été supprimer.",
         "Error: L'article demander n'existe pas ou à déjà été supprimer.",
+        "Success: L'article à bien été modifier.",
 ];
 
 
@@ -66,6 +67,7 @@ if (AbstractController::isAdmin()) {
         <div class="news-container">
             <?= $articleData->getContent() ?>
             <div>
+                <a href="/?c=article&a=edit-game&id=<?= $articleData->getId() ?>">Modifier l'article</a>
                 <a href="/?c=article&a=delete-game&id=<?= $articleData->getId() ?>">Supprimer l'article</a>
             </div>
         </div><?php

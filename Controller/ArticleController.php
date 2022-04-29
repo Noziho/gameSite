@@ -46,4 +46,33 @@ class ArticleController extends AbstractController
             header("Location: /?c=home");
         }
     }
+
+    public function editGame (int $id = null) {
+
+        if (null === $id) {
+            header("Location:/?c=article");
+        }
+
+        if (AbstractController::isAdmin()) {
+            if (ArticleManager::articleExist($id)) {
+                $this->render('games/editGame', [
+                    'game' => ArticleManager::getArticleById($id),
+                ]);
+            }
+            else {
+                header("Location: /?c=article&f=1");
+                exit();
+            }
+
+            if (isset($_POST['submit'])) {
+                $content = $_POST['content'];
+                ArticleManager::editArticle($id, $content);
+                header("Location: /?c=article&f=2");
+                exit();
+            }
+        }
+        else {
+            header("Location: /?c=home");
+        }
+    }
 }

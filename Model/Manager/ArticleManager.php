@@ -29,6 +29,12 @@ class ArticleManager
         return $articles;
     }
 
+    public static function getArticleById(int $id): ?Article
+    {
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE id = $id");
+        return $query->execute() ? self::makeArticle($query->fetch()) : null;
+    }
+
     public static function addArticle (string $content, int $user_fk): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
@@ -68,5 +74,13 @@ class ArticleManager
     public static function deleteArticle(int $id): void
     {
         DB_Connect::dbConnect()->query("DELETE FROM " . self::TABLE . " WHERE id = $id ");
+    }
+
+    public static function editArticle (int $id, string $content): void
+    {
+        $stmt = DB_Connect::dbConnect()->prepare("UPDATE ".self::TABLE. " SET content = :content WHERE id = $id");
+        $stmt->bindParam(':content', $content);
+
+        $stmt->execute();
     }
 }
