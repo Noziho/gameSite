@@ -187,6 +187,10 @@ i {
     box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 0.9);
 }
 
+.news-container img {
+    width: 80%;
+}
+
 .news-button {
     padding: 1rem;
     width: 30%;
@@ -277,19 +281,6 @@ input:focus, textarea:focus {
     margin-bottom: 5rem;
 }
 
-#delete_edit_button {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-#delete_edit_button > a {
-    transition: 1s;
-}
-
-#delete_edit_button > a:hover {
-    color: mediumpurple;
-}
 
 select{
     transition: 1s;
@@ -408,15 +399,16 @@ select{
     bottom: 5px;
 }
 
-
-.banner-container {
-    width: 100%;
+.edit_delete {
+    transition: 1s;
+    background: #222222;
+    padding: 1rem;
+    font-size: 1.6rem;
 }
 
-.banner {
-    width: 100%;
+.edit_delete:hover {
+    color: mediumpurple;
 }
-
 
 
 

@@ -143,7 +143,7 @@ class UserController extends AbstractController
     {
         session_destroy();
         session_unset();
-        header("Location: /?c=home");
+        header("Location: /?c=home&f=1");
     }
 
     public function contact()

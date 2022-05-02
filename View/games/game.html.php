@@ -31,16 +31,21 @@ if (isset($data['articles']))
     <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide">
-            <a href="https://google.fr"><img class="swiper_img" src="/assets/img/Forza%20horizon%205.jpg"
-                                             alt="Forza horizon img"></a>
+            <a
+                    href="#forza"><img class="swiper_img" src="/assets/img/Forza%20horizon%205.jpg" alt="Forza horizon img">
+            </a>
         </div>
 
         <div class="swiper-slide">
-            <img class="swiper_img" src="/assets/img/sea%20of%20thieves%20test.png" alt="Sea of thieves img">
+            <a href="#sea_of_thieves">
+                <img class="swiper_img" src="/assets/img/sea%20of%20thieves%20test.png" alt="Sea of thieves img">
+            </a>
         </div>
 
         <div class="swiper-slide">
-            <img class="swiper_img" src="/assets/img/Lost%20ark.jpg" alt="Lost ark img">
+            <a href="#lost_ark">
+                <img class="swiper_img" src="/assets/img/lost_ark.jpg" alt="Lost ark img">
+            </a>
         </div>
     </div>
     <!-- If we need pagination -->
@@ -67,8 +72,8 @@ if (AbstractController::isAdmin()) {
         <div class="news-container">
             <?= $articleData->getContent() ?>
             <div>
-                <a href="/?c=article&a=edit-game&id=<?= $articleData->getId() ?>">Modifier l'article</a>
-                <a href="/?c=article&a=delete-game&id=<?= $articleData->getId() ?>">Supprimer l'article</a>
+                <a class="edit_delete" href="/?c=article&a=edit-game&id=<?= $articleData->getId() ?>">Modifier l'article</a>
+                <a class="edit_delete" href="/?c=article&a=delete-game&id=<?= $articleData->getId() ?>">Supprimer l'article</a>
             </div>
         </div><?php
     }

@@ -1,6 +1,7 @@
 <?php
 $messages = [
     "Success: Connexion réussi ! Bienvenue !",
+    "Error: Vous avez été déconnecter",
 ];
 
 
