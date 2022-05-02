@@ -54,6 +54,15 @@ nav > a:hover {
     color: white;
     text-decoration: none;
     margin-inline: 2rem;
+    font-size: 1.6rem;
+    transition: 1s;
+}
+
+* a:hover {
+    color: mediumpurple;
+}
+
+.link_menu {
     font-size: 2rem;
 }
 
@@ -294,6 +303,13 @@ textarea {
     margin-bottom: 5rem;
 }
 
+.usersList > p {
+    line-height: 3rem;
+}
+
+.usersList > div {
+    margin-top: 1rem;
+}
 
 select{
     transition: 1s;
@@ -343,7 +359,9 @@ select{
 #deleteUserAccount > a:hover {
     color: mediumpurple;
 }
-
+#warning {
+    margin-bottom: 2rem;
+}
 /* Select chat page */
 
 .container-select-chat {
@@ -369,6 +387,7 @@ select{
     min-height: 38rem ;
 
 }
+
 
 /* Global Chat */
 .global-chat-container {
@@ -419,9 +438,16 @@ select{
     font-size: 1.6rem;
 }
 
+.edit-delete-container {
+    display: block;
+    margin-bottom: 3rem;
+}
+
 .edit_delete:hover {
     color: mediumpurple;
 }
+
+
 
 /* Responsive menu */
 
@@ -487,6 +513,34 @@ select{
     }
 
     .news-container {
+        width: 90%;
+    }
+
+    #profile-container {
+        width: 90%;
+        height: auto;
+    }
+
+    #deleteUserAccount {
+        width: auto;
+    }
+
+    .global-chat-container {
+        width: 95%;
+    }
+
+    .send-message {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    #container-login-form {
+        width: 90%
+    }
+
+    #container-register-form {
         width: 90%;
     }
 }

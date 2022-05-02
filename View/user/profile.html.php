@@ -18,12 +18,12 @@ if (isset($data['user'])) {
             <p>Mail: <?= $user->getEmail() ?></p>
 
             <div id="deleteUserAccount">
-                <a href="/?c=user&a=delete">Supprimez votre compte</a>
+                <a href="/?c=user&a=delete" id="delete_profile">Supprimez votre compte</a>
             </div>
-            <span class="warning">/!\ Attention cette action est irréversible !</span>
+            <p id="warning">/!\ Attention cette action est irréversible !</p>
             <?php
             if (AbstractController::isAdmin() || AbstractController::isModerator()) {?>
-                <a class="news-button" href="/?c=user&a=users-list">Listes des utilisateurs</a><?php
+                <a class="edit_delete" href="/?c=user&a=users-list">Listes des utilisateurs</a><?php
             }?>
         </div>
     </div>

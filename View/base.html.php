@@ -20,17 +20,17 @@
     </div>
 
     <nav class="header_menu">
-        <a href="/?c=home">Accueil</a>
-        <a href="/?c=article">Nos jeux</a>
-        <a href="/?c=user&a=contact">Contact</a>
+        <a class="link_menu" href="/?c=home">Accueil</a>
+        <a class="link_menu" href="/?c=article">Nos jeux</a>
+        <a class="link_menu" href="/?c=user&a=contact">Contact</a>
         <?php
             if (!isset($_SESSION['user'])){?>
-                <a href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
+                <a class="link_menu" href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
                 <?php
             }
             else {?>
-                <a href="/?c=user&a=profile">Profil</a>
-                <a href="/?c=user&a=dislog">Se déconnecter</a><?php
+                <a class="link_menu" href="/?c=user&a=profile">Profil</a>
+                <a class="link_menu" href="/?c=user&a=dislog">Se déconnecter</a><?php
             }
         ?>
     </nav>

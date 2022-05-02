@@ -71,8 +71,11 @@ if (AbstractController::isAdmin()) {
         /* @var Article $articleData */?>
         <div class="news-container">
             <?= $articleData->getContent() ?>
-            <div>
+            <div class="edit-delete-container">
                 <a class="edit_delete" href="/?c=article&a=edit-game&id=<?= $articleData->getId() ?>">Modifier l'article</a>
+            </div>
+
+            <div class="edit-delete-container">
                 <a class="edit_delete" href="/?c=article&a=delete-game&id=<?= $articleData->getId() ?>">Supprimer l'article</a>
             </div>
         </div><?php
