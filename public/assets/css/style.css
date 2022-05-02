@@ -70,50 +70,13 @@ nav > a:hover {
     display: block;
 }
 
-/* Main container + sub container */
+/* Main container */
 .container {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     margin-top: 5%;
-}
-
-.sub_container {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#introPage {
-    width: 60%;
-    min-height: 35rem;
-    background: rgba(248, 248, 255, 0.87);
-    border-radius: 8px;
-    background: #1a1717;
-    padding: 3rem;
-}
-
-/* Swiper */
-.swiper {
-    width: 70%;
-    height: auto;
-    margin-top: 2%;
-}
-
-.swiper-slide {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.swiper_img {
-    width: 100%;
-    height: auto;
-
 }
 
 
@@ -140,7 +103,7 @@ nav > a:hover {
     align-items: center;
     flex-flow: row wrap;
     width: 20rem;
-    height: 80rem;
+    min-height: 80rem;
     background: rebeccapurple;
     transform-origin: center center;
     rotate: 12deg;
@@ -166,6 +129,27 @@ i {
 .fa-discord, .fa-envelope, .fa-newspaper, .fa-comments, .fa-gamepad {
     font-size: 6rem;
     color: white;
+}
+
+/* Swiper */
+.swiper {
+    width: 70%;
+    height: auto;
+    margin-top: 2%;
+}
+
+.swiper-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.swiper_img {
+    width: 100%;
+    height: auto;
+
 }
 
 /* Footer for home page only */
@@ -545,3 +529,74 @@ select{
     }
 }
 
+/* Responsive home menu */
+
+@media screen and (max-width: 1440px) {
+
+
+
+    .home-menu {
+        width: 15rem;
+    }
+
+    .home-menu i {
+        font-size: 5rem;
+    }
+
+}
+
+@media screen and (max-width: 1225px) {
+
+
+    .home-menu {
+        width: 13rem;
+        margin: 1rem;
+    }
+
+    .home-menu:hover {
+        width: 15rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+    
+    .home-menu {
+        width: 10rem;
+        margin: 0;
+    }
+
+    .home-menu:hover {
+        width: 12rem;
+    }
+
+}
+
+@media screen and (max-width: 760px) {
+
+    .home-menu {
+        width: 100%;
+        rotate: inherit;
+        min-height: 10rem;
+        margin-top: 1.5rem;
+
+    }
+
+    .home-menu:hover {
+        width: inherit;
+    }
+
+    #menu-container {
+        display: flex;
+        position: inherit;
+        height: auto;
+    }
+
+    .menu > a {
+        width: 100%;
+    }
+
+    #home-footer {
+        bottom: -22rem;
+    }
+}
