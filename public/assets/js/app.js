@@ -1,6 +1,8 @@
 const errorOrSuccessMessage = document.querySelector('.error-message');
 const username = document.querySelector("#username");
 const password = document.querySelector('#password');
+const menuLogo = document.querySelector(".fa-bars");
+const menu = $(".header_menu");
 
 
  function checkRange (min, max , input, errorMessage) {
@@ -31,3 +33,7 @@ if (errorOrSuccessMessage) {
         $('.error-message').slideUp('fast');
     })
 }
+
+menuLogo.addEventListener("click", () => {
+    menu.toggleClass('visible')
+});

@@ -14,9 +14,12 @@
 </head>
 <body>
 <header>
-    <div><h1>GameSite</h1></div>
+    <div>
+        <h1>GameSite</h1>
+        <i class="fas fa-bars" id="button_menu"></i>
+    </div>
 
-    <nav>
+    <nav class="header_menu">
         <a href="/?c=home">Accueil</a>
         <a href="/?c=article">Nos jeux</a>
         <a href="/?c=user&a=contact">Contact</a>
