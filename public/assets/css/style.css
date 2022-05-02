@@ -89,7 +89,7 @@ nav > a:hover {
 /* Swiper */
 .swiper {
     width: 70%;
-    height: 550px;
+    height: auto;
     margin-top: 2%;
 }
 
@@ -479,6 +479,15 @@ select{
 
     .news-container > img {
         display: none;
+    }
+
+    .swiper {
+        width: auto;
+        height: auto;
+    }
+
+    .news-container {
+        width: 90%;
     }
 }
 
