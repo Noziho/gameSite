@@ -15,7 +15,7 @@
 <body>
 <header>
     <div>
-        <h1>GameSite</h1>
+        <h1><a id="home_title" href=/?c=home>GameSite</a></h1>
         <i class="fas fa-bars" id="button_menu"></i>
     </div>
 

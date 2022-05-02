@@ -38,7 +38,7 @@ if (isset($data['articles']))
 
         <div class="swiper-slide">
             <a href="#sea_of_thieves">
-                <img class="swiper_img" src="/assets/img/sea%20of%20thieves%20test.png" alt="Sea of thieves img">
+                <img class="swiper_img" src="/assets/img/sea%20of%20thieves.jpg" alt="Sea of thieves img">
             </a>
         </div>
 
