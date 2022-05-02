@@ -2,6 +2,7 @@
 $messages = [
     "Success: Connexion réussi ! Bienvenue !",
     "Error: Vous avez été déconnecter",
+    "Error: Vous devez vous connecter pour accéder à ce contenu.",
 ];
 
 
@@ -36,7 +37,7 @@ if (isset($_GET['f'])) {
             <div class="home-menu"><i class="fas fa-envelope"></i></div>
         </a>
 
-        <a href="">
+        <a href="https://discord.gg/5ysNXY6hW4" target="_blank">
             <div class="home-menu"><i class="fab fa-discord"></i></div>
         </a>
 

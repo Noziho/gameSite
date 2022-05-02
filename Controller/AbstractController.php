@@ -44,7 +44,7 @@ abstract class AbstractController
     public static function ifDisconnect(): void
     {
         if (!isset($_SESSION['user'])) {
-            header("Location: /?c=home");
+            header("Location: /?c=home&f=2");
         }
     }
 

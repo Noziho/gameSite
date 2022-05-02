@@ -25,7 +25,7 @@
         <a class="link_menu" href="/?c=user&a=contact">Contact</a>
         <?php
             if (!isset($_SESSION['user'])){?>
-                <a class="link_menu" href="/?c=user&a=login">Connexion</a>/<a href="?c=user&a=register">Inscription</a>
+                <a class="link_menu" href="/?c=user&a=login">Connexion</a>/<a class="link_menu" href="?c=user&a=register">Inscription</a>
                 <?php
             }
             else {?>
