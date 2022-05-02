@@ -13,3 +13,11 @@ tinymce.init({
     content_css: 'gameSite',
     height: '200',
 });
+
+tinymce.init({
+    selector: '#edit-article',
+    language: 'fr_FR',
+    skin_url: '/assets/css/gameSitee',
+    content_css: 'gameSite',
+    height: '600',
+});
