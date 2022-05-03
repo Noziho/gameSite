@@ -7,6 +7,7 @@ use App\Model\Entity\AllChatEntity;
 <div class="container">
     <!-- For Global Chat -->
     <div class="global-chat-container">
+        <h1>Chat général</h1>
         <div class="global-chat">
             <?php
 
@@ -44,6 +45,7 @@ use App\Model\Entity\AllChatEntity;
 
     <!-- For LostArk Chat -->
     <div class="global-chat-container">
+        <h1>Lost Ark Chat</h1>
         <div class="global-chat">
             <?php
             if (isset($data['LostArkChatMessages'])) {
@@ -80,6 +82,7 @@ use App\Model\Entity\AllChatEntity;
 
     <!-- For Forza Horizon 5 Chat -->
     <div class="global-chat-container">
+        <h1>Forza Chat</h1>
         <div class="global-chat">
             <?php
             if (isset($data['ForzaChatMessages'])) {
@@ -116,6 +119,7 @@ use App\Model\Entity\AllChatEntity;
 
     <!-- For Forza Horizon 5 Chat -->
     <div class="global-chat-container">
+        <h1>Sea Of Thieves Chat</h1>
         <div class="global-chat">
             <?php
             if (isset($data['SeaOfThievesChatMessages'])) {
