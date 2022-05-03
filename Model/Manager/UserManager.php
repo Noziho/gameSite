@@ -110,6 +110,19 @@ class UserManager
         return $query->execute() ? self::makeUser($query->fetch()) : null;
     }
 
+    /**
+     * @param string $email
+     * @return User|null
+     */
+    public static function getUserByEmail(string $email): ?User
+    {
+
+        $query = DB_Connect::dbConnect()->prepare("SELECT * FROM " . self::TABLE . " WHERE email = :email");
+        $query->bindParam(':email', $email);
+
+        return $query->execute() ? self::makeUser($query->fetch()) : null;
+    }
+
 
     /**
      * @param int $userId
@@ -210,6 +223,21 @@ class UserManager
     {
         $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 4 WHERE id = $user_fk");
         $query->execute();
+
+    }
+
+    public static function editPassword (User $user, string $password): bool
+    {
+        $stmt = DB_Connect::dbConnect()->prepare("
+            UPDATE " . self::TABLE . " SET password = :password WHERE id = " . $user->getId());
+
+        $stmt->bindParam(':password', $password);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
 
     }
 

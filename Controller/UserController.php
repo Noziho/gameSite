@@ -18,7 +18,7 @@ class UserController extends AbstractController
         $this->render('home/home');
     }
 
-    public function policy ()
+    public function policy()
     {
         $this->render('policy/policy');
     }
@@ -48,7 +48,7 @@ class UserController extends AbstractController
 
             $this::checkRange($email, 6, 150, '/?c=user&a=register&f=3');
             $this::checkRange($username, 4, 40, '/?c=user&a=register&f=4');
-            $this::checkRange($password_repeat, 8, 80, '/?c=user&a=register&f=5');
+            $this::checkRange($password_repeat, 8, 25, '/?c=user&a=register&f=5');
 
 
             $uppercase = preg_match('@[A-Z]@', $password_repeat);
@@ -279,7 +279,7 @@ class UserController extends AbstractController
             UserManager::muteUser($id);
             header("Location: /?c=user&a=users-list&f=1");
 
-        }else {
+        } else {
             header("Location: /?c=home");
         }
 
@@ -301,9 +301,109 @@ class UserController extends AbstractController
                 'ForzaChatMessages' => ForzaChatManager::getMessagesByUserId($id),
                 'SeaOfThievesChatMessages' => SeaOfThievesChatManager::getMessagesByUserId($id),
             ]);
-        }else {
+        } else {
             header("Location: /?c=home");
         }
 
+    }
+
+    public function newPassword(string $mi = null)
+    {
+        if (null === $mi) {
+            header("Location /?c=home");
+            exit();
+        }
+
+        if (!isset($_SESSION['temp_user']) || $_SESSION['temp_user']->getEmail() != $mi) {
+            header("Location: /?c=home");
+        }
+
+        $this->render('user/newPassword');
+
+
+        $email = filter_var($_GET['mi'], FILTER_SANITIZE_EMAIL);
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: /?c=home");
+            exit();
+        }
+
+        if (isset($_POST['submit'])) {
+
+            $password = $_POST['password'];
+
+            $this::checkRange($password, 8, 25, "Location: /?c=user&a=new-password&mi=$mi&f=1");
+
+            $uppercase = preg_match('@[A-Z]@', $password);
+            $lowercase = preg_match('@[a-z]@', $password);
+            $number = preg_match('@\d@', $password);
+
+            if (!$uppercase || !$lowercase || !$number) {
+                header("Location: /?c=user&a=new-password&mi=$mi&f=2");
+                exit();
+            }
+
+            $password = password_hash($password, PASSWORD_ARGON2I);
+
+
+            $user = UserManager::getUserByEmail($mi);
+
+            if (UserManager::editPassword($user, $password)){
+                header("Location: /?c=user&a=login&f=4");
+                exit();
+            }
+        }
+    }
+
+    public function forgotPassword()
+    {
+        $this->render('user/forgotPassword');
+
+        if (isset($_POST['submit'])) {
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                header("Location: /?c=user&a=forgot-password&f=0");
+                exit();
+            }
+
+            if (UserManager::mailExist($email)) {
+                $user = UserManager::getUserByEmail($email);
+                $_SESSION['temp_user'] = $user;
+                $message =
+                    '<html lang="fr">
+                           <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport"
+                                      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                                 <title>Réinitialisation de mot de passe</title>
+                            </head>
+                            <body>
+                                 <p>Pour réinitialiser votre mot de passe cliquer sur le boutton ci-dessous</p>
+                                 <form action="http://localhost:8000/?c=user&a=new-password&mi=' . $user->getEmail() . '" method="post" style="display: flex; justify-content: center; align-items: center">
+                                        <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser le mot de passe</button>
+                                 </form>
+                           </body>
+                    </html>
+                ';
+
+                $to = $email;
+                $subject = "Réinitialisation de votre mot de passe GameSite";
+                $headers = array(
+                    'Reply-To' => 'gameSiteSupport@gmail.com',
+                    'X-Mailer' => 'PHP/' . phpversion(),
+                    'Mime-Version' => '1.0',
+                    'Content-type' => 'text/html; charset=utf-8'
+
+                );
+
+                mail($to, $subject, $message, $headers, '-f gameSiteSupport@gmail.com');
+                header("Location: /?c=user&a=forgot-password&f=1");
+            } else {
+                header("Location: /?c=user&a=forgot-password&f=2");
+            }
+        }
     }
 }

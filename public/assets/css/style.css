@@ -249,6 +249,10 @@ textarea {
     width: 80%;
 }
 
+#forgotPassword {
+    text-decoration: underline;
+}
+
 /* container for success/error message */
 .error-message {
     display: flex;
@@ -487,6 +491,13 @@ select {
     margin-top: 2rem;
 }
 
+/* Forgot password page */
+
+#new-password {
+    width: 70%;
+    background: #1a1717;
+    padding: 2rem;
+}
 
 @media screen and (max-width: 1130px) {
     .tox-tinymce {

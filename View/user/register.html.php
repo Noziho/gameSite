@@ -47,7 +47,7 @@ if (isset($_GET['f'])) {
 
             <div>
                 <label for="password">Mot de passe:</label>
-                <input id="password" type="password" name="password" minlength="8" maxlength="80" required>
+                <input id="password" type="password" name="password" minlength="8" maxlength="25" required>
             </div>
 
             <div>
