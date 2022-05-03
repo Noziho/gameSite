@@ -55,7 +55,7 @@ class UserController extends AbstractController
             $lowercase = preg_match('@[a-z]@', $password_repeat);
             $number = preg_match('@\d@', $password_repeat);
 
-            if (!$uppercase || !$lowercase || !$number || strlen($password_repeat) < 8 || strlen($password_repeat) > 25) {
+            if (!$uppercase || !$lowercase || !$number) {
                 header("Location: /?c=user&a=register&f=6");
                 exit();
             }
