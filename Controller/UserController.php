@@ -18,6 +18,11 @@ class UserController extends AbstractController
         $this->render('home/home');
     }
 
+    public function policy ()
+    {
+        $this->render('policy/policy');
+    }
+
     /**
      * @return void
      * Simple function for add an user in database + send a confirmation mail for activate account.

@@ -45,6 +45,8 @@ if (isset($_GET['f'])) {
 </div>
 
 <footer id="home-footer">
-    <div>footer</div>
+    <div id="container-policy-link">
+        <a href="/?c=user&a=policy">Politique de confidentialité</a>
+    </div>
 </footer>
 

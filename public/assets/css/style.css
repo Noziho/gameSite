@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 html {
     font-size: 62.5%;
 }
@@ -294,7 +295,7 @@ textarea {
     margin-top: 1rem;
 }
 
-select{
+select {
     transition: 1s;
     padding: 1rem;
     background: #414141;
@@ -342,15 +343,18 @@ select{
 #deleteUserAccount > a:hover {
     color: mediumpurple;
 }
+
 #warning {
     margin-bottom: 2rem;
 }
+
 /* Select chat page */
 
 .container-select-chat {
     width: 100%;
     height: 100%;
 }
+
 .container-select-chat > a {
     width: 25%;
 }
@@ -367,7 +371,7 @@ select{
 .container-select-chat > a > div:hover {
     box-shadow: 5px 5px 50px -14px rgba(91, 8, 109, 1);
     width: 100%;
-    min-height: 38rem ;
+    min-height: 38rem;
 
 }
 
@@ -431,7 +435,8 @@ select{
 
 .time {
 
-    position: absolute;right: 10px;
+    position: absolute;
+    right: 10px;
     bottom: 5px;
 }
 
@@ -452,11 +457,34 @@ select{
 }
 
 
-
 /* Responsive menu */
 
 #button_menu {
     display: none;
+}
+
+
+/* Private policy */
+#container-policy {
+    width: 80%;
+    background: #1a1717;
+    padding: 2rem;
+    margin-bottom: 5rem;
+}
+
+#container-policy h2 {
+    margin-bottom: 3rem;
+    margin-top: 5rem;
+    font-size: 3rem;
+}
+
+#title_policy {
+    margin-top: 4rem;
+    margin-left: 5rem;
+}
+
+#container-policy-link {
+    margin-top: 2rem;
 }
 
 
@@ -466,7 +494,7 @@ select{
     }
 }
 
-@media screen and (max-width: 730px)  {
+@media screen and (max-width: 730px) {
 
     header {
         height: auto;
@@ -554,7 +582,6 @@ select{
 @media screen and (max-width: 1440px) {
 
 
-
     .home-menu {
         width: 15rem;
     }
@@ -580,7 +607,7 @@ select{
 
 @media screen and (max-width: 1000px) {
 
-    
+
     .home-menu {
         width: 10rem;
         margin: 0;
