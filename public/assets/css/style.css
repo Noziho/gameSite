@@ -38,14 +38,6 @@ header > div {
     font-family: 'Orbitron', sans-serif;
 }
 
-nav > a {
-    transition: 1s;
-}
-
-.header_menu {
-    transition: 1s;
-}
-
 * a {
     color: white;
     text-decoration: none;
@@ -328,7 +320,7 @@ select {
     padding: 2rem;
 }
 
-#deleteUserAccount {
+#deleteUserAccount, #edit_password {
     border-radius: 4px;
     background: #222222;
     width: 25%;
@@ -338,10 +330,9 @@ select {
     transition: 1s;
 }
 
-#deleteUserAccount > a {
+#deleteUserAccount > a, #edit_password > a {
     font-size: inherit;
     margin: inherit;
-    transition: 1s;
 }
 
 #deleteUserAccount > a:hover {

@@ -17,6 +17,10 @@ if (isset($data['user'])) {
             <p>Pseudo: <?= $user->getUsername() ?></p>
             <p>Mail: <?= $user->getEmail() ?></p>
 
+            <div id="edit_password">
+                <a href="/?c=user&a=forgot-password">Modifiez votre mot de passe</a>
+            </div>
+
             <div id="deleteUserAccount">
                 <a href="/?c=user&a=delete" id="delete_profile">Supprimez votre compte</a>
             </div>

@@ -349,6 +349,10 @@ class UserController extends AbstractController
             $user = UserManager::getUserByEmail($mi);
 
             if (UserManager::editPassword($user, $password)){
+                unset($_SESSION['temp_user']);
+                if (isset($_SESSION['user'])) {
+                    unset($_SESSION['user']);
+                }
                 header("Location: /?c=user&a=login&f=4");
                 exit();
             }
@@ -378,12 +382,12 @@ class UserController extends AbstractController
                                 <meta name="viewport"
                                       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
                                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                                 <title>Réinitialisation de mot de passe</title>
+                                 <title>Réinitialisation/Modification de mot de passe</title>
                             </head>
                             <body>
-                                 <p>Pour réinitialiser votre mot de passe cliquer sur le boutton ci-dessous</p>
+                                 <p>Pour réinitialiser/modifier votre mot de passe cliquer sur le boutton ci-dessous</p>
                                  <form action="http://localhost:8000/?c=user&a=new-password&mi=' . $user->getEmail() . '" method="post" style="display: flex; justify-content: center; align-items: center">
-                                        <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser le mot de passe</button>
+                                        <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser/Modifier le mot de passe</button>
                                  </form>
                            </body>
                     </html>

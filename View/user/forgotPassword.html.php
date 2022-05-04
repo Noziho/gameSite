@@ -1,7 +1,7 @@
 <?php
 $messages = [
     "Error: L'email n'est pas au format mail@exemple.com .",
-    "Success: Un mail de réinitialisation de mot de passe vous à été envoyé.",
+    "Success: Un mail de réinitialisation/modification de mot de passe vous à été envoyé.",
     "Error: Cette email ne correspond à aucun compte.",
 
 
