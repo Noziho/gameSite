@@ -14,6 +14,7 @@ $messages = [
     "Error: La valeur saisi n'est pas valide.",
     "Success: Les messages ont bien été supprimer.",
     "Error: Le boutton d'envoi est manquant.",
+    "Success: L'utilisateur à été supprimer.",
 ];
 
 

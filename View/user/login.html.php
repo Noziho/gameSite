@@ -10,6 +10,7 @@ $messages = [
     "Error: Les identifiants ne sont pas valides.",
     "Error: Une erreur est survenu lors de la connexion veuillez réessayer plus tard, si le problème persiste contacter le support.",
     "Success: Mot de passe changer avec succès",
+    "Success: Votre compte à été confirmer avec succès !",
 
 ];
 

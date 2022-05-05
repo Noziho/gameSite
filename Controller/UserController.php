@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\User;
 use App\Model\Manager\ForzaChatManager;
 use App\Model\Manager\GlobalChatManager;
 use App\Model\Manager\LostArkChatManager;
@@ -36,8 +35,8 @@ class UserController extends AbstractController
                 exit();
             }
 
-            $email = trim(filter_var($_POST['email']), FILTER_SANITIZE_EMAIL);
-            $username = trim(filter_var($_POST['username']), FILTER_SANITIZE_STRING);
+            $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
             $password_repeat = $_POST['password-repeat'];
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
 
@@ -95,7 +94,7 @@ class UserController extends AbstractController
                             <body>
                                  <p>Pour finalisez votre inscription veuillez cliquer sur le lien ci-dessous :</p>
                                  <div style="display: flex; justify-content: center; align-items: center">
-                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://localhost:8000/?c=user&a=check-mail&us=' . $username . '&id=' . $id . '">Confirmez votre compte</a></button>
+                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://gamesite.noziho.com/?c=user&a=check-mail&us=' . $username . '&id=' . $id . '">Confirmez votre compte</a></button>
                                  </div>
                            </body>
                     </html>
@@ -104,14 +103,15 @@ class UserController extends AbstractController
                 $to = $email;
                 $subject = "Confirmation de votre compte gameSitee";
                 $headers = array(
-                    'Reply-To' => 'gameSiteSupport@gmail.com',
+                    'From' => 'gamesitesupport@gamesite.noziho.com',
+                    'Reply-To' => 'gamesitesupport@gamesite.noziho.com',
                     'X-Mailer' => 'PHP/' . phpversion(),
                     'Mime-Version' => '1.0',
                     'Content-type' => 'text/html; charset=utf-8'
 
                 );
 
-                mail($to, $subject, $message, $headers, '-f gameSiteSupport@gmail.com');
+                mail($to, $subject, $message, $headers);
 
                 header("Location: /?c=user&a=register&f=0");
             } else {
@@ -172,6 +172,7 @@ class UserController extends AbstractController
                 exit();
             }
             $headers = array(
+                'From' => $reply_to,
                 'Reply-To' => $reply_to,
                 'X-Mailer' => 'PHP/' . phpversion(),
                 'Mime-Version' => '1.0',
@@ -179,7 +180,7 @@ class UserController extends AbstractController
 
             );
 
-            mail('gamesitensup@gmail.com', $subject, $message, $headers, '-f ' . $reply_to);
+            mail('gamesitesupport@gamesite.noziho.com', $subject, $message, $headers, '-f ' . $reply_to);
             header("Location: /?c=user&a=contact&f=0");
         }
     }
@@ -203,7 +204,7 @@ class UserController extends AbstractController
             }
 
             UserManager::editConfirmationStatus($user);
-            header("Location: /?c=user&a=login");
+            header("Location: /?c=user&a=login&f=5");
         } else {
             header("Location: /?c=home");
         }
@@ -253,7 +254,7 @@ class UserController extends AbstractController
             header("Location: /?c=home");
         }
         UserManager::deleteUser($id);
-        header("Location: /?c=user&a=users-list");
+        header("Location: /?c=user&a=users-list&f=8");
     }
 
     public function editUser(int $id = null)
@@ -386,7 +387,7 @@ class UserController extends AbstractController
                             </head>
                             <body>
                                  <p>Pour réinitialiser/modifier votre mot de passe cliquer sur le boutton ci-dessous</p>
-                                 <form action="http://localhost:8000/?c=user&a=new-password&mi=' . $user->getEmail() . '" method="post" style="display: flex; justify-content: center; align-items: center">
+                                 <form action="http://http://gamesite.noziho.com/?c=user&a=new-password&mi=' . $user->getEmail() . '" method="post" style="display: flex; justify-content: center; align-items: center">
                                         <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser/Modifier le mot de passe</button>
                                  </form>
                            </body>
@@ -396,14 +397,15 @@ class UserController extends AbstractController
                 $to = $email;
                 $subject = "Réinitialisation de votre mot de passe GameSite";
                 $headers = array(
-                    'Reply-To' => 'gameSiteSupport@gmail.com',
-                    'X-Mailer' => 'PHP/' . phpversion(),
-                    'Mime-Version' => '1.0',
-                    'Content-type' => 'text/html; charset=utf-8'
+                     'From' => 'gamesitesupport@gamesite.noziho.com',
+                     'Reply-To' => 'gamesitesupport@gamesite.noziho.com',
+                     'X-Mailer' => 'PHP/' . phpversion(),
+                     'Mime-Version' => '1.0',
+                    'Content-type' => 'text/html; charset=utf-8',
 
                 );
 
-                mail($to, $subject, $message, $headers, '-f gameSiteSupport@gmail.com');
+                mail($to, $subject, $message, $headers);
                 header("Location: /?c=user&a=forgot-password&f=1");
             } else {
                 header("Location: /?c=user&a=forgot-password&f=2");

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\LostArkChat;
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\LostArkChatManager;
 
 class LostArkChatController extends AbstractController
@@ -22,7 +22,7 @@ class LostArkChatController extends AbstractController
     {
         $messages = [];
         foreach (LostArkChatManager::getAll() as $key => $message) {
-            /* @var LostArkChat $message */
+            /* @var AllChatEntity $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
             $messages[$key]['time'] = $message->getDateTime();
