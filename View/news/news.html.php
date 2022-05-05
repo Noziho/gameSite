@@ -23,7 +23,10 @@ if (AbstractController::isAdmin()) {?>
 
         foreach ($news as $newsData) {
             /* @var News $newsData */?>
-            <div class="news-container"><?= $newsData->getContent() ?></div><?php
+            <div class="news-container">
+            <?= $newsData->getContent() ?>
+            <a href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
+            </div><?php
         }
     }
     ?>
