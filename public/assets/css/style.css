@@ -163,6 +163,10 @@ i {
     margin-top: 5%;
 }
 
+#news-title {
+    margin-left: 5rem;
+}
+
 .tox-tinymce {
     width: 110rem;
 }

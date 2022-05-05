@@ -33,7 +33,7 @@ if (AbstractController::isAdmin()) { ?>
 }
 ?>
 
-<h1>Actualités</h1>
+<h1 id="news-title">Actualités</h1>
 <div class="container">
     <?php
     if (isset($data['news'])) {
