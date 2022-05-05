@@ -4,6 +4,23 @@ use App\Model\Entity\News;
 
 AbstractController::ifDisconnect();
 
+$messages = [
+    "Success: L'actualité à bien été supprimer",
+    "Error: L'actualité n'existe pas ou à déjà été supprimer",
+];
+
+
+if (isset($_GET['f'])) {
+    $index = (int)$_GET['f'];
+    if ($index > count($messages)) {
+        header("Location: /?c=news");
+        exit();
+    }
+    $message = $messages[$index]; ?>
+    <div class="error-message <?= strpos($message, "Error: ") === 0 ? 'error' : 'success' ?>"><?= $message ?></div>
+    <?php
+}
+
 
 if (AbstractController::isAdmin()) {?>
     <div id="add-news-container">
@@ -26,6 +43,7 @@ if (AbstractController::isAdmin()) {?>
             <div class="news-container">
             <?= $newsData->getContent() ?>
             <a href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
+            <a href="/?c=news&a=delete-news&id=<?= $newsData->getId() ?>">Supprimez</a>
             </div><?php
         }
     }

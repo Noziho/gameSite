@@ -67,6 +67,11 @@ class NewsManager
         $stmt->bindParam(':content', $content);
 
         $stmt->execute();
+    }
 
+    public static function deleteNews (int $id): void
+    {
+
+        DB_Connect::dbConnect()->query("DELETE FROM " . self::TABLE . " WHERE id = $id ");
     }
 }

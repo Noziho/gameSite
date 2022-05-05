@@ -18,7 +18,7 @@ class NewsController extends AbstractController
     }
 
 
-    public function addNews ()
+    public function addNews()
     {
         $this->render('news/news');
         if (isset($_POST['submit'])) {
@@ -32,10 +32,10 @@ class NewsController extends AbstractController
         }
     }
 
-    public function editNews (int $id = null)
+    public function editNews(int $id = null)
     {
         if (null === $id) {
-            header("Location: /?c=home");
+            header("Location: /?c=news");
             exit();
         }
         if (AbstractController::isAdmin()) {
@@ -44,19 +44,46 @@ class NewsController extends AbstractController
                     'news' => NewsManager::getNewsById($id),
                 ]);
             }
-
+            else {
+                header("Location /?c=news&f=1");
+            }
 
             if (isset($_POST['submit'])) {
                 $content = strip_tags($_POST['content'],
-                    '<div><p><img><h1><h2><h3><h4></h4><h5><br><span>');
+                    '<div><p><img><h1><h2><h3><h4></h4><h5><h6><br><span>');
 
                 NewsManager::editNews($id, $content);
 
             }
         }
-
-
-
-
+        else {
+            header("Location /?c=home");
+            exit();
+        }
     }
+
+    public function deleteNews(int $id = null)
+    {
+
+        if (null === $id) {
+            header("Location: /?c=news");
+            exit();
+        }
+
+        if (AbstractController::isAdmin()) {
+            if (NewsManager::newsExist($id)) {
+
+                NewsManager::deleteNews($id);
+                header("Location: /?c=news&f=0");
+            }
+            else {
+                header("Location /?c=news&f=1");
+            }
+        }
+        else {
+            header("Location /?c=home");
+            exit();
+        }
+    }
+
 }
