@@ -1,4 +1,5 @@
 <?php
+
 use App\Controller\AbstractController;
 use App\Model\Entity\News;
 
@@ -22,7 +23,7 @@ if (isset($_GET['f'])) {
 }
 
 
-if (AbstractController::isAdmin()) {?>
+if (AbstractController::isAdmin()) { ?>
     <div id="add-news-container">
         <form action="/?c=news&a=add-news" method="post">
             <textarea name="content" id="add-news" placeholder="Taper vos actualités ici !"></textarea>
@@ -39,11 +40,16 @@ if (AbstractController::isAdmin()) {?>
         $news = $data['news'];
 
         foreach ($news as $newsData) {
-            /* @var News $newsData */?>
+            /* @var News $newsData */ ?>
             <div class="news-container">
-            <?= $newsData->getContent() ?>
-            <a href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
-            <a href="/?c=news&a=delete-news&id=<?= $newsData->getId() ?>">Supprimez</a>
+                <?= $newsData->getContent() ?>
+                <div class="edit-delete-container">
+                    <a class="edit_delete" href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
+                </div>
+
+                <div class="edit-delete-container">
+                    <a class="edit_delete" href="/?c=news&a=delete-news&id=<?= $newsData->getId() ?>">Supprimez</a>
+                </div>
             </div><?php
         }
     }
