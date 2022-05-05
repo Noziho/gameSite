@@ -182,7 +182,7 @@ i {
 }
 
 .news-container img {
-    width: 80%;
+    width: 100%;
 }
 
 .news-button {
@@ -535,10 +535,6 @@ select {
 
     .tox-tinymce {
         width: auto;
-    }
-
-    .news-container > img {
-        display: none;
     }
 
     .swiper {
