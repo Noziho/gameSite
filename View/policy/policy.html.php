@@ -3,7 +3,7 @@
     <div id="container-policy">
         <h2>Qui sommes nous ?</h2>
 
-        <p>L’adresse de notre site est : <a href="https://gamesite.noziho.com">https://gamesite.noziho.com .</a></p>
+        <p>L’adresse de notre site est : <a href="https://gamesite.noziho.com">https://gamesite.noziho.com</a></p>
 
         <h2>Cookies</h2>
 

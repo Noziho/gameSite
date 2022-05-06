@@ -649,3 +649,57 @@ select {
         bottom: -22rem;
     }
 }
+
+@media screen and (min-height: 740px) {
+    .home-menu {
+        min-height: 95rem;
+    }
+}
+
+@media screen and (min-height: 895px) {
+    .home-menu {
+        min-height: 110rem;
+    }
+}
+
+@media screen and (min-height: 1045px) {
+    .home-menu {
+        min-height: 125rem;
+    }
+}
+
+@media screen and (min-height: 1195px) {
+    .home-menu {
+        min-height: 140rem;
+    }
+}
+
+@media screen and (min-height: 1340px) {
+    .home-menu {
+        min-height: 155rem;
+    }
+}
+
+@media screen and (min-height: 1490px) {
+    .home-menu {
+        min-height: 170rem;
+    }
+}
+
+@media screen and (min-height: 1640px) {
+    .home-menu {
+        min-height: 185rem;
+    }
+}
+
+@media screen and (min-height: 1790px) {
+    .home-menu {
+        min-height: 200rem;
+    }
+}
+
+@media screen and (min-height: 1935px) {
+    .home-menu {
+        min-height: 215rem;
+    }
+}
