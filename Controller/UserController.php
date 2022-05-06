@@ -101,7 +101,7 @@ class UserController extends AbstractController
                 ';
 
                 $to = $email;
-                $subject = "Confirmation de votre compte gameSitee";
+                $subject = "Confirmation de votre compte tinySkin";
                 $headers = array(
                     'From' => 'gamesitesupport@gamesite.noziho.com',
                     'Reply-To' => 'gamesitesupport@gamesite.noziho.com',
