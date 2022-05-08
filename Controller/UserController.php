@@ -60,7 +60,6 @@ class UserController extends AbstractController
             }
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                header("Location: /?c=user&a=register&f=7");
                 exit();
             }
             if (UserManager::mailExist($email)) {
@@ -69,7 +68,7 @@ class UserController extends AbstractController
             }
 
             if (UserManager::usernameExist($username)) {
-                header("Location: '/?c=user&a=register&f=9");
+                header("Location: /?c=user&a=register&f=9");
                 exit();
             }
 
@@ -101,7 +100,7 @@ class UserController extends AbstractController
                 ';
 
                 $to = $email;
-                $subject = "Confirmation de votre compte tinySkin";
+                $subject = "Confirmation de votre compte GameSite";
                 $headers = array(
                     'From' => 'gamesitesupport@gamesite.noziho.com',
                     'Reply-To' => 'gamesitesupport@gamesite.noziho.com',
@@ -387,9 +386,9 @@ class UserController extends AbstractController
                             </head>
                             <body>
                                  <p>Pour réinitialiser/modifier votre mot de passe cliquer sur le boutton ci-dessous</p>
-                                 <form action="http://http://gamesite.noziho.com/?c=user&a=new-password&mi=' . $user->getEmail() . '" method="post" style="display: flex; justify-content: center; align-items: center">
+                                 <a href="http://gamesite.noziho.com/?c=user&a=new-password&mi=' . $user->getEmail() . '" style="display: flex; justify-content: center; align-items: center">
                                         <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser/Modifier le mot de passe</button>
-                                 </form>
+                                 </a>
                            </body>
                     </html>
                 ';

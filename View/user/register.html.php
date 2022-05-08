@@ -34,7 +34,7 @@ if (isset($_GET['f'])) {
 ?>
 <div class="container">
     <div id="container-register-form">
-        <form action="?c=user&a=register" method="post">
+        <form action="/?c=user&a=register" method="post">
             <div>
                 <label for="email">Mail:</label>
                 <input id="email" type="email" name="email" minlength="6" maxlength="150" required>

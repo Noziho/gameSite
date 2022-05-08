@@ -494,6 +494,7 @@ select {
     padding: 2rem;
 }
 
+/* Global responsive */
 @media screen and (max-width: 1130px) {
     .tox-tinymce {
         width: 70rem;
@@ -577,78 +578,13 @@ select {
     #container-register-form {
         width: 90%;
     }
-}
 
-/* Responsive home menu */
-
-@media screen and (max-width: 1440px) {
-
-
-    .home-menu {
-        width: 15rem;
-    }
-
-    .home-menu i {
-        font-size: 5rem;
-    }
-
-}
-
-@media screen and (max-width: 1225px) {
-
-
-    .home-menu {
-        width: 13rem;
-        margin: 1rem;
-    }
-
-    .home-menu:hover {
-        width: 15rem;
+    #container-policy {
+        width: 98%;
     }
 }
 
-@media screen and (max-width: 1000px) {
-
-
-    .home-menu {
-        width: 10rem;
-        margin: 0;
-    }
-
-    .home-menu:hover {
-        width: 12rem;
-    }
-
-}
-
-@media screen and (max-width: 760px) {
-
-    .home-menu {
-        width: 100%;
-        rotate: inherit;
-        min-height: 10rem;
-        margin-top: 1.5rem;
-
-    }
-
-    .home-menu:hover {
-        width: inherit;
-    }
-
-    #menu-container {
-        display: flex;
-        position: inherit;
-        height: auto;
-    }
-
-    .menu > a {
-        width: 100%;
-    }
-
-    #home-footer {
-        bottom: -22rem;
-    }
-}
+/* Responsive for height home page menu */
 
 @media screen and (min-height: 740px) {
     .home-menu {
@@ -703,3 +639,77 @@ select {
         min-height: 215rem;
     }
 }
+
+/* Responsive home menu */
+
+@media screen and (max-width: 1440px) {
+
+
+    .home-menu {
+        width: 15rem;
+    }
+
+    .home-menu i {
+        font-size: 5rem;
+    }
+
+}
+
+@media screen and (max-width: 1225px) {
+
+
+    .home-menu {
+        width: 13rem;
+        margin: 1rem;
+    }
+
+    .home-menu:hover {
+        width: 15rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+
+    .home-menu {
+        width: 10rem;
+        margin: 0;
+    }
+
+    .home-menu:hover {
+        width: 12rem;
+    }
+
+}
+
+@media screen and (max-width: 760px) {
+
+    .home-menu {
+        width: 100%;
+        rotate: inherit;
+        min-height: 10rem;
+        margin-top: 1.5rem;
+        position: inherit;
+
+    }
+
+    .home-menu:hover {
+        width: inherit;
+    }
+
+    #menu-container {
+        display: flex;
+        position: inherit;
+        height: auto;
+    }
+
+    .menu > a {
+        width: 100%;
+    }
+
+    #home-footer {
+        bottom: -22rem;
+    }
+}
+
+

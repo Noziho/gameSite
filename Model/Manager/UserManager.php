@@ -2,8 +2,6 @@
 
 namespace App\Model\Manager;
 
-
-use App\Controller\AbstractController;
 use App\Model\DB_Connect;
 use App\Model\Entity\User;
 
@@ -61,12 +59,12 @@ class UserManager
 
 
     /**
-     * @param $email
-     * @param $password_decode
+     * @param string $email
+     * @param string $password_decode
      * @return void
      * Compare if password written by user is the same as Password on DB
      */
-    public static function login($email, $password_decode): void
+    public static function login(string $email, string $password_decode): void
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             SELECT * FROM " . self::TABLE . " WHERE email = :email
