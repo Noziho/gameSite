@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 
-use App\Model\Entity\ForzaChat;
+
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\ForzaChatManager;
 
 class ForzaChatController extends AbstractController
@@ -23,7 +24,7 @@ class ForzaChatController extends AbstractController
     {
         $messages = [];
         foreach (ForzaChatManager::getAll() as $key => $message) {
-            /* @var ForzaChat $message */
+            /* @var AllChatEntity $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
             $messages[$key]['time'] = $message->getDateTime();
@@ -56,7 +57,12 @@ class ForzaChatController extends AbstractController
 
     }
 
-    public function deleteMessages(int $id = null)
+    /**
+     * @param int|null $id
+     * @return void
+     * delete X last messages.
+     */
+    public function deleteMessages(int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");

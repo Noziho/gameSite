@@ -15,7 +15,11 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    public function addGame()
+    /**
+     * @return void
+     * add article into DB.
+     */
+    public function addGame(): void
     {
         if (isset($_POST['submit'])) {
 
@@ -28,7 +32,13 @@ class ArticleController extends AbstractController
         }
     }
 
-    public function deleteGame(int $id = null)
+
+    /**
+     * @param int|null $id
+     * @return void
+     * delete game article.
+     */
+    public function deleteGame(int $id = null): void
     {
         if (null === $id) {
             header("Location:/?c=article");
@@ -50,7 +60,13 @@ class ArticleController extends AbstractController
         }
     }
 
-    public function editGame (int $id = null) {
+    /**
+     * @param int|null $id
+     * @return void
+     * edit article
+     */
+    public function editGame (int $id = null): void
+    {
 
         if (null === $id) {
             header("Location:/?c=article");

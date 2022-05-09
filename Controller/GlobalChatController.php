@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\Entity\GlobalChat;
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\GlobalChatManager;
 
 class GlobalChatController extends AbstractController
@@ -18,11 +18,12 @@ class GlobalChatController extends AbstractController
         $this->render('chat/global');
     }
 
+
     public function getAll(): void
     {
         $messages = [];
         foreach (GlobalChatManager::getAll() as $key => $message) {
-            /* @var GlobalChat $message */
+            /* @var AllChatEntity $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
             $messages[$key]['time'] = $message->getDateTime();
@@ -55,7 +56,12 @@ class GlobalChatController extends AbstractController
 
     }
 
-    public function deleteMessages(int $id = null)
+    /**
+     * @param int|null $id
+     * @return void
+     * delete X last messages.
+     */
+    public function deleteMessages(int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");

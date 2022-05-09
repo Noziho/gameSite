@@ -55,7 +55,12 @@ class LostArkChatController extends AbstractController
 
     }
 
-    public function deleteMessages(int $id = null)
+    /**
+     * @param int|null $id
+     * @return void
+     * delete X last messages.
+     */
+    public function deleteMessages(int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");

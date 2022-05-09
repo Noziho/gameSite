@@ -4,7 +4,7 @@ namespace App\Controller;
 
 
 
-use App\Model\Entity\SeaOfThievesChat;
+use App\Model\Entity\AllChatEntity;
 use App\Model\Manager\SeaOfThievesChatManager;
 
 class SeaOfThievesChatController extends AbstractController
@@ -24,7 +24,7 @@ class SeaOfThievesChatController extends AbstractController
     {
         $messages = [];
         foreach (SeaOfThievesChatManager::getAll() as $key => $message) {
-            /* @var SeaOfThievesChat $message */
+            /* @var AllChatEntity $message */
             $messages[$key]['content'] = $message->getContent();
             $messages[$key]['author'] = $message->getAuthor()->getUsername();
             $messages[$key]['time'] = $message->getDateTime();
@@ -57,7 +57,13 @@ class SeaOfThievesChatController extends AbstractController
 
     }
 
-    public function deleteMessages(int $id = null)
+
+    /**
+     * @param int|null $id
+     * @return void
+     * delete X last messages.
+     */
+    public function deleteMessages(int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");
