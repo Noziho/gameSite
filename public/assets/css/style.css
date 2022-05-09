@@ -539,7 +539,7 @@ select {
     }
 
     .tox-tinymce {
-        width: auto;
+        width: 50rem;
     }
 
     .swiper {
@@ -568,6 +568,10 @@ select {
         width: 100%;
     }
 
+    #edit_password {
+        width: auto;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
@@ -581,6 +585,10 @@ select {
 
     #container-policy {
         width: 98%;
+    }
+
+    .tox-tinymce {
+        width: 100%;
     }
 }
 
