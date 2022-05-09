@@ -18,18 +18,51 @@ class GlobalChatController extends AbstractController
         $this->render('chat/global');
     }
 
-
-    public function getAll(): void
+    public function forza ()
     {
-        $messages = [];
-        foreach (GlobalChatManager::getAll() as $key => $message) {
-            /* @var AllChatEntity $message */
-            $messages[$key]['content'] = $message->getContent();
-            $messages[$key]['author'] = $message->getAuthor()->getUsername();
-            $messages[$key]['time'] = $message->getDateTime();
-        }
+        $this->render('chat/forza');
+    }
 
-        echo json_encode($messages);
+    public function lostArk ()
+    {
+        $this->render('chat/lostark');
+    }
+
+    public function sot () {
+        $this->render('chat/seaofthieves');
+    }
+
+    public function checkTable (string $chat): string
+    {
+
+        if ($chat === 'lostark') {
+            $chat = 'ndmp22_lost_ark_chat';
+        }
+        else if ($chat === 'forza') {
+            $chat = 'ndmp22_forza_chat';
+        }
+        else if ($chat === 'sot') {
+            $chat = 'ndmp22_sot_chat';
+        }
+        else if ($chat === 'global') {
+            $chat = 'ndmp22_global_chat';
+        }
+        return $chat;
+    }
+
+    public function getAll(string $chat): void
+    {
+        $chat = $this->checkTable($chat);
+
+            $messages = [];
+            foreach (GlobalChatManager::getAll($chat) as $key => $message) {
+                /* @var AllChatEntity $message */
+                $messages[$key]['content'] = $message->getContent();
+                $messages[$key]['author'] = $message->getAuthor()->getUsername();
+                $messages[$key]['time'] = $message->getDateTime();
+            }
+
+            echo json_encode($messages);
     }
 
     /**
@@ -37,15 +70,17 @@ class GlobalChatController extends AbstractController
      * @return void
      * delete 1 target message
      */
-    public function deleteMessage(int $id = null): void
+    public function deleteMessage(string $chat, int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");
         }
 
+        $chat = $this->checkTable($chat);
+
         if (AbstractController::isAdmin() || AbstractController::isModerator()) {
-            if (GlobalChatManager::messageExist($id)) {
-                GlobalChatManager::deleteMessage($id);
+            if (GlobalChatManager::messageExist($id, $chat)) {
+                GlobalChatManager::deleteMessage($id, $chat);
                 header("Location: /?c=user&a=users-list&f=2");
             } else {
                 header("Location: /?c=user&a=users-list&f=4");
@@ -61,12 +96,14 @@ class GlobalChatController extends AbstractController
      * @return void
      * delete X last messages.
      */
-    public function deleteMessages(int $id = null): void
+    public function deleteMessages(string $chat, int $id = null): void
     {
         if (null === $id) {
             header("Location: /?c=home");
             exit();
         }
+
+        $chat = $this->checkTable($chat);
 
         if (AbstractController::isAdmin() || AbstractController::isModerator()) {
             if (isset($_POST['submit'])) {
@@ -82,7 +119,7 @@ class GlobalChatController extends AbstractController
                     exit();
                 }
 
-                GlobalChatManager::deleteMessages($id, $limit);
+                GlobalChatManager::deleteMessages($id, $limit, $chat);
                 header("Location: /?c=user&a=users-list&f=6");
 
             } else {

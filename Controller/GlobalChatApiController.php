@@ -10,8 +10,20 @@ use DateTime;
 class GlobalChatApiController extends AbstractController
 {
 
-    public function index()
+    public function message(string $chat)
     {
+        if ($chat === 'lostark') {
+            $chat = 'ndmp22_lost_ark_chat';
+        }
+        else if ($chat === 'forza') {
+            $chat = 'ndmp22_forza_chat';
+        }
+        else if ($chat === 'sot') {
+            $chat = 'ndmp22_sot_chat';
+        }
+        else if ($chat === 'global') {
+            $chat = 'ndmp22_global_chat';
+        }
 
         $payload = file_get_contents('php://input');
         $payload = json_decode($payload);
@@ -38,7 +50,7 @@ class GlobalChatApiController extends AbstractController
         ;
 
 
-        if (GlobalChatManager::addMessage($message)) {
+        if (GlobalChatManager::addMessage($message, $chat)) {
             echo json_encode([
                 'id' => $message->getId(),
                 'content' => $message->getContent(),
@@ -48,5 +60,10 @@ class GlobalChatApiController extends AbstractController
             http_response_code(200);
             exit;
         }
+    }
+
+    public function index()
+    {
+        // TODO: Implement index() method.
     }
 }

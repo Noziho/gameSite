@@ -8,13 +8,11 @@ use DateTime;
 
 class GlobalChatManager {
 
-    private const TABLE = "ndmp22_global_chat";
-
-    public static function getAll(): array
+    public static function getAll(string $table): array
     {
         $messages = [];
 
-        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE);
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . $table);
 
         if ($query) {
             foreach ($query->fetchAll() as $messageData) {
@@ -25,10 +23,10 @@ class GlobalChatManager {
 
     }
 
-    public static function addMessage (AllChatEntity $message): bool
+    public static function addMessage (AllChatEntity $message, string $table): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            INSERT INTO ". self::TABLE ." (content, user_fk, time) VALUES (:content, :author, :time)
+            INSERT INTO ". $table ." (content, user_fk, time) VALUES (:content, :author, :time)
         ");
 
         $dateTime = new DateTime();
@@ -52,23 +50,23 @@ class GlobalChatManager {
             ->setDateTime($data['time']);
     }
 
-    public static function messageExist(int $id): string
+    public static function messageExist(int $id, string $table): string
     {
-        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . self::TABLE . " WHERE id = $id");
+        $query = DB_Connect::dbConnect()->query("SELECT count(*) as cnt FROM " . $table . " WHERE id = $id");
         return $query ? $query->fetch()['cnt'] : 0;
     }
 
-    public static function deleteMessage(int $id): void
+    public static function deleteMessage(int $id, string $table): void
     {
-        $query = DB_Connect::dbConnect()->query("DELETE FROM ".self::TABLE." WHERE id = $id ");
+        $query = DB_Connect::dbConnect()->query("DELETE FROM ".$table." WHERE id = $id ");
         $query->execute();
     }
 
-    public static function getMessagesByUserId (int $user_fk): array
+    public static function getMessagesByUserId (int $user_fk, string $table): array
     {
         $messages = [];
 
-        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . self::TABLE . " WHERE user_fk = $user_fk ORDER BY id DESC LIMIT 100");
+        $query = DB_Connect::dbConnect()->query("SELECT * FROM " . $table . " WHERE user_fk = $user_fk ORDER BY id DESC LIMIT 100");
         if ($query) {
             foreach ($query->fetchAll() as $messageData) {
                 $messages[] = self::makeMessage($messageData);
@@ -78,10 +76,10 @@ class GlobalChatManager {
         return $messages;
     }
 
-    public static function deleteMessages (int $user_fk, int $limit): void
+    public static function deleteMessages (int $user_fk, int $limit, string $table): void
     {
         $stmt = DB_Connect::dbConnect()->prepare("
-            DELETE FROM ". self::TABLE ." WHERE user_fk = :user_fk ORDER BY id DESC LIMIT $limit ");
+            DELETE FROM ". $table ." WHERE user_fk = :user_fk ORDER BY id DESC LIMIT $limit ");
 
         $stmt->bindParam(':user_fk', $user_fk);
 

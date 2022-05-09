@@ -5,7 +5,7 @@ const containerChat = document.querySelector('.global-chat-container');
 if (message) {
     message.addEventListener('keypress', function (event) {
         if (event.keyCode === 13) {
-            fetch('/?c=forzaChatApi', {
+            fetch('/?c=globalChatApi&a=message&chat=forza', {
                 method: 'POST',
                 body: JSON.stringify({
                     content: message.value,
@@ -29,7 +29,7 @@ if (message) {
     })
 
     setInterval(function () {
-        fetch('/?c=forzaChat&a=get-all', {method: 'POST'})
+        fetch('/?c=globalChat&a=get-all&chat=forza', {method: 'POST'})
             .then(response => response.json())
             .then(response => {
                 refreshChat(response);

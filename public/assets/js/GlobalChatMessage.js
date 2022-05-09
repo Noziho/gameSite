@@ -5,7 +5,7 @@ const containerChat = document.querySelector('.global-chat-container');
 if (message) {
     message.addEventListener('keypress', function (event) {
         if (event.keyCode === 13) {
-            fetch('/?c=globalChatApi', {
+            fetch('/?c=globalChatApi&a=message&chat=global', {
                 method: 'POST',
                 body: JSON.stringify({
                     content: message.value,
@@ -29,7 +29,7 @@ if (message) {
     })
 
     setInterval(function () {
-        fetch('/?c=globalChat&a=get-all', {method: 'POST'})
+        fetch('/?c=globalChat&a=get-all&chat=global', {method: 'POST'})
             .then(response => response.json())
             .then(response => {
                 refreshChat(response);
