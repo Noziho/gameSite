@@ -19,13 +19,13 @@ use App\Model\Entity\AllChatEntity;
                     <div class="globalChatMessage">
                         <p class="message"><?= $globalMessage->getContent() ?></p>
                         <p class="message"><?= $globalMessage->getDateTime() ?></p>
-                        <a href="/?c=globalChat&a=delete-message&id=<?= $globalMessage->getId() ?>">Supprimez</a>
+                        <a href="/?c=globalChat&a=delete-message&chat=global&id=<?= $globalMessage->getId() ?>">Supprimez</a>
                     </div><?php
 
                 }
             } ?>
         </div>
-        <form action="/?c=globalChat&a=delete-messages&id=<?= (int)$_GET['id'] ?>" method="post">
+        <form action="/?c=globalChat&a=delete-messages&chat=global&id=<?= (int)$_GET['id'] ?>" method="post">
             <label for="limitNumber">Supprimez X derniers messages:</label>
             <select name="limitNumber" id="limitNumber">
                 <option value="5">5</option>
@@ -56,13 +56,13 @@ use App\Model\Entity\AllChatEntity;
                     <div class="globalChatMessage">
                     <p class="message"><?= $lostArkMessage->getContent() ?></p>
                     <p class="message"><?= $lostArkMessage->getDateTime() ?></p>
-                    <a href="/?c=lostArkChat&a=delete-message&id=<?= $lostArkMessage->getId() ?>">Supprimez</a>
+                    <a href="/?c=globalChat&a=delete-message&chat=lostark&id=<?= $lostArkMessage->getId() ?>">Supprimez</a>
                     </div><?php
 
                 }
             } ?>
         </div>
-        <form action="/?c=lostArkChat&a=delete-messages&id=<?= (int)$_GET['id'] ?>" method="post">
+        <form action="/?c=globalChat&a=delete-messages&chat=lostark&id=<?= (int)$_GET['id'] ?>" method="post">
             <label for="limitNumber">Supprimez X derniers messages:</label>
             <select name="limitNumber" id="limitNumber">
                 <option value="5">5</option>
@@ -89,17 +89,17 @@ use App\Model\Entity\AllChatEntity;
                 $forzaMessages = $data['ForzaChatMessages'];
 
                 foreach ($forzaMessages as $forzaMessage) {
-                    /** @var AllChatEntity $lostArkMessage * */ ?>
+                    /** @var AllChatEntity $forzaMessage * */ ?>
                     <div class="globalChatMessage">
                     <p class="message"><?= $forzaMessage->getContent() ?></p>
                     <p class="message"><?= $forzaMessage->getDateTime() ?></p>
-                    <a href="/?c=forzaChat&a=delete-message&id=<?= $forzaMessage->getId() ?>">Supprimez</a>
+                    <a href="/?c=globalChat&a=delete-message&chat=forza&id=<?= $forzaMessage->getId() ?>">Supprimez</a>
                     </div><?php
 
                 }
             } ?>
         </div>
-        <form action="/?c=forzaChat&a=delete-messages&id=<?= (int)$_GET['id'] ?>" method="post">
+        <form action="/?c=globalChat&a=delete-messages&chat=forza&id=<?= (int)$_GET['id'] ?>" method="post">
             <label for="limitNumber">Supprimez X derniers messages:</label>
             <select name="limitNumber" id="limitNumber">
                 <option value="5">5</option>
@@ -126,17 +126,17 @@ use App\Model\Entity\AllChatEntity;
                 $seaOfThievesMessages = $data['SeaOfThievesChatMessages'];
 
                 foreach ($seaOfThievesMessages as $seaOfThievesMessage) {
-                    /** @var AllChatEntity $lostArkMessage * */ ?>
+                    /** @var AllChatEntity $seaOfThievesMessage * */ ?>
                     <div class="globalChatMessage">
                     <p class="message"><?= $seaOfThievesMessage->getContent() ?></p>
                     <p class="message"><?= $seaOfThievesMessage->getDateTime() ?></p>
-                    <a href="/?c=seaOfThievesChat&a=delete-message&id=<?= $seaOfThievesMessage->getId() ?>">Supprimez</a>
+                    <a href="/?c=globalChat&a=delete-message&chat=sot&id=<?= $seaOfThievesMessage->getId() ?>">Supprimez</a>
                     </div><?php
 
                 }
             } ?>
         </div>
-        <form action="/?c=seaOfThievesChat&a=delete-messages&id=<?= (int)$_GET['id'] ?>" method="post">
+        <form action="/?c=globalChat&a=delete-messages&chat=sot&id=<?= (int)$_GET['id'] ?>" method="post">
             <label for="limitNumber">Supprimez X derniers messages:</label>
             <select name="limitNumber" id="limitNumber">
                 <option value="5">5</option>

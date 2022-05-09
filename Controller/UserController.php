@@ -3,10 +3,8 @@
 
 namespace App\Controller;
 
-use App\Model\Manager\ForzaChatManager;
+
 use App\Model\Manager\GlobalChatManager;
-use App\Model\Manager\LostArkChatManager;
-use App\Model\Manager\SeaOfThievesChatManager;
 use App\Model\Manager\UserManager;
 
 class UserController extends AbstractController
@@ -296,10 +294,10 @@ class UserController extends AbstractController
         if (AbstractController::isAdmin() || AbstractController::isModerator()) {
 
             $this->render('user/lastMessages', [
-                'GlobalChatMessages' => GlobalChatManager::getMessagesByUserId($id),
-                'LostArkChatMessages' => LostArkChatManager::getMessagesByUserId($id),
-                'ForzaChatMessages' => ForzaChatManager::getMessagesByUserId($id),
-                'SeaOfThievesChatMessages' => SeaOfThievesChatManager::getMessagesByUserId($id),
+                'GlobalChatMessages' => GlobalChatManager::getMessagesByUserId($id, 'ndmp22_global_chat'),
+                'LostArkChatMessages' => GlobalChatManager::getMessagesByUserId($id, 'ndmp22_lost_ark_chat'),
+                'ForzaChatMessages' => GlobalChatManager::getMessagesByUserId($id, 'ndmp22_forza_chat'),
+                'SeaOfThievesChatMessages' => GlobalChatManager::getMessagesByUserId($id, 'ndmp22_sot_chat'),
             ]);
         } else {
             header("Location: /?c=home");

@@ -32,7 +32,7 @@ class GlobalChatController extends AbstractController
         $this->render('chat/seaofthieves');
     }
 
-    public function checkTable (string $chat): string
+    public static function checkTable (string $chat): string
     {
 
         if ($chat === 'lostark') {
