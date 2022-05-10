@@ -39,7 +39,6 @@ if (isset($data['users'])) {
         foreach ($users as $user) {
             /* @var User $user */ ?>
             <div class="usersList">
-            <p>Id: <?= $user->getId() ?></p>
             <p>Mail: <?= $user->getEmail() ?></p>
             <p>Pseudo: <?= $user->getUsername() ?></p>
             <?php
@@ -49,21 +48,22 @@ if (isset($data['users'])) {
             }
 
             if (AbstractController::isAdmin()) { ?>
+                <p>Id: <?= $user->getId() ?></p>
+                <form id="edit_role" action="/?c=user&a=edit-user&id=<?= $user->getId() ?>" method="post">
+                        <label for="role">Mofidiez le rôle:</label>
+                        <select name="role" id="role">
+                            <option value="1">Utilisateur</option>
+                            <option value="2">Modérateur</option>
+                        </select>
 
-            <form id="edit_role" action="/?c=user&a=edit-user&id=<?= $user->getId() ?>" method="post">
-                    <label for="role">Mofidiez le rôle:</label>
-                    <select name="role" id="role">
-                        <option value="1">Utilisateur</option>
-                        <option value="2">Modérateur</option>
-                    </select>
+                        <input id="editUser" type="submit" name="submit" value="Modifiez">
+                    </form>
 
-                    <input id="editUser" type="submit" name="submit" value="Modifiez">
-                </form>
-
-                <div id="delete_edit_button">
-                <a id="deleteUser" href="/?c=user&a=delete-user&id=<?= $user->getId() ?>">Supprimez
-                    l'utilisateur</a><br>
-                </div><?php
+                    <div id="delete_edit_button">
+                    <a id="deleteUser" href="/?c=user&a=delete-user&id=<?= $user->getId() ?>">Supprimez
+                        l'utilisateur</a><br>
+                    </div>
+                <?php
             }
 
             if (AbstractController::isAdmin() || AbstractController::isModerator()) { ?>
@@ -75,19 +75,17 @@ if (isset($data['users'])) {
                                 <a href="/?c=user&a=unmute&id=<?= $user->getId() ?>">Demute l'utilisateur</a>
                             </div><?php
                         }
-                    }?>
-                <div>
-                    <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'utilisateur</a>
-                </div>
+                        elseif ($role->getName() === 'user') {?>
+                            <div>
+                                <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'utilisateur</a>
+                            </div>
 
-                <div>
-                    <a href="/?c=user&a=last-messages&id=<?= $user->getId() ?>">Voir les 100 derniers messages</a>
-                </div>
-
-                <?php
+                            <div>
+                                <a href="/?c=user&a=last-messages&id=<?= $user->getId() ?>">Voir les 100 derniers messages</a>
+                            </div><?php
+                        }
+                    }
             } ?>
-
-
             </div><?php
 
         } ?>
