@@ -224,6 +224,12 @@ class UserManager
 
     }
 
+    public static function unmuteUser (int $user_fk):void
+    {
+        $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 1 WHERE id = $user_fk");
+        $query->execute();
+    }
+
     public static function editPassword (User $user, string $password): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("

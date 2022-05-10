@@ -284,6 +284,21 @@ class UserController extends AbstractController
 
     }
 
+    public function unmute (int $id = null)
+    {
+        if (null === $id) {
+            header("Location: /?c=home");
+            exit();
+        }
+        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+            UserManager::unmuteUser($id);
+            header("Location: /?c=user&a=users-list&f=9");
+
+        } else {
+            header("Location: /?c=home");
+        }
+    }
+
     public function lastMessages(int $id = null)
     {
         if (null === $id) {

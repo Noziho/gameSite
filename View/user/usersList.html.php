@@ -15,6 +15,7 @@ $messages = [
     "Success: Les messages ont bien été supprimer.",
     "Error: Le boutton d'envoi est manquant.",
     "Success: L'utilisateur à été supprimer.",
+    "Success: L'utilisateur à été demute.",
 ];
 
 
@@ -66,8 +67,17 @@ if (isset($data['users'])) {
             }
 
             if (AbstractController::isAdmin() || AbstractController::isModerator()) { ?>
+                    <?php
+                    foreach ($user->getRole() as $role) {
+                        /* @var Role $role */
+                        if ($role->getName() === 'mute') {?>
+                            <div>
+                                <a href="/?c=user&a=unmute&id=<?= $user->getId() ?>">Demute l'utilisateur</a>
+                            </div><?php
+                        }
+                    }?>
                 <div>
-                    <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'user</a>
+                    <a href="/?c=user&a=mute&id=<?= $user->getId() ?>">Muté l'utilisateur</a>
                 </div>
 
                 <div>
