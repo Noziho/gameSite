@@ -98,7 +98,7 @@ header > div {
     min-height: 80rem;
     background: rebeccapurple;
     transform-origin: center center;
-    rotate: 12deg;
+    transform: rotate(12deg);
     margin: 2rem;
     transition: 1s;
 }
@@ -114,7 +114,7 @@ i {
 }
 
 .home-menu:hover i {
-    rotate: 360deg;
+    transform: rotate(360deg);
 }
 
 
@@ -694,7 +694,7 @@ select {
 
     .home-menu {
         width: 100%;
-        rotate: inherit;
+        transform: inherit;
         min-height: 10rem;
         margin-top: 1.5rem;
         position: inherit;
