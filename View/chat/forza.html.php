@@ -17,7 +17,7 @@ use App\Controller\AbstractController;
         elseif (!AbstractController::isMuted()) { ?>
             <div>
                 <input class="send-message" type="text" name="message"
-                       placeholder="Écrivez votre message, appuyez sur entrer pour l'envoyer !" minlength="1" maxlength="300" required>
+                       placeholder="Écrivez votre message, appuyez sur entrer pour l'envoyer !" minlength="1" maxlength="1000" required>
             </div><?php
         } else { ?>
             <p class="send-message">Vous êtes mute</p><?php
