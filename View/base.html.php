@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 
-    <script src="https://cdn.tiny.cloud/1/17u3v5r44xd0j0sjmegnk4mohqq8o1dxqdpcbkn6ncuvbxdq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/17u3v5r44xd0j0sjmegnk4mohqq8o1dxqdpcbkn6ncuvbxdq/tinymce/6/tinymce.min.js" referrerpolicy="origin" defer></script>
 
 </head>
 <body>

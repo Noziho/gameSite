@@ -31,12 +31,12 @@ if (isset($_GET['f'])) {
 
             <div>
                 <label for="subject">Objet de la demande:</label>
-                <input type="text" id="subject" name="subject" placeholder="Objet de la demande" minlength="4" maxlength="60" required>
+                <input id="subject" type="text" id="subject" name="subject" placeholder="Objet de la demande" minlength="4" maxlength="60" required>
             </div>
 
             <div>
                 <label for="message">Demande pour le support:</label>
-                <textarea name="message" id="message" cols="60" rows="10" placeholder="Votre demande..." minlength="20" maxlength="255" required></textarea>
+                <textarea id="message" name="message" id="message" cols="60" rows="10" placeholder="Votre demande..." minlength="20" maxlength="255" required></textarea>
             </div>
 
             <input type="submit" name="submit">
