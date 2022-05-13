@@ -217,6 +217,11 @@ class UserManager
         return $users;
     }
 
+    /**
+     * @param int $user_fk
+     * @return void
+     * update role for mute user.
+     */
     public static function muteUser (int $user_fk): void
     {
         $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 4 WHERE id = $user_fk");
@@ -224,12 +229,23 @@ class UserManager
 
     }
 
+    /**
+     * @param int $user_fk
+     * @return void
+     * update role for demute user.
+     */
     public static function unmuteUser (int $user_fk):void
     {
         $query = DB_Connect::dbConnect()->query("UPDATE ".self::TABLE." SET role_fk = 1 WHERE id = $user_fk");
         $query->execute();
     }
 
+    /**
+     * @param User $user
+     * @param string $password
+     * @return bool
+     * update password on DB.
+     */
     public static function editPassword (User $user, string $password): bool
     {
         $stmt = DB_Connect::dbConnect()->prepare("
