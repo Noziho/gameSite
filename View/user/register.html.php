@@ -16,6 +16,7 @@ $messages = [
     "Error: L'adresse mail existe déjà",
     "Error: Le pseudo est déjà utilisé",
     "Error: Une erreur est survenu lors de l'enregistrement, veuillez réessayer plus tard, si le problème persiste contacter le support.",
+    "Error: Les emails ne correspondent pas."
 
 ];
 
@@ -38,6 +39,11 @@ if (isset($_GET['f'])) {
             <div>
                 <label for="email">Mail:</label>
                 <input id="email" type="email" name="email" minlength="6" maxlength="150" required>
+            </div>
+
+            <div>
+                <label for="email-repeat">Répétez votre mail:</label>
+                <input id="email-repeat" type="email" name="email-repeat" minlength="6" maxlength="150" required>
             </div>
 
             <div>

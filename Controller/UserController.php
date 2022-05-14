@@ -34,6 +34,7 @@ class UserController extends AbstractController
             }
 
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $email_repeat = filter_var($_POST['email-repeat'], FILTER_SANITIZE_EMAIL);
             $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
             $password_repeat = $_POST['password-repeat'];
             $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
@@ -47,7 +48,6 @@ class UserController extends AbstractController
             $this::checkRange($username, 4, 40, '/?c=user&a=register&f=4');
             $this::checkRange($password_repeat, 8, 25, '/?c=user&a=register&f=5');
 
-
             $uppercase = preg_match('@[A-Z]@', $password_repeat);
             $lowercase = preg_match('@[a-z]@', $password_repeat);
             $number = preg_match('@\d@', $password_repeat);
@@ -60,6 +60,12 @@ class UserController extends AbstractController
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 exit();
             }
+
+            if ($email !== $email_repeat){
+                header("Location: /?c=user&a=register&f=11");
+                exit();
+            }
+
             if (UserManager::mailExist($email)) {
                 header("Location: /?c=user&a=register&f=8");
                 exit();
