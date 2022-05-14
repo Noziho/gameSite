@@ -54,5 +54,6 @@
     <orderEntry type="library" name="swiper" level="application" />
     <orderEntry type="library" name="tinymce" level="application" />
     <orderEntry type="library" name="jquery-3.6.0" level="application" />
+    <orderEntry type="library" name="api" level="application" />
   </component>
 </module>

@@ -4,6 +4,6 @@
     <file url="file://$PROJECT_DIR$/public/assets/js/GlobalChatMessage.js" libraries="{jquery-3.6.0}" />
     <file url="file://$PROJECT_DIR$/public/assets/js/Swiper.js" libraries="{swiper}" />
     <file url="file://$PROJECT_DIR$/public/assets/js/app.js" libraries="{jquery-3.6.0, swiper}" />
-    <file url="PROJECT" libraries="{@splidejs/splide, @splidejs/splide-extension-auto-scroll, tinymce}" />
+    <file url="PROJECT" libraries="{@splidejs/splide, @splidejs/splide-extension-auto-scroll, api, tinymce}" />
   </component>
 </project>
