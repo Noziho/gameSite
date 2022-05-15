@@ -26,7 +26,7 @@ if (isset($_GET['f'])) {
         <form action="/?c=user&a=contact" method="post">
             <div>
                 <label for="email">Votre mail:</label>
-                <input type="email" id="email" name="email" minlength="6" maxlength="150" required>
+                <input type="email" id="contact_mail" name="email" minlength="6" maxlength="150" required>
             </div>
 
             <div>

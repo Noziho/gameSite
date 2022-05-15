@@ -3,6 +3,7 @@ const username = document.querySelector("#username");
 const password = document.querySelector('#password');
 const subject = document.querySelector('#subject');
 const contact = document.querySelector('#message');
+const contactMail = document.querySelector('#contact_mail');
 const menuLogo = document.querySelector(".fa-bars");
 const menu = $(".header_menu");
 const email = document.querySelector('#email');
@@ -93,6 +94,18 @@ function checkEqualsPassword(input1, input2, min, max, errorMessage) {
     })
 }
 
+function mailValidity (input, min, max) {
+     input.addEventListener("input", function (e) {
+         if (checkMail(this.value) && this.value.length > min && this.value.length < max) {
+             this.setCustomValidity("")
+             this.style.outline = "1px solid green";
+         }else {
+             this.setCustomValidity("Le mail n'est pas au format mail@exemple.com ou n'est pas compris entre 6 " +
+                 "et 150 caractères")
+             this.style.outline = "1px solid red";
+         }
+     })
+}
 
 if (username) {
     checkRange(4, 40, username, "La longueur du pseudo doit-être comprise entre 4 et 40 caractères.");
@@ -109,11 +122,15 @@ if (subject) {
 }
 
 if (contact) {
-    checkRange(4, 60, contact, "La longueur de votre message doit-être comprise entre 20 et 255 caractères.");
+    checkRange(20, 60, contact, "La longueur de votre message doit-être comprise entre 20 et 255 caractères.");
 }
 if (email) {
     checkEqualsMail(email, emailRepeat, 6, 150, 'Les mails ne sont pas égaux ou la longueur du champ' +
         ' n\'est pas valide, le champ mail doit être compris entre 6 et 150 caractères. ');
+}
+
+if (contactMail) {
+    mailValidity(contactMail, 6, 150);
 }
 
 

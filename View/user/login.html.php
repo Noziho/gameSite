@@ -33,12 +33,12 @@ if (isset($_GET['f'])) {
         <form action="?c=user&a=login" method="post">
             <div>
                 <label for="email">Mail:</label>
-                <input id="email" type="email" name="email" minlength="6" maxlength="150" required>
+                <input id="email_login" type="email" name="email" minlength="6" maxlength="150" required>
             </div>
 
             <div>
                 <label for="password">Mot de passe:</label>
-                <input id="password" type="password" name="password" minlength="8" maxlength="25" required>
+                <input id="password_login" type="password" name="password" minlength="8" maxlength="25" required>
             </div>
             <a id="forgotPassword" href="/?c=user&a=forgot-password">J'ai oublier mon mot de passe ?</a>
 
