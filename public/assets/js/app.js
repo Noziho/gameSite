@@ -6,6 +6,8 @@ const contact = document.querySelector('#message');
 const menuLogo = document.querySelector(".fa-bars");
 const menu = $(".header_menu");
 const email = document.querySelector('#email');
+const emailRepeat = document.querySelector("#email-repeat");
+const passwordRepeat = document.querySelector('#password-repeat');
 
 
  function checkRange(min, max , input, errorMessage) {
@@ -26,32 +28,67 @@ function checkMail(mail) {
     return mail.match(/[a-z\d]+@[a-z]+.[a-z]{2,3}/)
 }
 
-function mailValidity(input) {
-     if (input) {
-         input.addEventListener("input", function (event) {
-             if (checkMail(this.value)) {
-                 this.setCustomValidity("");
-                 this.style.outline = "1px solid green";
-             }else {
-                 this.setCustomValidity("Erreur: l'adresse mail n'est pas au bon format : exemple@gmail.com");
-                 this.style.outline = "1px solid red";
-             }
-         })
-     }
-}
-
 function checkPassword(password) {
     return password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/);
 }
 
-function passwordValidity (input) {
-    input.addEventListener("input", function (event) {
-        if (checkPassword(this.value)) {
-            this.setCustomValidity("");
-            this.style.outline = "1px solid green";
+
+function checkEqualsMail(input1, input2, min, max, errorMessage) {
+    input1.addEventListener("input", function (e) {
+        if (input1.value === input2.value && input1.value.length > min && input1.value.length < max && checkMail(input1.value) ) {
+            input1.setCustomValidity("");
+            input1.style.outline = "1px solid green";
+            input2.setCustomValidity("");
+            input2.style.outline = "1px solid green";
         }else {
-            this.setCustomValidity("Erreur: Le mot de passe doit contenir au moins 1 majuscule, une minuscule et un chiffre/nombre");
-            this.style.outline = "1px solid red";
+            input1.setCustomValidity(errorMessage);
+            input1.style.outline = "1px solid red";
+            input2.setCustomValidity(errorMessage);
+            input2.style.outline = "1px solid red";
+        }
+    })
+
+    input2.addEventListener("input", function (e) {
+        if (input2.value === input1.value && input2.value.length > min && input2.value.length < max && checkMail(input2.value)) {
+            input2.setCustomValidity("");
+            input2.style.outline = "1px solid green";
+            input1.setCustomValidity("");
+            input1.style.outline = "1px solid green";
+        }else {
+            input2.setCustomValidity(errorMessage);
+            input2.style.outline = "1px solid red";
+            input1.setCustomValidity(errorMessage);
+            input1.style.outline = "1px solid red";
+        }
+    })
+}
+
+function checkEqualsPassword(input1, input2, min, max, errorMessage) {
+    input1.addEventListener("input", function (e) {
+        if (input1.value === input2.value && input1.value.length >= min && input1.value.length <= max && checkPassword(input1.value) ) {
+            input1.setCustomValidity("");
+            input1.style.outline = "1px solid green";
+            input2.setCustomValidity("");
+            input2.style.outline = "1px solid green";
+        }else {
+            input1.setCustomValidity(errorMessage);
+            input1.style.outline = "1px solid red";
+            input2.setCustomValidity(errorMessage);
+            input2.style.outline = "1px solid red";
+        }
+    })
+
+    input2.addEventListener("input", function (e) {
+        if (input2.value === input1.value && input2.value.length >= min && input2.value.length <= max && checkPassword(input2.value)) {
+            input2.setCustomValidity("");
+            input2.style.outline = "1px solid green";
+            input1.setCustomValidity("");
+            input1.style.outline = "1px solid green";
+        }else {
+            input2.setCustomValidity(errorMessage);
+            input2.style.outline = "1px solid red";
+            input1.setCustomValidity(errorMessage);
+            input1.style.outline = "1px solid red";
         }
     })
 }
@@ -62,8 +99,9 @@ if (username) {
 }
 
 if(password) {
-    checkRange(8, 25, password, "La longueur du password doit-être comprise entre 8 et 25 caractères.");
-    passwordValidity(password);
+    checkEqualsPassword(password, passwordRepeat, 8, 25, "La longeuur du mot de passe doit-être" +
+        " comprise en 8 et 25 caractères, les mots de passes ne sont pas égaux où ne sont" +
+        " pas au bon format, les mots de passes doivent contenir au moins une majuscule, une minuscule et un chiffre/nombre");
 }
 
 if (subject) {
@@ -74,8 +112,8 @@ if (contact) {
     checkRange(4, 60, contact, "La longueur de votre message doit-être comprise entre 20 et 255 caractères.");
 }
 if (email) {
-    checkRange(6 , 150, email, 'La longueur du mail doit-être comprise entre 6 et 150 caractères');
-    mailValidity(email);
+    checkEqualsMail(email, emailRepeat, 6, 150, 'Les mails ne sont pas égaux ou la longueur du champ' +
+        ' n\'est pas valide, le champ mail doit être compris entre 6 et 150 caractères. ');
 }
 
 
