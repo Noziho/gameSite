@@ -1,10 +1,11 @@
 {
-    "name": "noahd/game-site",
+    "name": "gamesite/gamesite",
+    "description": "A blog for gamer",
     "autoload": {
         "psr-4": {
-            "App\\Model\\Entity\\": "Model/Entity",
-            "App\\Model\\Manager\\": "Model/Manager",
-            "App\\Controller\\": "Controller"
+            "App\\Model\\Entity\\": "src/Model/Entity",
+            "App\\Model\\Manager\\": "src/Model/Manager",
+            "App\\Controller\\": "src/Controller"
 
 
         }

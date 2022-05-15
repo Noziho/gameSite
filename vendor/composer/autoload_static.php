@@ -104,15 +104,15 @@ class ComposerStaticInitc8bdb4d2c07466e93c1a3d7e92759ac9
         ),
         'App\\Model\\Manager\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Model/Manager',
+            0 => __DIR__ . '/../..' . '/src/Model/Manager',
         ),
         'App\\Model\\Entity\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Model/Entity',
+            0 => __DIR__ . '/../..' . '/src/Model/Entity',
         ),
         'App\\Controller\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Controller',
+            0 => __DIR__ . '/../..' . '/src/Controller',
         ),
     );
 

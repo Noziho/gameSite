@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Model\Entity\Role;
-use App\Model\Entity\User;
 use App\Model\Manager\UserManager;
 
 
@@ -21,9 +20,9 @@ abstract class AbstractController
     public function render(string $template, array $data = []): void
     {
         ob_start();
-        require __DIR__ . "/../View/" . $template . ".html.php";
+        require __DIR__ . "/../../View/" . $template . ".html.php";
         $html = ob_get_clean();
-        require __DIR__ . "/../View/base.html.php";
+        require __DIR__ . "/../../View/base.html.php";
     }
 
     /**

@@ -18,7 +18,7 @@ return array(
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'App\\Model\\Manager\\' => array($baseDir . '/Model/Manager'),
-    'App\\Model\\Entity\\' => array($baseDir . '/Model/Entity'),
-    'App\\Controller\\' => array($baseDir . '/Controller'),
+    'App\\Model\\Manager\\' => array($baseDir . '/src/Model/Manager'),
+    'App\\Model\\Entity\\' => array($baseDir . '/src/Model/Entity'),
+    'App\\Controller\\' => array($baseDir . '/src/Controller'),
 );

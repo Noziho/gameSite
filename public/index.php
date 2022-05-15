@@ -5,7 +5,7 @@ use Symfony\Component\ErrorHandler\Debug;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../Router.php';
-require __DIR__ . '/../Model/DB_Connect.php';
+require __DIR__ . '/../src/Model/DB_Connect.php';
 require __DIR__ . '/../Config.php';
 
 session_start();
