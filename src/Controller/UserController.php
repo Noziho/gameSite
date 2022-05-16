@@ -161,6 +161,11 @@ class UserController extends AbstractController
         header("Location: /?c=home&f=1");
     }
 
+
+    /**
+     * @return void
+     * sending mail to support service.
+     */
     public function contact()
     {
         $this->render('user/contact');
@@ -227,6 +232,10 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @return void
+     * take profile view.
+     */
     public function profile()
     {
         $this->render('user/profile', [
@@ -248,6 +257,10 @@ class UserController extends AbstractController
 
     }
 
+    /**
+     * @return void
+     * Take usersList view.
+     */
     public function usersList()
     {
         if (self::isModerator() || self::isAdmin()) {
@@ -259,6 +272,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     * delete user for admin
+     */
     public function deleteUser(int $id = null)
     {
 
@@ -274,6 +292,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     * edit role for user
+     */
     public function editUserRole(int $id = null)
     {
         if (null === $id) {
@@ -292,6 +315,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     * add muted role to a selected user
+     */
     public function mute(int $id = null)
     {
         if (null === $id) {
@@ -307,6 +335,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     * remove muted role to a selected user
+     */
     public function unmute (int $id = null)
     {
         if (null === $id) {
@@ -322,6 +355,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param int|null $id
+     * @return void
+     * take a lastMessages view with all data on parameters of render function.
+     */
     public function lastMessages(int $id = null)
     {
         if (null === $id) {
@@ -342,6 +380,11 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @param string|null $mi
+     * @return void
+     * forgot/reset password function for user
+     */
     public function newPassword(string $mi = null)
     {
         if (null === $mi) {
@@ -394,6 +437,10 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @return void
+     * sending mail if user have forgotten is password.
+     */
     public function forgotPassword()
     {
         $this->render('user/forgotPassword');
