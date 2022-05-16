@@ -184,8 +184,8 @@ class UserManager
             UPDATE ".self::TABLE." SET role_fk = :role_fk WHERE id = :id
         ");
 
-        $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':role_fk', $role_fk);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':role_fk', $role_fk);
 
         $stmt->execute();
     }

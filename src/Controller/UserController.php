@@ -243,7 +243,7 @@ class UserController extends AbstractController
 
     public function usersList()
     {
-        if (AbstractController::isModerator() || AbstractController::isAdmin()) {
+        if (self::isModerator() || self::isAdmin()) {
             $this->render('user/usersList', [
                 'users' => UserManager::getAll(),
             ]);
@@ -256,26 +256,38 @@ class UserController extends AbstractController
 
     public function deleteUser(int $id = null)
     {
-        AbstractController::ifNotAdmin();
 
         if (null === $id) {
             header("Location: /?c=home");
         }
-        UserManager::deleteUser($id);
-        header("Location: /?c=user&a=users-list&f=8");
+
+        if (self::isAdmin()) {
+            UserManager::deleteUser($id);
+            header("Location: /?c=user&a=users-list&f=8");
+        } else {
+            header("Location: /?c=home");
+        }
+
+
     }
 
-    public function editUser(int $id = null)
+    public function editUserRole(int $id = null)
     {
-        AbstractController::ifNotAdmin();
-
         if (null === $id) {
             header("Location: /?c=home");
+            exit();
         }
-        $currentId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
-        $role = filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT);
-        UserManager::editUserRole($currentId, $role);
-        header("Location: /?c=user&a=users-list&f=0");
+
+        if (self::isAdmin()) {
+            $currentId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+            $role = filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT);
+            UserManager::editUserRole($currentId, $role);
+            header("Location: /?c=user&a=users-list&f=0");
+        }
+        else {
+            header("Location: /?c=home");
+        }
+
     }
 
     public function mute(int $id = null)
@@ -284,7 +296,7 @@ class UserController extends AbstractController
             header("Location: /?c=home");
             exit();
         }
-        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+        if (self::isAdmin() || self::isModerator()) {
             UserManager::muteUser($id);
             header("Location: /?c=user&a=users-list&f=1");
 
@@ -301,7 +313,7 @@ class UserController extends AbstractController
             header("Location: /?c=home");
             exit();
         }
-        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+        if (self::isAdmin() || self::isModerator()) {
             UserManager::unmuteUser($id);
             header("Location: /?c=user&a=users-list&f=9");
 
@@ -317,7 +329,7 @@ class UserController extends AbstractController
             exit();
         }
 
-        if (AbstractController::isAdmin() || AbstractController::isModerator()) {
+        if (self::isAdmin() || self::isModerator()) {
 
             $this->render('user/lastMessages', [
                 'GlobalChatMessages' => GlobalChatManager::getMessagesByUserId($id, 'ndmp22_global_chat'),

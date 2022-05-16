@@ -49,7 +49,7 @@ if (isset($data['users'])) {
 
             if (AbstractController::isAdmin()) { ?>
                 <p>Id: <?= $user->getId() ?></p>
-                <form id="edit_role" action="/?c=user&a=edit-user&id=<?= $user->getId() ?>" method="post">
+                <form id="edit_role" action="/?c=user&a=edit-user-role&id=<?= $user->getId() ?>" method="post">
                         <label for="role">Mofidiez le rôle:</label>
                         <select name="role" id="role">
                             <option value="1">Utilisateur</option>

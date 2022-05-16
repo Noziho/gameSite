@@ -97,13 +97,6 @@ abstract class AbstractController
         }
     }
 
-    public static function ifNotAdmin(): void
-    {
-        if (!self::isAdmin()) {
-            header("Location: /?c=home");
-            exit();
-        }
-    }
 
     public static function isMuted (): bool
     {
