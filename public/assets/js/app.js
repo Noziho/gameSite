@@ -112,7 +112,7 @@ if (username) {
 }
 
 if(password) {
-    checkEqualsPassword(password, passwordRepeat, 8, 25, "La longeuur du mot de passe doit-être" +
+    checkEqualsPassword(password, passwordRepeat, 8, 25, "La longeur du mot de passe doit-être" +
         " comprise en 8 et 25 caractères, les mots de passes ne sont pas égaux où ne sont" +
         " pas au bon format, les mots de passes doivent contenir au moins une majuscule, une minuscule et un chiffre/nombre");
 }

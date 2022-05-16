@@ -178,7 +178,7 @@ class UserManager
      * @param int $role_fk
      * @return void
      */
-    public static function editUser (int $id, int $role_fk): void
+    public static function editUserRole (int $id, int $role_fk): void
     {
         $stmt = DB_Connect::dbConnect()->prepare("
             UPDATE ".self::TABLE." SET role_fk = :role_fk WHERE id = :id

@@ -274,7 +274,7 @@ class UserController extends AbstractController
         }
         $currentId = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
         $role = filter_var($_POST['role'], FILTER_SANITIZE_NUMBER_INT);
-        UserManager::editUser($currentId, $role);
+        UserManager::editUserRole($currentId, $role);
         header("Location: /?c=user&a=users-list&f=0");
     }
 
