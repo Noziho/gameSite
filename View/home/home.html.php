@@ -3,6 +3,7 @@ $messages = [
     "Success: Connexion réussi ! Bienvenue !",
     "Error: Vous avez été déconnecter",
     "Error: Vous devez vous connecter pour accéder à ce contenu.",
+    "Error: Votre compte à déjà été confirmer",
 ];
 
 

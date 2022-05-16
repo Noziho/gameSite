@@ -6,6 +6,7 @@ $messages = [
         "Success: L'article à bien été supprimer.",
         "Error: L'article demander n'existe pas ou à déjà été supprimer.",
         "Success: L'article à bien été modifier.",
+        "Success: L'article à bien été ajouter."
 ];
 
 

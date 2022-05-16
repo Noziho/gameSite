@@ -21,15 +21,20 @@ class ArticleController extends AbstractController
      */
     public function addGame(): void
     {
-        if (isset($_POST['submit'])) {
+        if (self::isAdmin()) {
+            if (isset($_POST['submit'])) {
 
-            $content = strip_tags($_POST['content'],
-                '<div><p><img src="" alt=""><h1><h2><h3><h4></h4><h5><br><span>');
+                $content = strip_tags($_POST['content'],
+                    '<div><p><img><h1><h2><h3><h4></h4><h5><br><span>');
 
-            if (ArticleManager::addArticle($content, $_SESSION['user']->getId())) {
-                header("Location: /?c=article");
+                if (ArticleManager::addArticle($content, $_SESSION['user']->getId())) {
+                    header("Location: /?c=article&f=3");
+                }
             }
+        }else {
+            header("Location: /?c=home");
         }
+
     }
 
 
@@ -44,7 +49,7 @@ class ArticleController extends AbstractController
             header("Location:/?c=article");
         }
 
-        if (AbstractController::isAdmin())
+        if (self::isAdmin())
         {
             if (ArticleManager::articleExist($id)) {
                 ArticleManager::deleteArticle($id);
@@ -72,7 +77,7 @@ class ArticleController extends AbstractController
             header("Location:/?c=article");
         }
 
-        if (AbstractController::isAdmin()) {
+        if (self::isAdmin()) {
             if (ArticleManager::articleExist($id)) {
                 $this->render('games/editGame', [
                     'game' => ArticleManager::getArticleById($id),

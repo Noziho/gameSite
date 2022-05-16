@@ -58,6 +58,7 @@ class UserController extends AbstractController
             }
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                header("Location: /?c=user&a=register&f=7");
                 exit();
             }
 
@@ -90,14 +91,20 @@ class UserController extends AbstractController
                            <head>
                                 <meta charset="UTF-8">
                                 <meta name="viewport"
-                                      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                      content="width=device-width, user-scalable=no, initial-scale=1.0,
+                                       maximum-scale=1.0, minimum-scale=1.0">
                                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
                                  <title>Document</title>
                             </head>
                             <body>
                                  <p>Pour finalisez votre inscription veuillez cliquer sur le lien ci-dessous :</p>
                                  <div style="display: flex; justify-content: center; align-items: center">
-                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px"><a style="text-decoration: none; color: white" href="http://gamesite.noziho.com/?c=user&a=check-mail&id=' . $id . '&confirmCode='. $confirm_code .'">Confirmez votre compte</a></button>
+                                        <button style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">
+                                            <a style="text-decoration: none; color: white"
+                                                 href="http://gamesite.noziho.com/?c=user&a=check-mail&id=' . $id .
+                                                '&confirmCode='. $confirm_code .'">Confirmez votre compte
+                                            </a>
+                                         </button>
                                  </div>
                            </body>
                     </html>
@@ -207,7 +214,7 @@ class UserController extends AbstractController
             }
 
             if ($user->getConfirm() === 1) {
-                header("Location: /?c=home");
+                header("Location: /?c=home&f=3");
                 exit();
             }
 
@@ -250,8 +257,6 @@ class UserController extends AbstractController
         } else {
             header("Location: /?c=home");
         }
-
-
     }
 
     public function deleteUser(int $id = null)
@@ -267,8 +272,6 @@ class UserController extends AbstractController
         } else {
             header("Location: /?c=home");
         }
-
-
     }
 
     public function editUserRole(int $id = null)
@@ -287,7 +290,6 @@ class UserController extends AbstractController
         else {
             header("Location: /?c=home");
         }
-
     }
 
     public function mute(int $id = null)
@@ -303,8 +305,6 @@ class UserController extends AbstractController
         } else {
             header("Location: /?c=home");
         }
-
-
     }
 
     public function unmute (int $id = null)
@@ -340,7 +340,6 @@ class UserController extends AbstractController
         } else {
             header("Location: /?c=home");
         }
-
     }
 
     public function newPassword(string $mi = null)
