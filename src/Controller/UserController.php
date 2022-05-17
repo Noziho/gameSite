@@ -385,49 +385,44 @@ class UserController extends AbstractController
      * @return void
      * forgot/reset password function for user
      */
-    public function newPassword(string $mi = null)
+    public function newPassword(string $key = null, int $id = null)
     {
-        if (null === $mi) {
+        if (null === $key) {
+            header("Location /?c=home");
+            exit();
+        }
+        if (null === $id) {
             header("Location /?c=home");
             exit();
         }
 
-        if (!isset($_SESSION['temp_user']) || $_SESSION['temp_user']->getEmail() != $mi) {
-            header("Location: /?c=home");
-        }
+        $user= UserManager::getUserById($id);
 
-        $this->render('user/newPassword');
-
-
-        $email = filter_var($_GET['mi'], FILTER_SANITIZE_EMAIL);
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($user->getConfirmCode() !== $key) {
             header("Location: /?c=home");
             exit();
         }
+
+        $this->render('user/newPassword');
 
         if (isset($_POST['submit'])) {
 
             $password = $_POST['password'];
 
-            $this::checkRange($password, 8, 25, "Location: /?c=user&a=new-password&mi=$mi&f=1");
+            $this::checkRange($password, 8, 25, "Location: /?c=user&a=new-password&key=$key&id=$id&f=1");
 
             $uppercase = preg_match('@[A-Z]@', $password);
             $lowercase = preg_match('@[a-z]@', $password);
             $number = preg_match('@\d@', $password);
 
             if (!$uppercase || !$lowercase || !$number) {
-                header("Location: /?c=user&a=new-password&mi=$mi&f=2");
+                header("Location: /?c=user&a=new-password&key=$key&id=$id&f=2");
                 exit();
             }
 
             $password = password_hash($password, PASSWORD_ARGON2I);
 
-
-            $user = UserManager::getUserByEmail($mi);
-
             if (UserManager::editPassword($user, $password)){
-                unset($_SESSION['temp_user']);
                 if (isset($_SESSION['user'])) {
                     unset($_SESSION['user']);
                 }
@@ -456,7 +451,6 @@ class UserController extends AbstractController
 
             if (UserManager::mailExist($email)) {
                 $user = UserManager::getUserByEmail($email);
-                $_SESSION['temp_user'] = $user;
                 $message =
                     '<html lang="fr">
                            <head>
@@ -468,7 +462,7 @@ class UserController extends AbstractController
                             </head>
                             <body>
                                  <p>Pour réinitialiser/modifier votre mot de passe cliquer sur le boutton ci-dessous</p>
-                                 <a href="http://gamesite.noziho.com/?c=user&a=new-password&mi=' . $user->getEmail() . '" style="display: flex; justify-content: center; align-items: center">
+                                 <a href="http://gamesite.noziho.com/?c=user&a=new-password&key=' . $user->getConfirmCode() . '&id='.$user->getId().'" style="display: flex; justify-content: center; align-items: center">
                                         <button type="submit" name="submitMail" style="width: 50%; padding: 1.2rem; border: 1px solid black; background: cornflowerblue; border-radius: 6px">Réinitialiser/Modifier le mot de passe</button>
                                  </a>
                            </body>

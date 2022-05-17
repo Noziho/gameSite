@@ -26,9 +26,9 @@ if (isset($_GET['f'])) {
 
 <div class="container">
     <div id="new-password">
-        <form action="/?c=user&a=new-password&mi=<?= $_GET['mi'] ?>" method="post">
+        <form action="/?c=user&a=new-password&key=<?= filter_var($_GET['key'], FILTER_SANITIZE_NUMBER_INT) ?>&id=<?=filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) ?>" method="post">
             <label for="password">Nouveau mot de passe</label>
-            <input type="password" name="password" id="password" minlength="8" maxlength="25" required>
+            <input type="password" name="password" id="password_reset" minlength="8" maxlength="25" required>
 
             <input type="submit" name="submit">
         </form>

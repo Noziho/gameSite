@@ -9,6 +9,8 @@ const menu = $(".header_menu");
 const email = document.querySelector('#email');
 const emailRepeat = document.querySelector("#email-repeat");
 const passwordRepeat = document.querySelector('#password-repeat');
+const emailForgotPassword = document.querySelector('#email_forgot_password');
+const passwordReset = document.querySelector('#password_reset');
 
 
  function checkRange(min, max , input, errorMessage) {
@@ -107,6 +109,19 @@ function mailValidity (input, min, max) {
      })
 }
 
+function passwordValidity (input, min, max) {
+    input.addEventListener("input", function (e) {
+        if (checkPassword(this.value) && this.value.length > min && this.value.length < max) {
+            this.setCustomValidity("")
+            this.style.outline = "1px solid green";
+        }else {
+            this.setCustomValidity("Le password n'est pas au bon format ou n'est pas compris entre 8 " +
+                "et 25 caractères, il doit contenir une minuscule, une majuscule et au minimum un chiffre.")
+            this.style.outline = "1px solid red";
+        }
+    })
+}
+
 if (username) {
     checkRange(4, 40, username, "La longueur du pseudo doit-être comprise entre 4 et 40 caractères.");
 }
@@ -133,6 +148,14 @@ if (contactMail) {
     mailValidity(contactMail, 6, 150);
 }
 
+if (emailForgotPassword) {
+    mailValidity(emailForgotPassword, 6, 150);
+}
+
+if (passwordReset) {
+    passwordValidity(passwordReset, 8, 25);
+}
+
 
 if (errorOrSuccessMessage) {
     setTimeout(function () {
@@ -143,6 +166,8 @@ if (errorOrSuccessMessage) {
         $('.error-message').slideUp('fast');
     })
 }
+
+
 
 menuLogo.addEventListener("click", () => {
     menu.toggleClass('visible')

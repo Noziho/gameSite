@@ -24,7 +24,7 @@ if (isset($_GET['f'])) {
     <div id="container-login-form">
         <form action="/?c=user&a=forgot-password" method="post">
             <label for="email">Votre Email :</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email_forgot_password" name="email">
 
             <input type="submit" name="submit">
         </form>
