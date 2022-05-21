@@ -71,7 +71,7 @@ if (AbstractController::isAdmin()) {
     foreach ($articles as $articleData) {
         /* @var Article $articleData */?>
         <div class="news-container">
-            <?= $articleData->getContent() ?>
+            <?= html_entity_decode($articleData->getContent()) ?>
         <?php
             if (AbstractController::isAdmin()){?>
             <div class="edit-delete-container">

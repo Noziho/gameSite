@@ -24,8 +24,8 @@ class ArticleController extends AbstractController
         if (self::isAdmin()) {
             if (isset($_POST['submit'])) {
 
-                $content = strip_tags($_POST['content'],
-                    '<div><p><img><h1><h2><h3><h4></h4><h5><br><span>');
+                $content = $_POST['content'];
+                $content = self::sanitizeHtmlData($content);
 
                 if (ArticleManager::addArticle($content, $_SESSION['user']->getId())) {
                     header("Location: /?c=article&f=3");
@@ -89,8 +89,8 @@ class ArticleController extends AbstractController
             }
 
             if (isset($_POST['submit'])) {
-                $content = strip_tags($_POST['content'],
-                    '<div><p><img><h1><h2><h3><h4></h4><h5><br><span>');
+                $content = $_POST['content'];
+                $content = self::sanitizeHtmlData($content);
                 ArticleManager::editArticle($id, $content);
 
                 exit();

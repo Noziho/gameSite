@@ -123,4 +123,14 @@ abstract class AbstractController
         return false;
     }
 
+    public static function sanitizeHtmlData ($data): string
+    {
+        //ENT_QUOTES for replace double quote with simple quotes.
+        $data = html_entity_decode($data, ENT_QUOTES, 'UTF-8');
+        $data = strip_tags($data, "<div><p><img><h1><h2><h3><h4></h4><h5><br><span><em><i><u>");
+        // Pattern for replace event attribute 'on' like 'onclick' 'onkeyup'...
+        preg_replace('/(<.+?)(?<=\s)on[a-z]+\s*=\s*(?:([\'"])(?!\2).+?\2|(?:\S+?\(.*?\)(?=[\s>])))(.*?>)/i', "$1 $3", $data );
+        return htmlentities($data);
+    }
+
 }

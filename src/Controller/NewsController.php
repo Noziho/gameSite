@@ -23,6 +23,7 @@ class NewsController extends AbstractController
         $this->render('news/news');
         if (isset($_POST['submit'])) {
             $content = $_POST['content'];
+            $content = self::sanitizeHtmlData($content);
 
             if (NewsManager::addNews($content, $_SESSION['user']->getId())) {
                 header("Location: /?c=news");
@@ -49,8 +50,8 @@ class NewsController extends AbstractController
             }
 
             if (isset($_POST['submit'])) {
-                $content = strip_tags($_POST['content'],
-                    '<div><p><img><h1><h2><h3><h4></h4><h5><h6><br><span>');
+                $content = $_POST['content'];
+                $content = self::sanitizeHtmlData($content);
 
                 NewsManager::editNews($id, $content);
 

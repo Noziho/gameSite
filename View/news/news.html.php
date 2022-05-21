@@ -42,7 +42,7 @@ if (AbstractController::isAdmin()) { ?>
         foreach ($news as $newsData) {
             /* @var News $newsData */ ?>
             <div class="news-container">
-                <?= $newsData->getContent() ?>
+                <?= html_entity_decode($newsData->getContent()) ?>
                 <div class="edit-delete-container">
                     <a class="edit_delete" href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
                 </div>
