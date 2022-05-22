@@ -33,57 +33,56 @@ class NewsController extends AbstractController
         }
     }
 
-    public function editNews(int $id = null)
+    public function editNews (int $id = null): void
     {
+
         if (null === $id) {
-            header("Location: /?c=news");
-            exit();
+            header("Location:/?c=news");
         }
-        if (AbstractController::isAdmin()) {
+
+        if (self::isAdmin()) {
             if (NewsManager::newsExist($id)) {
                 $this->render('news/editNews', [
                     'news' => NewsManager::getNewsById($id),
                 ]);
             }
             else {
-                header("Location /?c=news&f=1");
+                header("Location: /?c=news&f=1");
+                exit();
             }
 
             if (isset($_POST['submit'])) {
                 $content = $_POST['content'];
                 $content = self::sanitizeHtmlData($content);
-
                 NewsManager::editNews($id, $content);
 
+                exit();
             }
         }
         else {
-            header("Location /?c=home");
-            exit();
+            header("Location: /?c=home");
         }
     }
 
-    public function deleteNews(int $id = null)
+    public function deleteNews(int $id = null): void
     {
-
         if (null === $id) {
-            header("Location: /?c=news");
-            exit();
+            header("Location:/?c=news");
         }
 
-        if (AbstractController::isAdmin()) {
+        if (self::isAdmin())
+        {
             if (NewsManager::newsExist($id)) {
-
                 NewsManager::deleteNews($id);
-                header("Location: /?c=news&f=0");
+                header("Location:/?c=news&f=0");
+                exit();
             }
             else {
-                header("Location /?c=news&f=1");
+                header("Location: /?c=news&f=1");
             }
         }
         else {
-            header("Location /?c=home");
-            exit();
+            header("Location: /?c=home");
         }
     }
 

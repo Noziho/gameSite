@@ -43,13 +43,18 @@ if (AbstractController::isAdmin()) { ?>
             /* @var News $newsData */ ?>
             <div class="news-container">
                 <?= html_entity_decode($newsData->getContent()) ?>
-                <div class="edit-delete-container">
+            <?php
+                if (AbstractController::isAdmin()) {?>
+                    <div class="edit-delete-container">
                     <a class="edit_delete" href="/?c=news&a=edit-news&id=<?= $newsData->getId() ?>">Modifier</a>
                 </div>
 
                 <div class="edit-delete-container">
                     <a class="edit_delete" href="/?c=news&a=delete-news&id=<?= $newsData->getId() ?>">Supprimez</a>
-                </div>
+                </div><?php
+                }
+            ?>
+
             </div><?php
         }
     }
