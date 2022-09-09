@@ -166,7 +166,7 @@ class UserController extends AbstractController
      * @return void
      * sending mail to support service.
      */
-    public function contact()
+    public function contact(): void
     {
         $this->render('user/contact');
         if (isset($_POST['submit'])) {
@@ -202,8 +202,8 @@ class UserController extends AbstractController
 
 
     /**
-     * @param string $us
      * @param int $id
+     * @param string $confirmCode
      * @return void
      * Function for edit the confirmation status on DB.
      */
